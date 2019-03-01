@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="actionBar">#F8F8F8</color>
+    <color name="transparent">#0000</color>
+    <color name="qy_gray">#888888</color>
+    <color name="qy_bolder">#bbbbbb</color>
+    <color name="qy_white">#ffffff</color>
+    <color name="qy_black">#101010</color>
+</resources>

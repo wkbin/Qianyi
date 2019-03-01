@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/set_pwd_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/statusbar_view_height" />
+    <ImageView
+        android:id="@+id/set_pwd_back"
+        android:layout_below="@id/set_pwd_view"
+        android:layout_margin="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/fanhui2"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="45dp"
+        android:layout_below="@id/set_pwd_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_title_set_password"
+            android:textColor="#1a1a1a"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/et_set_password_1"
+                android:textColorHint="#B3B3B3"
+                android:textSize="16sp"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:hint="输入您的密码"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bukekan2"/>
+            <View
+                android:layout_marginTop="14dp"
+                android:layout_below="@id/et_set_password_1"
+                android:background="#D9D9D9"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/et_set_password_2"
+                android:textColorHint="#B3B3B3"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="16sp"
+                android:hint="请再次输入您的密码"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/bukekan2"/>
+            <View
+                android:layout_marginTop="14dp"
+                android:layout_below="@id/et_set_password_2"
+                android:background="#D9D9D9"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+        </RelativeLayout>
+        <Button
+            android:id="@+id/btn_set_password_complete"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_settings_pwd_off"
+            android:textColor="#999999"
+            android:textSize="18sp"
+            android:text="完成"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

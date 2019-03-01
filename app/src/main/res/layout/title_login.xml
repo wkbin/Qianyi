@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:orientation="vertical"
+    android:background="@color/qy_white">
+
+    <Button
+        android:id="@+id/btn_registered"
+        android:visibility="gone"
+        android:text="@string/registered"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:layout_width="52dp"
+        android:textSize="14sp"
+        android:textColor="@color/qy_black"
+        android:layout_height="40dp" />
+    <TextView
+        android:id="@+id/tv_login_title"
+        android:textSize="36sp"
+        android:layout_margin="30dp"
+        android:textColor="@color/qy_black"
+        android:layout_alignParentBottom="true"
+        android:text="-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+
