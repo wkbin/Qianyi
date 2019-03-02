@@ -1,5 +1,6 @@
 package com.example.qy.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,7 +16,6 @@ import android.widget.ImageView;
 import com.example.qy.R;
 import com.example.qy.adapter.HomeAdapter;
 import com.example.qy.ui.ViewPagerLayoutManager;
-import com.example.qy.utils.ToastUtils;
 import com.pili.pldroid.player.widget.PLVideoView;
 
 import java.util.ArrayList;
@@ -124,7 +124,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
         pausePlay();
     }
 
@@ -151,5 +150,18 @@ public class HomeFragment extends Fragment {
         View itemView = rv_home.getChildAt(0);
         PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
         plVideoView.stopPlayback();
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden){
+            // fragment隐藏了
+            pausePlay();
+        }else{
+            // fragment显示了
+            startPlay();
+        }
     }
 }

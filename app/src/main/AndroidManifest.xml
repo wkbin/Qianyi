@@ -36,10 +36,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.RegisteredActivity" />
         <activity android:name=".activity.SetPassWordActivity" />
         <activity android:name=".activity.PerfectInformationActivity" />
-        <activity android:name=".activity.UserAgreementActivity" />
         <activity android:name=".activity.DetailedPersonalDataActivity" />
         <activity android:name=".activity.UploadIconActivity" />
         <activity

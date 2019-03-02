@@ -140,7 +140,7 @@ public class SetPassWordActivity extends BaseActivity implements View.OnClickLis
                                     Intent intent = new Intent(SetPassWordActivity.this,PerfectInformationActivity.class);
                                     intent.putExtra("phone",phone);
                                     startActivity(intent);
-                                }else if (type == 2){
+                                }else if (type == 0){
                                     Intent intent = new Intent(SetPassWordActivity.this,MainActivity.class);
                                     intent.putExtra("phone",phone);
                                     startActivity(intent);
