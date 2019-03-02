@@ -1,261 +1,283 @@
 package com.example.qy.activity;
 
+
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
+import com.contrarywind.view.WheelView;
 import com.example.qy.R;
+import com.example.qy.bean.CityBean;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
 import com.example.qy.whs.BaseActivity;
-import com.lljjcoder.Interface.OnCityItemClickListener;
-import com.lljjcoder.bean.CityBean;
-import com.lljjcoder.bean.DistrictBean;
-import com.lljjcoder.bean.ProvinceBean;
-import com.lljjcoder.citywheel.CityConfig;
-import com.lljjcoder.style.citypickerview.CityPickerView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
-import cn.qqtheme.framework.picker.DatePicker;
-import cn.qqtheme.framework.picker.OptionPicker;
-import cn.qqtheme.framework.util.ConvertUtils;
-import cn.qqtheme.framework.widget.WheelView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class PerfectInformationActivity extends BaseActivity implements View.OnClickListener {
-    private TextView tv_login_title;
-    private RelativeLayout rl_perfect_sex,rl_perfect_year,rl_perfect_address;
-    private TextView tv_perfect_birthday;
-    private TextView tv_perfect_sex;
-    private TextView tv_perfect_address;
-    private CityPickerView mPicker;
-    private EditText et_perfect_infoManifesto;
-    private Button btn_save_login;
-    private Button btn_save_cancel;
-    private String phone;
 
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Bundle bundle = msg.getData();
-            if (msg.what == 0x007){
-                if (bundle.getBoolean("isSuc")){
-                    Intent intent = new Intent(PerfectInformationActivity.this,LoginActivity.class);
-                    intent.putExtra("phone",phone);
-                    startActivity(intent);
-                }else{
-                    ToastUtils.showShort(PerfectInformationActivity.this,bundle.getString("message"));
-                }
-            }
-        }
-    };
+
+public class PerfectInformationActivity extends BaseActivity implements View.OnClickListener {
+    private RelativeLayout rl_birthday;
+    private RelativeLayout rl_address;
+    private TimePickerView pvCustomTime;
+    private OptionsPickerView pvCustomOptions;
+    private TextView tv_birthday;
+    private TextView tv_address;
+    private RelativeLayout rl_nan,rl_nv;
+    private ImageView iv_nan,iv_nv;
+    private TextView tv_nan,tv_nv;
+    private EditText et_declaration;
+    private Button btn_save_data;
+    private String phone;
+    private LinearLayout li_ignore;
+
+    private List<CityBean> lists;
+    private List<List<String>> cityLists;
+
+    // 判断选中男女
+    private boolean isBoy = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfect_information);
-
         initView();
-
     }
-
-
-    private void selectAddress() {
-        //添加默认的配置，不需要自己定义
-        CityConfig cityConfig = new CityConfig.Builder().build();
-        cityConfig.setConfirmTextColorStr("#101010");
-        mPicker.setConfig(cityConfig);
-
-        //监听选择点击事件及返回结果
-        mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
-            @Override
-            public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
-                //将选择的地址填入tv_address_set中
-                tv_perfect_address.setText(province.toString().trim() + city.toString().trim() + district.toString().trim());
-            }
-            @Override
-            public void onCancel() {
-            }
-        });
-
-        //显示
-        mPicker.showCityPicker();
-
-    }
-
     private void initView(){
-
         phone = getIntent().getStringExtra("phone");
 
-        tv_login_title = findViewById(R.id.tv_login_title);
-        tv_login_title.setText("完善资料");
+        rl_birthday = findViewById(R.id.rl_birthday);
+        rl_address = findViewById(R.id.rl_address);
+        tv_address = findViewById(R.id.tv_address);
+        tv_birthday = findViewById(R.id.tv_birthday);
+        rl_nan = findViewById(R.id.rl_nan);
+        rl_nv = findViewById(R.id.rl_nv);
+        iv_nan = findViewById(R.id.iv_nan);
+        iv_nv = findViewById(R.id.iv_nv);
+        tv_nan = findViewById(R.id.tv_nan);
+        tv_nv = findViewById(R.id.tv_nv);
+        et_declaration = findViewById(R.id.et_declaration);
+        btn_save_data = findViewById(R.id.btn_save_data);
+        li_ignore = findViewById(R.id.li_ignore);
 
-        rl_perfect_sex = findViewById(R.id.rl_perfect_sex);
-        rl_perfect_year = findViewById(R.id.rl_perfect_year);
-        rl_perfect_address = findViewById(R.id.rl_perfect_address);
-        tv_perfect_address = findViewById(R.id.tv_perfect_address);
-        et_perfect_infoManifesto = findViewById(R.id.et_perfect_infoManifesto);
-
-        btn_save_login = findViewById(R.id.btn_save_login);
-        btn_save_cancel = findViewById(R.id.btn_save_cancel);
-
-        mPicker =new CityPickerView();
-        mPicker.init(this);
-
-        tv_perfect_birthday = findViewById(R.id.tv_perfect_birthday);
-        tv_perfect_sex = findViewById(R.id.tv_perfect_sex);
-        rl_perfect_sex.setOnClickListener(this);
-        rl_perfect_year.setOnClickListener(this);
-        rl_perfect_address.setOnClickListener(this);
-        btn_save_login.setOnClickListener(this);
-        btn_save_cancel.setOnClickListener(this);
-
+        rl_birthday.setOnClickListener(this);
+        rl_address.setOnClickListener(this);
+        rl_nan.setOnClickListener(this);
+        rl_nv.setOnClickListener(this);
+        btn_save_data.setOnClickListener(this);
+        li_ignore.setOnClickListener(this);
     }
-    private void onYearMonthDayPicker() {
-        final DatePicker picker = new DatePicker(this);
-        picker.setCanceledOnTouchOutside(true);
-        picker.setUseWeight(true);
-        picker.setTopPadding(ConvertUtils.toPx(this, 20));
-        picker.setRangeEnd(2050, 10, 14);//控件最大所能显示的时间，即结束时间
-        picker.setRangeStart(1970, 1, 1);//控件最小所能显示的时间
-        if (!TextUtils.isEmpty(tv_perfect_birthday.getText().toString().trim())){
-            String str[] = tv_perfect_birthday.getText().toString().trim().split("-");
-            String year = str[0];
-            String month = str[1];
-            String day = str[2];
-            picker.setSelectedItem(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day));
-
-        }
-
-        picker.setCancelText("取消");
-        picker.setSubmitText("确定");
-        picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
-            @Override
-            public void onDatePicked(String year, String month, String day) {
-                tv_perfect_birthday.setText(year + "-" + month + "-" + day);
-            }
-        });
-        picker.setOnWheelListener(new DatePicker.OnWheelListener() {
-            @Override
-            public void onYearWheeled(int index, String year) {
-                picker.setTitleText(year + "-" + picker.getSelectedMonth() + "-" + picker.getSelectedDay());
-            }
-
-            @Override
-            public void onMonthWheeled(int index, String month) {
-                picker.setTitleText(picker.getSelectedYear() + "-" + month + "-" + picker.getSelectedDay());
-            }
-
-            @Override
-            public void onDayWheeled(int index, String day) {
-                picker.setTitleText(picker.getSelectedYear() + "-" + picker.getSelectedMonth() + "-" + day);
-            }
-        });
-        picker.show();
-    }
-    private void onOptionPicker() {
-        OptionPicker picker = new OptionPicker(this, new String[]{
-                "男", "女"
-        });
-        picker.setCanceledOnTouchOutside(false);
-        picker.setCancelText("取消");
-        picker.setSubmitText("确定");
-        picker.setDividerRatio(WheelView.DividerConfig.FILL);
-        picker.setTextSize(16);
-        if (tv_perfect_sex.getText().toString().trim().equals("男")){
-            picker.setSelectedIndex(0);
-        }else{
-            picker.setSelectedIndex(1);
-        }
-
-        picker.setCycleDisable(true);
-        picker.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
-            @Override
-            public void onOptionPicked(int index, String item) {
-                tv_perfect_sex.setText(item);
-            }
-        });
-        picker.show();
-    }
-
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.rl_perfect_sex:
-                // 单项选择器
-                onOptionPicker();
+            case R.id.rl_nan:
+                isBoy = true;
+                iv_nan.setImageResource(R.mipmap.nandianji);
+                tv_nan.setTextColor(Color.parseColor("#1a1a1a"));
+                iv_nv.setImageResource(R.mipmap.nvweidianji);
+                tv_nv.setTextColor(Color.parseColor("#999999"));
                 break;
-            case R.id.rl_perfect_year:
-                // 日期选择器
-                onYearMonthDayPicker();
+            case R.id.rl_nv:
+                isBoy = false;
+                iv_nan.setImageResource(R.mipmap.nanweidianji);
+                tv_nan.setTextColor(Color.parseColor("#999999"));
+                iv_nv.setImageResource(R.mipmap.nvdianji);
+                tv_nv.setTextColor(Color.parseColor("#1a1a1a"));
                 break;
-            case R.id.rl_perfect_address:
-                // 地址选择器
-                selectAddress();
+            case R.id.rl_birthday:
+                showBirthdayDialog();
                 break;
-            case R.id.btn_save_login:
-                String sex = tv_perfect_sex.getText().toString().trim();
-                String birthday =  tv_perfect_birthday.getText().toString().trim();
-                String infoManifesto = et_perfect_infoManifesto.getText().toString().trim();
-                String address = tv_perfect_address.getText().toString().trim();
-                if (TextUtils.isEmpty(phone)){
-                    ToastUtils.showShort(PerfectInformationActivity.this,"phone is null!");
-                    return;
-                }
-                String url = HttpQYUtils.getMaterial(phone,sex,birthday,address,infoManifesto);
-
-                Log.d("666","url = "+url);
+            case R.id.rl_address:
+                String url = HttpQYUtils.getAddress();
                 HttpUtils.sendOkHttpRequest(url, new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String responseText = response.body().string();
-                    try {
-                        JSONObject jsonObject = new JSONObject(responseText);
-                        String message = jsonObject.getString("msg");
-                        boolean isSuc = jsonObject.getBoolean("isSuc");
-                        Bundle bundle = new Bundle();
-                        Message msg = new Message();
-                        msg.what = 0x007;
-                        bundle.putBoolean("isSuc",isSuc);
-                        bundle.putString("message",message);
-                        msg.setData(bundle);
-                        handler.sendMessage(msg);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        ToastUtils.showShort(PerfectInformationActivity.this,"连接断开");
                     }
-                }
-            });
-            break;
-            case R.id.btn_save_cancel:
-                Intent intent = new Intent(PerfectInformationActivity.this,LoginActivity.class);
-                intent.putExtra("phone",phone);
-                startActivity(intent);
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String responseText = response.body().string();
+                        try {
+                            JSONArray jsonArray = new JSONArray(responseText);
+                            lists = new ArrayList<>();
+                            for (int i = 0 ; i < jsonArray.length() ; i++ ){
+                                CityBean city = new CityBean();
+                                List<String> cityList = new ArrayList<>();
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                city.setProvince(jsonObject.getString("province"));
+                                JSONArray listArray = jsonObject.getJSONArray("city_list");
+                                for (int j = 0 ; j < listArray.length() ; j++ ){
+                                    cityList.add(listArray.getString(j));
+                                }
+                                city.setCity_list(cityList);
+                                lists.add(city);
+                            }
+                            runOnUiThread(() -> {
+                                showAddressDialog();
+                            });
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                break;
+            case R.id.btn_save_data:
+                String sex = isBoy?"男":"女";
+                String birthday = tv_birthday.getText().toString().trim();
+                String address = tv_address.getText().toString().trim();
+                String declaration = et_declaration.getText().toString().trim();
+
+                HttpUtils.sendOkHttpRequest(HttpQYUtils.getMaterial(phone, sex, birthday, address, declaration), new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        runOnUiThread(() ->{
+                                ToastUtils.showShort(PerfectInformationActivity.this,"连接断开");
+                        });
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String responseText = response.body().string();
+                        try {
+                            JSONObject jsonObject = new JSONObject(responseText);
+                            boolean isSuc = jsonObject.getBoolean("isSuc");
+                            String msg = jsonObject.getString("msg");
+                            if (isSuc){
+                                runOnUiThread(() -> {
+                                    ToastUtils.showShort(PerfectInformationActivity.this,msg);
+                                    Intent intent = new Intent(PerfectInformationActivity.this,MainActivity.class);
+                                    intent.putExtra("phone",phone);
+                                    startActivity(intent);
+                                });
+                            }else{
+                                ToastUtils.showShort(PerfectInformationActivity.this,msg);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                String str = "sex = "+sex+" ,birthday = "+birthday+" address = "+address+", declaration = "+declaration;
+                Log.d("666",str);
+                break;
+            case R.id.li_ignore:
+                startActivity(new Intent(PerfectInformationActivity.this,MainActivity.class));
                 break;
         }
+    }
 
 
 
+    private void showAddressDialog(){
+        //条件选择器 ，自定义布局
+        pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                tv_address.setText(lists.get(options1).getPickerViewText() + " - " +cityLists.get(options1).get(options2));
+            }
+        }).setLayoutRes(R.layout.pickerview_custom_address,v -> {
+
+                Button btn_address_finish = v.findViewById(R.id.btn_address_finish);
+                TextView tv_address_cancel = v.findViewById(R.id.tv_address_cancel);
+                btn_address_finish.setOnClickListener(View -> {
+                        pvCustomOptions.returnData();
+                        pvCustomOptions.dismiss();
+                });
+                tv_address_cancel.setOnClickListener(View -> {
+                        pvCustomOptions.dismiss();
+
+                });
+            }
+        )
+                .setLineSpacingMultiplier(2f)
+                .setDividerType(WheelView.DividerType.WRAP)
+                .setDividerColor(Color.parseColor("#3db2a3"))//设置分割线的颜色
+                .isCenterLabel(false)
+                .isDialog(true)
+                .build();
+
+        cityLists = new ArrayList<>();
+        for (int i=0;i < lists.size();i++) {//遍历省份
+            List<String> CityList = new ArrayList<>();//该省的城市列表（第二级）
+            for (int c = 0; c < lists.get(i).getCity_list().size(); c++) {//遍历该省份的所有城市
+                String CityName = lists.get(i).getCity_list().get(c);
+                CityList.add(CityName);//添加城市
+            }
+            cityLists.add(CityList);
+        }
+        pvCustomOptions.setPicker(lists,cityLists);
+        pvCustomOptions.show();
+    }
+    private void showBirthdayDialog(){
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(1970, 1,1);
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(2019, 3,1);
+        //时间选择器 ，自定义布局
+        pvCustomTime = new TimePickerBuilder(this, (date,v) -> {
+                tv_birthday.setText(getTime(date));
+        })
+                .setRangDate(startDate,endDate)
+                .setDate(selectedDate)
+                .setLayoutRes(R.layout.pickerview_custom_birthday,v -> {
+
+                        Button btn_finish = v.findViewById(R.id.btn_finish);
+                        TextView tv_cancel = v.findViewById(R.id.tv_cancel);
+                        btn_finish.setOnClickListener(View -> {
+                                pvCustomTime.returnData();
+                                pvCustomTime.dismiss();
+                        });
+                        tv_cancel.setOnClickListener(View -> {
+                                pvCustomTime.dismiss();
+                        });
+                    }
+                )
+                .setLineSpacingMultiplier(2f)
+                .setDividerType(WheelView.DividerType.WRAP)
+                .setDividerColor(Color.parseColor("#3db2a3"))//设置分割线的颜色
+                .isCenterLabel(false)
+                .isDialog(true)
+                .setType(new boolean[]{true,true,true,false,false,false})
+                .setContentTextSize(18)
+                .build();
+        pvCustomTime.show();
+
+
+    }
+    private String getTime(Date date) {//可根据需要自行截取数据显示
+        Log.d("getTime()", "choice date millis: " + date.getTime());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy - MM - dd");
+        return format.format(date);
     }
 }

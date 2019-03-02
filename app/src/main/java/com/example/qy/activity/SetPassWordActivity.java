@@ -1,5 +1,6 @@
 package com.example.qy.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -131,9 +132,21 @@ public class SetPassWordActivity extends BaseActivity implements View.OnClickLis
                             JSONObject jsonObject = new JSONObject(responseText);
                             boolean isSuc = jsonObject.getBoolean("isSuc");
                             final String msg = jsonObject.getString("msg");
-                           runOnUiThread(() ->{
-                                   ToastUtils.showShort(SetPassWordActivity.this,msg);
-                           });
+                            runOnUiThread(() ->{
+                                ToastUtils.showShort(SetPassWordActivity.this,msg);
+                            });
+                            if (isSuc){
+                                if (type == 1){
+                                    Intent intent = new Intent(SetPassWordActivity.this,PerfectInformationActivity.class);
+                                    intent.putExtra("phone",phone);
+                                    startActivity(intent);
+                                }else if (type == 2){
+                                    Intent intent = new Intent(SetPassWordActivity.this,MainActivity.class);
+                                    intent.putExtra("phone",phone);
+                                    startActivity(intent);
+                                }
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

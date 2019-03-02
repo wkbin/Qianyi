@@ -23,6 +23,8 @@ public class HttpQYUtils {
     private static final String iconToken = "getIconToken?";
     // 查询粉丝信息
     private static final String findFansDetails = "findFansDetails?";
+    // 获取城市地质api
+    private static final String address = "city.json";
 
     public static String getLoginPassWord(String loginPhone,String loginPwd){
         return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd;
@@ -85,6 +87,10 @@ public class HttpQYUtils {
 
     public static String getUser_agreement() {
         return ipUrl+"views/"+user_agreement;
+    }
+
+    public static String getAddress(){
+        return ipUrl+"views/"+address;
     }
 
     public static String getChangePassword(String loginPhone,String loginPwd) {

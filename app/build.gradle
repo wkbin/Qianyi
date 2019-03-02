@@ -46,14 +46,6 @@ dependencies {
     // OkHttp3
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
-    // 选择器
-
-    implementation('com.github.gzu-liyujiang.AndroidPicker:WheelPicker:1.5.6.20181018') {
-        exclude group: 'com.android.support'
-    }
-    implementation 'com.contrarywind:Android-PickerView:4.1.7'
-
-    implementation 'liji.library.dev:citypickerview:3.1.13'
 
     // gilde显示网络图片
     implementation 'com.github.bumptech.glide:glide:3.7.0'
@@ -72,5 +64,7 @@ dependencies {
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
     // 七牛云播放器
     implementation files('libs/pldroid-player-2.1.7.jar')
+    // 条件选择器
+    implementation 'com.contrarywind:Android-PickerView:4.1.7'
 
 }
