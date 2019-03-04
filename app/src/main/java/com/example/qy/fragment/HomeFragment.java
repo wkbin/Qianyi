@@ -54,10 +54,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(){
-        iv_home = getActivity().findViewById(R.id.iv_home);
-        iv_search = getActivity().findViewById(R.id.iv_search);
-        iv_home.setBackgroundResource(R.mipmap.ic_home);
-        iv_search.setBackgroundResource(R.mipmap.ic_search);
+//        iv_home = getActivity().findViewById(R.id.iv_home);
+//        iv_search = getActivity().findViewById(R.id.iv_search);
+//        iv_home.setBackgroundResource(R.mipmap.ic_home);
+//        iv_search.setBackgroundResource(R.mipmap.ic_search);
         rv_home = getActivity().findViewById(R.id.rv_home);
         list = new ArrayList<>();
         for (String s:plays){

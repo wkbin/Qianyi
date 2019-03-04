@@ -272,8 +272,6 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                 .setContentTextSize(18)
                 .build();
         pvCustomTime.show();
-
-
     }
     private String getTime(Date date) {//可根据需要自行截取数据显示
         Log.d("getTime()", "choice date millis: " + date.getTime());

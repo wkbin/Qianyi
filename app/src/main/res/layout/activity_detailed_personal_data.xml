@@ -1,148 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     tools:context=".activity.DetailedPersonalDataActivity">
-    <LinearLayout
-        android:orientation="horizontal"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:background="#a8a8a8"
+        android:layout_height="@dimen/statusbar_view_height" />
+
+    <include layout="@layout/action_bar"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_choose_icon"
+        android:layout_marginTop="35dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_icon"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
-        <TextView
-            android:id="@+id/tv_icon_data"
-            android:gravity="center"
-            android:text="修改"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <TextView
-            android:text="昵称"
+            android:layout_height="100dp"
+            android:src="@mipmap/touxiang"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="#7000"/>
+
+        <ImageView
+            android:src="@mipmap/camera"
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <EditText
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <TextView
-            android:text="性别"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:gravity="center"
-            android:text="男"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <TextView
-            android:text="生日"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:gravity="center"
-            android:text="2015-05-04"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-    <LinearLayout
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    </RelativeLayout>
+
     <TextView
-        android:text="家乡"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:text="快来添加你的家乡吧"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:textColor="#1a1a1a"
+        android:textSize="13sp"
+        android:text="点击更换头像"/>
+
+    <View
+        android:layout_marginTop="28dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-        <TextView
-            android:text="个性签名"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:gravity="center"
-            android:hint="留下点什么吧"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-    <LinearLayout
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:layout_width="match_parent"
-        android:layout_height="40dp">
-    <TextView
-        android:text="我的宣言"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:gravity="center"
-        android:hint="快来编辑你的个人说明吧"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
-    <LinearLayout
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="40dp">
-    <TextView
-        android:text="直播间号"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:gravity="center"
-        android:text="---"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="1dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#E6E6E6"/>
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_marginTop="34dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="绑定手机号"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <EditText
-            android:gravity="center"
-            android:text="快来绑定你的手机号吧"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="16sp"
+                android:text="昵称"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="13sp"
+                android:text="-"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jump"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/li_sex"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="16sp"
+                android:text="性别"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="13sp"
+                android:text="-"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jump"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/li_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="16sp"
+                android:text="生日"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_birthday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="13sp"
+                android:text="-"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jump"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/li_address"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="16sp"
+                android:text="家乡"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="13sp"
+                android:text="-"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jump"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:textSize="16sp"
+                android:text="绑定手机号"
+                android:textColor="#1a1a1a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="13sp"
+                android:text="快来绑定你的手机号吧"
+                android:layout_weight="1"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jump"/>
+        </LinearLayout>
     </LinearLayout>
-
-
 
 
 

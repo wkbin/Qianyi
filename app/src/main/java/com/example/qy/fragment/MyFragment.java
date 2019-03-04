@@ -86,6 +86,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
     private void initData(){
         UserInfo userInfo = ((MyApplication)getActivity().getApplication()).getUserInfo();
+        if (userInfo == null) return;
         Log.d("MyFragment","userInfo = "+userInfo.toString());
         tv_my_nickname.setText(userInfo.nickname);
         tv_my_id.setText("千艺号："+userInfo.qianyiID);

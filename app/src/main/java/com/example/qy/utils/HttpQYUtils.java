@@ -15,8 +15,10 @@ public class HttpQYUtils {
     private static final String changePassword = "ChangePassword?";
     // 用户协议
     private static final String user_agreement = "user_agreement.txt";
-    // 个人信息查询
+    // 根据手机号查询个人信息
     private static final String findPersonInfo = "FindPersonaInfo?";
+    // 根据id查询个人信息
+    private static final String findPersonalnfoWithId = "FindPersonalnfoWithId?";
     // 单独插入头像
     private static final String updateIcon = "updateIcon?";
     // 获取头像上传token
@@ -25,9 +27,11 @@ public class HttpQYUtils {
     private static final String findFansDetails = "findFansDetails?";
     // 获取城市地质api
     private static final String address = "city.json";
+    // 查询关注信息
+    private static final String attention = "countAttention?";
 
-    public static String getLoginPassWord(String loginPhone,String loginPwd){
-        return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd;
+    public static String getLoginPassWord(String loginPhone,String loginPwd,String loginId){
+        return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd+"&MEID="+loginId;
     }
     public static String getValidationLogin(String loginPhone,String phoneId){
         return ipUrl+validationLogin+"loginPhone="+loginPhone+"&MEID="+phoneId;
@@ -97,6 +101,9 @@ public class HttpQYUtils {
         return ipUrl+changePassword+"loginPhone="+loginPhone+"&loginPwd="+loginPwd;
     }
 
+    public static String getFindPersonalnfoWithId(int loginId){
+        return ipUrl+findPersonalnfoWithId+"loginId="+loginId;
+    }
     public static String getFindPersonInfo(String loginPhone){
         return ipUrl+findPersonInfo+"loginPhone="+loginPhone;
     }
@@ -109,5 +116,8 @@ public class HttpQYUtils {
         return ipUrl+findFansDetails+"loginPhone="+loginPhone;
     }
 
+    public static String getAttention(String userId){
+        return ipUrl+attention+"userId="+userId;
+    }
 
 }

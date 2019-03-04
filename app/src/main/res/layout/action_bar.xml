@@ -7,21 +7,27 @@
     android:layout_height="?attr/actionBarSize">
     <ImageView
         android:id="@+id/action_bar_iv_left"
-        android:layout_marginLeft="10dp"
-        android:layout_width="30dp"
-        android:layout_height="30dp" />
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/fanhui2"/>
     <TextView
         android:id="@+id/action_bar_text"
+        android:textStyle="bold"
         android:gravity="center"
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:textSize="14sp"
-        android:textColor="@color/qy_black"
+        android:textSize="18sp"
+        android:textColor="#1a1a1a"
         android:text="-"
         android:layout_height="wrap_content" />
-    <ImageView
+    <TextView
         android:id="@+id/action_bar_iv_right"
-        android:layout_marginRight="10dp"
+        android:textColor="#1A1A1A"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:text="保存"
+        android:layout_marginRight="20dp"
         android:layout_width="30dp"
         android:layout_height="30dp" />
 </LinearLayout>

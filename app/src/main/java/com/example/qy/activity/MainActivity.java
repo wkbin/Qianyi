@@ -1,9 +1,11 @@
 package com.example.qy.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import com.example.qy.R;
@@ -13,6 +15,7 @@ import com.example.qy.fragment.HomeFragment;
 import com.example.qy.fragment.MyFragment;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
+import com.example.qy.utils.ToastUtils;
 import com.example.qy.utils.UniquePsuedoUtils;
 import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
@@ -35,49 +38,95 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+
+
         initView();
     }
 
 
     private void initView(){
 
-        // 修改完后可能不会调取这个，暂时先这样写
-        String phone = getIntent().getStringExtra("phone");
-        String phoneId = UniquePsuedoUtils.getUniquePsuedoID();
-        HttpUtils.sendOkHttpRequest(HttpQYUtils.getValidationLogin(phone, phoneId), new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {}
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String responseText = response.body().string();
-                try {
-                    JSONObject jsonObject = new JSONObject(responseText);
-                    boolean isSuc = jsonObject.getBoolean("isSuc");
-                    if (isSuc){
-                        UserInfo userInfo = new UserInfo();
-                        JSONObject dataObject = jsonObject.getJSONObject("data");
-                        userInfo.birthday = dataObject.getString("birthday");
-                        userInfo.phone = dataObject.getString("phone");
-                        userInfo.signature = dataObject.getString("signature");
-                        userInfo.integral = dataObject.getString("integral");
-                        userInfo.sex = dataObject.getString("sex");
-                        userInfo.nickname = dataObject.getString("nickname");
-                        userInfo.icon = dataObject.getString("icon");
-                        userInfo.manifesto = dataObject.getString("manifesto");
-                        userInfo.home = dataObject.getString("home");
-                        userInfo.fans = dataObject.getString("fans");
-                        userInfo.qianyiID = dataObject.getString("qianyiID");
-                        // 登录成功 保存登录状态
-                        MyApplication application = (MyApplication) getApplication();
-                        application.setUserInfo(userInfo);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+//        // 修改完后可能不会调取这个，但是问题不大，暂时先这样写
+//        String phone = getIntent().getStringExtra("phone");
+//        String phoneId = UniquePsuedoUtils.getUniquePsuedoID();
+//        HttpUtils.sendOkHttpRequest(HttpQYUtils.getValidationLogin(phone, phoneId), new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {}
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String responseText = response.body().string();
+//                try {
+//                    JSONObject jsonObject = new JSONObject(responseText);
+//                    boolean isSuc = jsonObject.getBoolean("isSuc");
+//                    if (isSuc){
+//                        UserInfo userInfo = new UserInfo();
+//                        JSONObject dataObject = jsonObject.getJSONObject("data");
+//                        userInfo.birthday = dataObject.getString("birthday");
+//                        userInfo.phone = dataObject.getString("phone");
+//                        userInfo.signature = dataObject.getString("signature");
+//                        userInfo.integral = dataObject.getString("integral");
+//                        userInfo.sex = dataObject.getString("sex");
+//                        userInfo.nickname = dataObject.getString("nickname");
+//                        userInfo.icon = dataObject.getString("icon");
+//                        userInfo.manifesto = dataObject.getString("manifesto");
+//                        userInfo.home = dataObject.getString("home");
+//                        userInfo.fans = dataObject.getString("fans");
+//                        userInfo.qianyiID = dataObject.getString("qianyiID");
+//                        // 登录成功 保存登录状态
+//                        MyApplication application = (MyApplication) getApplication();
+//                        application.setUserInfo(userInfo);
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+
+        // 自动登录
+        SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+        int id = pref.getInt("id",-1);
+        Log.d("666","id == "+id);
+        if (id != -1){
+            String url = HttpQYUtils.getFindPersonalnfoWithId(id);
+            Log.d("MainActivity","url == "+url);
+            HttpUtils.sendOkHttpRequest(url, new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    runOnUiThread(()->{
+                        ToastUtils.showShort(MainActivity.this,"网络连接失败");
+                    });
                 }
-
-            }
-        });
-
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String responseText = response.body().string();
+                    try {
+                        JSONObject jsonObject = new JSONObject(responseText);
+                        boolean isSuc = jsonObject.getBoolean("isSuc");
+                        if (isSuc){
+                            UserInfo userInfo = new UserInfo();
+                            JSONObject dataObject = jsonObject.getJSONObject("data");
+                            userInfo.birthday = dataObject.getString("birthday");
+                            userInfo.phone = dataObject.getString("phone");
+                            userInfo.signature = dataObject.getString("signature");
+                            userInfo.integral = dataObject.getString("integral");
+                            userInfo.sex = dataObject.getString("sex");
+                            userInfo.nickname = dataObject.getString("nickname");
+                            userInfo.icon = dataObject.getString("icon");
+                            userInfo.manifesto = dataObject.getString("manifesto");
+                            userInfo.home = dataObject.getString("home");
+                            userInfo.fans = dataObject.getString("fans");
+                            userInfo.qianyiID = dataObject.getString("qianyiID");
+                            userInfo.loginId = dataObject.getInt("loginId");
+                            MyApplication application = (MyApplication) getApplication();
+                            application.setUserInfo(userInfo);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
 
         initFragment("home");
         mLiHome = findViewById(R.id.li_home);

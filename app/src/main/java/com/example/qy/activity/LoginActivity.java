@@ -1,6 +1,7 @@
 package com.example.qy.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -61,6 +62,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText et_password_login_pwd;
     private Button btn_password_login;
     private TextView tv_forgot_password;
+    // 存储用户id，下次自动登录
+    private SharedPreferences.Editor editor;
 
     private EventHandler eventHandler = new EventHandler() {
         public void afterEvent(int event, int result, Object data) {
@@ -130,6 +133,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 // 登录成功 保存登录状态
                                 MyApplication application = (MyApplication) getApplication();
                                 application.setUserInfo(userInfo);
+
+                                editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+                                editor.putInt("id",userInfo.loginId);
+                                editor.apply();
+
                                 finish();
                             }
 
@@ -350,11 +358,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 userInfo.fans = dataObject.getString("fans");
                                 userInfo.qianyiID = dataObject.getString("qianyiID");
                             }
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
+                            runOnUiThread(()->{
                                     SMSSDK.submitVerificationCode("86",phone, verificationCode);
-                                }
                             });
 
                         } catch (JSONException e) {
@@ -366,14 +371,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.btn_password_login:
                 String phone = et_password_login_phone.getText().toString().trim();
                 String pwd = et_password_login_pwd.getText().toString().trim();
-                HttpUtils.sendOkHttpRequest(HttpQYUtils.getLoginPassWord(phone, pwd), new Callback() {
+
+                phoneId = UniquePsuedoUtils.getUniquePsuedoID();
+                HttpUtils.sendOkHttpRequest(HttpQYUtils.getLoginPassWord(phone, pwd,phoneId), new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                        runOnUiThread(()-> {
                                 ToastUtils.showShort(LoginActivity.this,"连接断开");
-                            }
                         });
                     }
 
@@ -384,6 +388,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             JSONObject jsonObject = new JSONObject(responseText);
                             boolean isSuc = jsonObject.getBoolean("isSuc");
                             final String msg = jsonObject.getString("msg");
+                            ToastUtils.showShort(LoginActivity.this,msg);
                             if (isSuc){
                                 userInfo = new UserInfo();
                                 JSONObject dataObject = jsonObject.getJSONObject("data");
@@ -401,20 +406,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 userInfo.loginId = dataObject.getInt("loginId");
                                 MyApplication application = (MyApplication) getApplication();
                                 application.setUserInfo(userInfo);
+
+                                editor = getSharedPreferences("data",MODE_PRIVATE).edit();
+                                editor.putInt("id",userInfo.loginId);
+                                editor.apply();
+
                                 finish();
 
-                            }else{
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ToastUtils.showShort(LoginActivity.this,msg);
-                                            }
-                                        });
-                                    }
-                                });
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

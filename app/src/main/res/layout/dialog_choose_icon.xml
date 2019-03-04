@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:background="@drawable/shape_choose_dialog"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_height="120dp">
+        <TextView
+            android:id="@+id/tv_taking_pictures"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textColor="#1a1a1a"
+            android:text="拍一张"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
+        <View
+            android:layout_width="match_parent"
+            android:background="#E6E6E6"
+            android:layout_height="1dp"/>
+        <TextView
+            android:id="@+id/tv_gallery"
+            android:layout_width="match_parent"
+            android:textColor="#1a1a1a"
+            android:text="相册选取"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:layout_height="0dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:background="@drawable/shape_choose_dialog"
+        android:layout_marginBottom="15dp"
+        android:text="取消"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#1a1a1a"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+</LinearLayout>
