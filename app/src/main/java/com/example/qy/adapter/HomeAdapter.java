@@ -12,16 +12,23 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.pili.pldroid.player.AVOptions;
+import com.pili.pldroid.player.PLOnImageCapturedListener;
 import com.pili.pldroid.player.widget.PLVideoView;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> implements PLOnImageCapturedListener {
     List<String> playPathList;
     Context context;
 
     // 点击事件接口
     OnItemClickListener mOnItemClickListener;
+
+    @Override
+    public void onImageCaptured(byte[] bytes) {
+        Log.d("666","视频截图 == "+bytes.length);
+    }
+
     public interface OnItemClickListener{
         void onClick(int position);
     }
@@ -42,6 +49,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
             AVOptions options = new AVOptions();
             // 设置视频偏好格式MP4
             options.setInteger(AVOptions.KEY_PREFER_FORMAT, 2);
+            // 打开视频时单次 http 请求的超时时间，一次打开过程最多尝试五次
+            // 单位为 ms
+            options.setInteger(AVOptions.KEY_PREPARE_TIMEOUT, 5 * 1000);
+
             PLvv_play.setAVOptions(options);
 //            View loadingView = itemView.findViewById(R.id.);
 //            PLvv_play.setBufferingIndicator(loadingView);
@@ -58,23 +69,22 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder,final int i) {
-        viewHolder.PLvv_play.setVideoPath(playPathList.get(i));
-        int height = viewHolder.PLvv_play.getHeight();
-        int width = viewHolder.PLvv_play.getWidth();
-        Log.d("HomeAdapter","宽 = "+width+", 高 ="+height);
-        if (width > height){
-            // 16:9
-            viewHolder.PLvv_play.setDisplayAspectRatio(PLVideoView.ASPECT_RATIO_16_9);
-        }else{
-            // 铺满屏幕
-            viewHolder.PLvv_play.setDisplayAspectRatio(PLVideoView.ASPECT_RATIO_PAVED_PARENT);
-        }
+        String url = playPathList.get(i);
+        viewHolder.PLvv_play.setVideoPath(url);
+        int aspectRatio = viewHolder.PLvv_play.getDisplayAspectRatio();
+
+        Log.d("HomeAdapter","长宽比 == "+aspectRatio);
+//        if (width > height){
+//            // 16:9
+//            viewHolder.PLvv_play.setDisplayAspectRatio(PLVideoView.ASPECT_RATIO_16_9);
+//        }else{
+//            // 铺满屏幕
+//            viewHolder.PLvv_play.setDisplayAspectRatio(PLVideoView.ASPECT_RATIO_PAVED_PARENT);
+//        }
         if (mOnItemClickListener != null){
-            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            viewHolder.itemView.setOnClickListener(v-> {
                     mOnItemClickListener.onClick(i);
-                }
+                    Log.d("HomeAdapter","i == "+i);
             });
         }
     }

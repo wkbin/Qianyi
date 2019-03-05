@@ -388,7 +388,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             JSONObject jsonObject = new JSONObject(responseText);
                             boolean isSuc = jsonObject.getBoolean("isSuc");
                             final String msg = jsonObject.getString("msg");
-                            ToastUtils.showShort(LoginActivity.this,msg);
                             if (isSuc){
                                 userInfo = new UserInfo();
                                 JSONObject dataObject = jsonObject.getJSONObject("data");

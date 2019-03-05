@@ -120,4 +120,10 @@ public class HttpQYUtils {
         return ipUrl+attention+"userId="+userId;
     }
 
+    /**
+     * 获取服务器视频
+     */
+    public static String getVideos(){
+        return ipUrl+"queryVideo";
+    }
 }

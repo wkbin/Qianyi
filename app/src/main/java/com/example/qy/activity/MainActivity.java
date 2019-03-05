@@ -2,12 +2,16 @@ package com.example.qy.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import com.example.qy.R;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.fragment.FocusFragment;
@@ -32,6 +36,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private MyFragment mMyFragment;
     private FocusFragment mFocusFragment;
     private LinearLayout mLiHome,mLiFocus,mLiCamera,mLiShopping,mLiMy;
+    private LinearLayout li_bottom;
+    private ImageView iv_home,iv_focus,iv_shopping,iv_my;
+    private TextView tv_home,tv_focus,tv_shopping,tv_my;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +91,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //        });
 
         // 自动登录
+        iv_home = findViewById(R.id.iv_home);
+        iv_focus = findViewById(R.id.iv_focus);
+        iv_shopping = findViewById(R.id.iv_shopping);
+        iv_my = findViewById(R.id.iv_my);
+
+        li_bottom = findViewById(R.id.li_bottom);
+
+        tv_home = findViewById(R.id.tv_home);
+        tv_focus = findViewById(R.id.tv_focus);
+        tv_shopping = findViewById(R.id.tv_shopping);
+        tv_my = findViewById(R.id.tv_my);
+
         SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+
         int id = pref.getInt("id",-1);
+
         Log.d("666","id == "+id);
         if (id != -1){
             String url = HttpQYUtils.getFindPersonalnfoWithId(id);
@@ -140,6 +161,45 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mLiFocus.setOnClickListener(this);
 
     }
+    private void showHome(){
+        li_bottom.setBackgroundResource(0);
+        iv_home.setImageResource(R.mipmap.home);
+        iv_focus.setImageResource(R.mipmap.guazhu);
+        iv_shopping.setImageResource(R.mipmap.gouwu);
+        iv_my.setImageResource(R.mipmap._wo);
+
+        tv_home.setTextColor(Color.parseColor("#fefefe"));
+        tv_focus.setTextColor(Color.parseColor("#7ffefefe"));
+        tv_shopping.setTextColor(Color.parseColor("#7ffefefe"));
+        tv_my.setTextColor(Color.parseColor("#7ffefefe"));
+    }
+    private void showOther(String type){
+        li_bottom.setBackgroundColor(Color.parseColor("#ffffff"));
+        iv_home.setImageResource(R.mipmap.home01);
+        iv_focus.setImageResource(R.mipmap.guazhu01);
+        iv_shopping.setImageResource(R.mipmap.gouwu01);
+        iv_my.setImageResource(R.mipmap._wo01);
+
+        tv_home.setTextColor(Color.parseColor("#B3B3B3"));
+        tv_focus.setTextColor(Color.parseColor("#B3B3B3"));
+        tv_shopping.setTextColor(Color.parseColor("#B3B3B3"));
+        tv_my.setTextColor(Color.parseColor("#B3B3B3"));
+
+        switch (type){
+            case "focus":
+                iv_focus.setImageResource(R.mipmap.guazhu02);
+                tv_focus.setTextColor(Color.parseColor("#1a1a1a"));
+                break;
+            case "shopping":
+                iv_shopping.setImageResource(R.mipmap.gouwu02);
+                tv_shopping.setTextColor(Color.parseColor("#1a1a1a"));
+                break;
+            case "my":
+                iv_my.setImageResource(R.mipmap._wo02);
+                tv_my.setTextColor(Color.parseColor("#1a1a1a"));
+                break;
+        }
+    }
 
     private void initFragment(String tag){
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -153,6 +213,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     transaction.add(R.id.fm_main,mHomeFragment);
                 }
                 transaction.show(mHomeFragment);
+
                 break;
             case "my":
                 if (mMyFragment == null){
@@ -189,9 +250,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()){
             case R.id.li_home:
                 initFragment("home");
+                showHome();
                 break;
             case R.id.li_focus:
                 initFragment("focus");
+                showOther("focus");
                 break;
             case R.id.li_camera:
                 break;
@@ -201,6 +264,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 MyApplication application = (MyApplication) getApplication();
                 if (application.getUserInfo() != null){
                     initFragment("my");
+                    showOther("my");
                 }else{
                     startActivity(new Intent(MainActivity.this,LoginActivity.class));
                 }

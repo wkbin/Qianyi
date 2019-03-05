@@ -9,10 +9,13 @@
         android:id="@+id/rv_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
     <View
         android:id="@+id/view_home"
         android:layout_width="match_parent"
         android:layout_height="@dimen/statusbar_view_height" />
+
+
     <LinearLayout
         android:layout_below="@id/view_home"
         android:layout_margin="20dp"

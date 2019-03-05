@@ -5,10 +5,17 @@
     android:background="#000000"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+
     <com.pili.pldroid.player.widget.PLVideoView
         android:id="@+id/PLvv_play"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <View
+        android:background="@mipmap/_zhezhao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -165,5 +172,6 @@
 
 
     </LinearLayout>
+
 
 </RelativeLayout>

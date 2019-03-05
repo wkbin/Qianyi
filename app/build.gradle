@@ -46,7 +46,6 @@ dependencies {
     // OkHttp3
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
-
     // gilde显示网络图片
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 

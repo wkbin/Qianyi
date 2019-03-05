@@ -1,6 +1,5 @@
 package com.example.qy.activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +21,7 @@ import com.example.qy.R;
 import com.example.qy.bean.CityBean;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.ui.IconChooseDialog;
+import com.example.qy.ui.SexChooseDialog;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
@@ -49,6 +49,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
     private LinearLayout li_sex;
     private LinearLayout li_birthday;
     private LinearLayout li_address;
+    private LinearLayout li_signature;
     private TimePickerView pvCustomTime;
     private OptionsPickerView pvCustomOptions;
     private List<CityBean> lists;
@@ -72,6 +73,8 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
         li_sex = findViewById(R.id.li_sex);
         li_birthday = findViewById(R.id.li_birthday);
         li_address = findViewById(R.id.li_address);
+        li_signature = findViewById(R.id.li_signature);
+
         tv_birthday = findViewById(R.id.tv_birthday);
         tv_address = findViewById(R.id.tv_address);
         civ_icon = findViewById(R.id.civ_icon);
@@ -84,6 +87,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
         li_sex.setOnClickListener(this);
         li_birthday.setOnClickListener(this);
         li_address.setOnClickListener(this);
+        li_signature.setOnClickListener(this);
 
         action_bar_iv_left.setOnClickListener(this);
 
@@ -124,6 +128,24 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 dialog.show();
                 break;
             case R.id.li_sex:
+                SexChooseDialog d = new SexChooseDialog(DetailedPersonalDataActivity.this);
+                d.setOnClickListener(new SexChooseDialog.OnClickListener() {
+                    @Override
+                    public void onConfirmClick(boolean isBoy) {
+                        if (isBoy){
+                            tv_sex.setText("男");
+                        }else{
+                            tv_sex.setText("女");
+                        }
+                        d.dismiss();
+                    }
+
+                    @Override
+                    public void onCancelClick() {
+                        d.dismiss();
+                    }
+                });
+                d.show();
                 break;
             case R.id.li_birthday:
                 showBirthdayDialog();
@@ -165,6 +187,9 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 break;
             case R.id.action_bar_iv_left:
                 finish();
+                break;
+            case R.id.li_signature:
+//                startActivityForResult();
                 break;
         }
     }

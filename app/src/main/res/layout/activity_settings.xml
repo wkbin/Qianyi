@@ -20,15 +20,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:layout_weight="1">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="21dp"
                 android:textColor="#1a1a1a"
                 android:text="账号与安全"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/jump"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -39,15 +47,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_weight="1">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="21dp"
                 android:textColor="#1a1a1a"
                 android:text="隐私"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/jump"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -57,16 +73,24 @@
             android:background="#E6E6E6"/>
         <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_height="0dp"
             android:layout_weight="1">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="21dp"
                 android:textColor="#1a1a1a"
                 android:text="消息设置"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/jump"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -78,15 +102,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_weight="1">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="21dp"
                 android:textColor="#1a1a1a"
                 android:text="清除缓存"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:layout_marginRight="10dp"
+                android:text="0MB"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/jump"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -96,16 +135,31 @@
             android:background="#E6E6E6"/>
         <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_height="0dp"
             android:layout_weight="1">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="21dp"
                 android:textColor="#1a1a1a"
                 android:text="关于千艺"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#666666"
+                android:textSize="13sp"
+                android:layout_marginRight="10dp"
+                android:text="版本1.0"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/jump"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -115,16 +169,24 @@
             android:background="#E6E6E6"/>
         <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_height="0dp"
             android:layout_weight="1">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="21dp"
                 android:textColor="#1a1a1a"
                 android:text="联系我们"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/jump"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -134,16 +196,24 @@
             android:background="#E6E6E6"/>
         <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_height="0dp"
             android:layout_weight="1">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:textSize="16sp"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="21dp"
                 android:textColor="#1a1a1a"
                 android:text="意见反馈"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/jump"/>
         </LinearLayout>
     </LinearLayout>
 

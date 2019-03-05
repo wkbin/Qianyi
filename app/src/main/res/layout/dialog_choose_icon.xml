@@ -8,7 +8,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_marginBottom="15dp"
-        android:layout_height="120dp">
+        android:layout_height="100dp">
         <TextView
             android:id="@+id/tv_taking_pictures"
             android:layout_width="match_parent"
@@ -42,5 +42,5 @@
         android:textSize="18sp"
         android:textColor="#1a1a1a"
         android:layout_width="match_parent"
-        android:layout_height="60dp" />
+        android:layout_height="50dp" />
 </LinearLayout>
