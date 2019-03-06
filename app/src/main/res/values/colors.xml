@@ -8,5 +8,5 @@
     <color name="qy_gray">#888888</color>
     <color name="qy_bolder">#bbbbbb</color>
     <color name="qy_white">#ffffff</color>
-    <color name="qy_black">#101010</color>
+    <color name="qy_black">#000000</color>
 </resources>

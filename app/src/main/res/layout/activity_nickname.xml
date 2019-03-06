@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F2F2"
     android:orientation="vertical"
     tools:context=".activity.IndividualitySignatureActivity">
 
@@ -13,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="个性签名"
+        android:text="我的昵称"
         android:textColor="#ff666666"
         android:textSize="12sp" />
 
@@ -23,9 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/et_signature"
+            android:id="@+id/et_nickname"
             android:background="@null"
-            android:maxLength="20"
+            android:maxLength="8"
             android:hint="你猜我想写点啥"
             android:textSize="15sp"
             android:layout_width="match_parent"
@@ -42,7 +43,7 @@
             android:background="#E6E6E6"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_below="@id/et_signature"
+            android:layout_below="@id/et_nickname"
             android:layout_height="1px"/>
     </RelativeLayout>
 
@@ -52,7 +53,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0/20字符"
+        android:text="0/8字符"
         android:textColor="#ff666666"
         android:textSize="12sp"
         />

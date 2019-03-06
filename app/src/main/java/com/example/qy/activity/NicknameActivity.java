@@ -11,40 +11,41 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.qy.R;
+import com.example.qy.ui.SexChooseDialog;
 
-public class IndividualitySignatureActivity extends AppCompatActivity implements View.OnClickListener {
+public class NicknameActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView action_bar_text;
     private TextView tv_character_length;
-    private EditText et_signature;
+    private EditText et_nickname;
     private ImageView iv_clear;
     private ImageView action_bar_iv_left;
     private TextView action_bar_iv_right;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_individuality_signature);
+        setContentView(R.layout.activity_nickname);
 
         action_bar_text = findViewById(R.id.action_bar_text);
-        et_signature = findViewById(R.id.et_signature);
         tv_character_length = findViewById(R.id.tv_character_length);
+        et_nickname = findViewById(R.id.et_nickname);
+        iv_clear = findViewById(R.id.iv_clear);
         action_bar_iv_left = findViewById(R.id.action_bar_iv_left);
         action_bar_iv_right = findViewById(R.id.action_bar_iv_right);
-        iv_clear = findViewById(R.id.iv_clear);
-        iv_clear.setOnClickListener(this);
-        action_bar_iv_left.setOnClickListener(this);
-        action_bar_iv_right.setOnClickListener(this);
-        action_bar_text.setText("修改签名");
+        action_bar_text.setText("修改昵称");
 
-        et_signature.addTextChangedListener(new TextWatcher() {
+        action_bar_iv_left.setOnClickListener(this);
+        iv_clear.setOnClickListener(this);
+        action_bar_iv_right.setOnClickListener(this);
+
+        et_nickname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
             @Override
             public void afterTextChanged(Editable s) {
-                tv_character_length.setText(s.length()+"/20字符");
+                tv_character_length.setText(s.length()+"/8字符");
                 if (s.length() == 0){
                     iv_clear.setVisibility(View.GONE);
                 }else{
@@ -52,27 +53,24 @@ public class IndividualitySignatureActivity extends AppCompatActivity implements
                 }
             }
         });
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.iv_clear:
-                et_signature.setText(null);
-                break;
             case R.id.action_bar_iv_left:
                 finish();
+                break;
+            case R.id.iv_clear:
+                et_nickname.setText(null);
                 break;
             case R.id.action_bar_iv_right:
                 // 保存
                 Intent intent = new Intent();
-                intent.putExtra("signature",et_signature.getText().toString().trim());
+                intent.putExtra("nickname",et_nickname.getText().toString());
                 setResult(RESULT_OK,intent);
                 finish();
                 break;
-
         }
     }
 }

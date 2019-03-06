@@ -156,7 +156,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                 String address = tv_address.getText().toString().trim();
                 String declaration = et_declaration.getText().toString().trim();
 
-                HttpUtils.sendOkHttpRequest(HttpQYUtils.getMaterial(phone, sex, birthday, address, declaration), new Callback() {
+                HttpUtils.sendOkHttpRequest(HttpQYUtils.getMaterial(phone,"" ,sex, birthday, address, declaration), new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         runOnUiThread(() ->{
@@ -275,7 +275,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
     }
     private String getTime(Date date) {//可根据需要自行截取数据显示
         Log.d("getTime()", "choice date millis: " + date.getTime());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy - MM - dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);
     }
 }

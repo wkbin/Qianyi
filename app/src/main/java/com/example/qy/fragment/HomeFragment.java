@@ -20,6 +20,7 @@ import com.example.qy.adapter.HomeAdapter;
 import com.example.qy.ui.ViewPagerLayoutManager;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
+import com.jaeger.library.StatusBarUtil;
 import com.pili.pldroid.player.widget.PLVideoView;
 
 import org.json.JSONArray;
@@ -101,6 +102,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         initView();
     }
 

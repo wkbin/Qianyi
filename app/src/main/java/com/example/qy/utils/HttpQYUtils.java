@@ -1,5 +1,7 @@
 package com.example.qy.utils;
 
+import android.util.Log;
+
 public class HttpQYUtils {
     private static final String ipUrl = "http://192.168.10.6:8080/QianYi/";
 
@@ -9,7 +11,7 @@ public class HttpQYUtils {
     private static final String validationLogin = "validation?";
     // 账号注册
     private static final String registered = "registered?";
-    // 注册时完善资料
+    // 完善资料
     private static final String material = "material?";
     // 找回密码
     private static final String changePassword = "ChangePassword?";
@@ -25,10 +27,12 @@ public class HttpQYUtils {
     private static final String iconToken = "getIconToken?";
     // 查询粉丝信息
     private static final String findFansDetails = "findFansDetails?";
-    // 获取城市地质api
+    // 获取城市地址api
     private static final String address = "city.json";
-    // 查询关注信息
+    // 统计关注数量
     private static final String attention = "countAttention?";
+    // 查看关注用户信息
+    private static final String showAttention = "showAttention?";
 
     public static String getLoginPassWord(String loginPhone,String loginPwd,String loginId){
         return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd+"&MEID="+loginId;
@@ -71,22 +75,25 @@ public class HttpQYUtils {
     /**
      *
      * @param loginPhone 手机号
+     * @param infoNickname 昵称
      * @param infoSex 性别
      * @param infoBirthday 生日
      * @param infoHome 家乡
-     * @param infoManifesto 宣言
+     * @param infoSignature 签名
      * @return
      */
-    public static String getMaterial(String loginPhone,String infoSex,String infoBirthday,String infoHome,String infoManifesto){
-        return ipUrl+material
+    public static String getMaterial(String loginPhone,String infoNickname,String infoSex,String infoBirthday,String infoHome,String infoSignature){
+        Log.d("888","name = "+infoNickname+"\nsex = "+infoSex+"\nbirthday = "+infoBirthday+"\naddress = "+infoHome+"\nsignature = "+infoSignature);
+        String url = ipUrl+material
                 +"loginPhone="+loginPhone
-                +"&infoNickname="
+                +"&infoNickname="+infoNickname
                 +"&infoSex="+infoSex
                 +"&infoBirthday=" +infoBirthday
                 +"&infoHome=" +infoHome
-                +"&infoManifesto="+infoManifesto
-                +"&infoSignature="
+                +"&infoSignature="+infoSignature
                 +"&infoLiveNumber=";
+        Log.d("888","url == "+url);
+        return url;
     }
 
     public static String getUser_agreement() {
@@ -118,6 +125,10 @@ public class HttpQYUtils {
 
     public static String getAttention(String userId){
         return ipUrl+attention+"userId="+userId;
+    }
+
+    public static String getShowAttention(int followId,int page){
+        return ipUrl+showAttention+"followId="+followId+"&page="+page;
     }
 
     /**

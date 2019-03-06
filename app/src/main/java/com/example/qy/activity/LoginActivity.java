@@ -357,6 +357,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 userInfo.home = dataObject.getString("home");
                                 userInfo.fans = dataObject.getString("fans");
                                 userInfo.qianyiID = dataObject.getString("qianyiID");
+                                userInfo.follow = dataObject.getString("follow");
                             }
                             runOnUiThread(()->{
                                     SMSSDK.submitVerificationCode("86",phone, verificationCode);
@@ -403,6 +404,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 userInfo.fans = dataObject.getString("fans");
                                 userInfo.qianyiID = dataObject.getString("qianyiID");
                                 userInfo.loginId = dataObject.getInt("loginId");
+                                userInfo.follow = dataObject.getString("follow");
+                                Log.e("666","follow == "+userInfo.follow);
                                 MyApplication application = (MyApplication) getApplication();
                                 application.setUserInfo(userInfo);
 

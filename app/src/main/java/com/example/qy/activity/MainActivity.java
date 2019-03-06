@@ -20,7 +20,6 @@ import com.example.qy.fragment.MyFragment;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
-import com.example.qy.utils.UniquePsuedoUtils;
 import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
 
@@ -139,6 +138,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                             userInfo.fans = dataObject.getString("fans");
                             userInfo.qianyiID = dataObject.getString("qianyiID");
                             userInfo.loginId = dataObject.getInt("loginId");
+                            userInfo.follow = dataObject.getString("follow");
                             MyApplication application = (MyApplication) getApplication();
                             application.setUserInfo(userInfo);
                         }

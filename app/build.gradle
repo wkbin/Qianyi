@@ -66,4 +66,7 @@ dependencies {
     // 条件选择器
     implementation 'com.contrarywind:Android-PickerView:4.1.7'
 
+    // 二维码
+    implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'
+
 }

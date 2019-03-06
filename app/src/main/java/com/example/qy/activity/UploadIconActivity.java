@@ -247,45 +247,45 @@ public class UploadIconActivity extends BaseActivity {
 
                 if (imageUri != null) {
 
-                    String tokenUrl = HttpQYUtils.getIconToken(key);
-                    HttpUtils.sendOkHttpRequest(tokenUrl, new Callback() {
-                        @Override
-                        public void onFailure(Call call, IOException e) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ToastUtils.showShort(UploadIconActivity.this, "获取token失败");
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onResponse(Call call, Response response) throws IOException {
-                            String responseText = response.body().string();
-                            try {
-                                JSONObject jsonObject = new JSONObject(responseText);
-                                boolean isSuc = jsonObject.getBoolean("isSuc");
-                                final String msg = jsonObject.getString("msg");
-                                JSONObject jsonData = jsonObject.getJSONObject("data");
-                                if (isSuc) {
-                                    String token = jsonData.getString("token");
-                                    byte[] b = ImageUtils.getImgByteFromUri(UploadIconActivity.this,imageUri);
-                                    uploadImageToQiniu(b, token);
-                                } else {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            ToastUtils.showShort(UploadIconActivity.this, msg);
-                                        }
-                                    });
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                String tokenUrl = HttpQYUtils.getIconToken(key);
+                HttpUtils.sendOkHttpRequest(tokenUrl, new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ToastUtils.showShort(UploadIconActivity.this, "获取token失败");
                             }
+                        });
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String responseText = response.body().string();
+                        try {
+                            JSONObject jsonObject = new JSONObject(responseText);
+                            boolean isSuc = jsonObject.getBoolean("isSuc");
+                            final String msg = jsonObject.getString("msg");
+                            JSONObject jsonData = jsonObject.getJSONObject("data");
+                            if (isSuc) {
+                                String token = jsonData.getString("token");
+                                byte[] b = ImageUtils.getImgByteFromUri(UploadIconActivity.this,imageUri);
+                                uploadImageToQiniu(b, token);
+                            } else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ToastUtils.showShort(UploadIconActivity.this, msg);
+                                    }
+                                });
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
-                }
+                    }
+                });
             }
+        }
         });
         btn_taking_pictures.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,7 +1,19 @@
 package com.example.qy.activity;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
@@ -24,14 +37,22 @@ import com.example.qy.ui.IconChooseDialog;
 import com.example.qy.ui.SexChooseDialog;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
+import com.example.qy.utils.ImageUtils;
 import com.example.qy.utils.ToastUtils;
 import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
+import com.qiniu.android.http.ResponseInfo;
+import com.qiniu.android.storage.UpCompletionHandler;
+import com.qiniu.android.storage.UpProgressHandler;
+import com.qiniu.android.storage.UploadManager;
+import com.qiniu.android.storage.UploadOptions;
+import com.yalantis.ucrop.UCrop;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,6 +67,7 @@ import okhttp3.Response;
 
 public class DetailedPersonalDataActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout rl_choose_icon;
+    private LinearLayout li_nickname;
     private LinearLayout li_sex;
     private LinearLayout li_birthday;
     private LinearLayout li_address;
@@ -58,11 +80,21 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
     private TextView tv_address;
     private TextView tv_sex;
     private TextView tv_name;
+    private TextView tv_signature;
 
     private ImageView action_bar_iv_left;
     private TextView action_bar_text;
 
+    private TextView action_bar_iv_right;
+
     private CircleImageView civ_icon;
+
+    // 上传头像所需
+    private String phone;
+    private String key;
+    private Uri imageUri;
+    // 要申请的权限
+    private List<String> permissionList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +106,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
         li_birthday = findViewById(R.id.li_birthday);
         li_address = findViewById(R.id.li_address);
         li_signature = findViewById(R.id.li_signature);
+        li_nickname = findViewById(R.id.li_nickname);
 
         tv_birthday = findViewById(R.id.tv_birthday);
         tv_address = findViewById(R.id.tv_address);
@@ -82,14 +115,18 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
         action_bar_text = findViewById(R.id.action_bar_text);
         action_bar_iv_left = findViewById(R.id.action_bar_iv_left);
         tv_name = findViewById(R.id.tv_name);
+        action_bar_iv_right = findViewById(R.id.action_bar_iv_right);
+        tv_signature = findViewById(R.id.tv_signature);
 
         rl_choose_icon.setOnClickListener(this);
         li_sex.setOnClickListener(this);
         li_birthday.setOnClickListener(this);
         li_address.setOnClickListener(this);
         li_signature.setOnClickListener(this);
+        li_nickname.setOnClickListener(this);
 
         action_bar_iv_left.setOnClickListener(this);
+        action_bar_iv_right.setOnClickListener(this);
 
         initData();
     }
@@ -98,11 +135,31 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
         action_bar_text.setText("修改资料");
         MyApplication application = (MyApplication) getApplication();
         UserInfo userInfo = application.getUserInfo();
+
+        phone = userInfo.phone;
+        key = "icon_" + phone + ".jpg";
+        permissionList = new ArrayList<>();
+        if (ContextCompat.checkSelfPermission(DetailedPersonalDataActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (ContextCompat.checkSelfPermission(DetailedPersonalDataActivity.this,Manifest.permission.CAMERA )!= PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.CAMERA);
+        }
+        if (ContextCompat.checkSelfPermission(DetailedPersonalDataActivity.this,Manifest.permission.ACCESS_COARSE_LOCATION )!= PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+        }
+        if (ContextCompat.checkSelfPermission(DetailedPersonalDataActivity.this,Manifest.permission.ACCESS_FINE_LOCATION )!= PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+
         Glide.with(DetailedPersonalDataActivity.this).load(userInfo.icon).into(civ_icon);
         tv_birthday.setText(userInfo.birthday);
         tv_address.setText(userInfo.home);
         tv_sex.setText(userInfo.sex);
         tv_name.setText(userInfo.nickname);
+        tv_signature.setText(userInfo.signature);
+
+        Log.d("888","userInfo = "+userInfo.toString());
     }
 
     @Override
@@ -113,15 +170,23 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 dialog.setOnClickListener(new IconChooseDialog.onClickListener() {
                     @Override
                     public void onPicturesClick() {
-                        ToastUtils.showShort(DetailedPersonalDataActivity.this,"拍一张");
+                        // 版本判断。当手机系统大于 23 时，才有必要去判断权限是否获取
+
+                        if (!permissionList.isEmpty()){
+                            String []permission = permissionList.toArray(new String[permissionList.size()]);
+                            ActivityCompat.requestPermissions(DetailedPersonalDataActivity.this,permission,1);
+                        }else{
+                            openSysCamera();
+                        }
+                        dialog.dismiss();
                     }
                     @Override
                     public void onGalleryClick() {
-                        ToastUtils.showShort(DetailedPersonalDataActivity.this,"相册选择");
+                        openSysAlbum();
+                        dialog.dismiss();
                     }
                     @Override
                     public void onCancleClick() {
-                        ToastUtils.showShort(DetailedPersonalDataActivity.this,"取消");
                         dialog.dismiss();
                     }
                 });
@@ -189,9 +254,219 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 finish();
                 break;
             case R.id.li_signature:
-//                startActivityForResult();
+                startActivityForResult(new Intent(DetailedPersonalDataActivity.this,IndividualitySignatureActivity.class),1);
+                break;
+            case R.id.li_nickname:
+                startActivityForResult(new Intent(DetailedPersonalDataActivity.this,NicknameActivity.class),2);
+                break;
+            case R.id.action_bar_iv_right:
+                // 保存
+                String name = tv_name.getText().toString().trim();
+                String sex = tv_sex.getText().toString().trim();
+                String birthday = tv_birthday.getText().toString().trim();
+                String address = tv_address.getText().toString().trim();
+                String signature = tv_signature.getText().toString().trim();
+
+                // 如果没有相机权限，申请打开相机
+
+                if (imageUri != null) {
+                    String tokenUrl = HttpQYUtils.getIconToken(key);
+                    HttpUtils.sendOkHttpRequest(tokenUrl, new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            runOnUiThread(()-> {
+                                ToastUtils.showShort(DetailedPersonalDataActivity.this, "获取token失败");
+                            });
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            String responseText = response.body().string();
+                            try {
+                                JSONObject jsonObject = new JSONObject(responseText);
+                                boolean isSuc = jsonObject.getBoolean("isSuc");
+                                final String msg = jsonObject.getString("msg");
+                                JSONObject jsonData = jsonObject.getJSONObject("data");
+                                if (isSuc) {
+                                    String token = jsonData.getString("token");
+                                    byte[] b = ImageUtils.getImgByteFromUri(DetailedPersonalDataActivity.this,imageUri);
+                                    uploadImageToQiniu(b, token);
+                                } else {
+                                    runOnUiThread(()->{
+                                        ToastUtils.showShort(DetailedPersonalDataActivity.this, msg);
+                                    });
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+                HttpUtils.sendOkHttpRequest(HttpQYUtils.getMaterial(phone, name, sex, birthday, address, signature), new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        runOnUiThread(()-> {
+                            ToastUtils.showShort(DetailedPersonalDataActivity.this, "连接断开");
+                        });
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String responseText = response.body().string();
+                        try {
+                            JSONObject jsonObject = new JSONObject(responseText);
+                            String msg = jsonObject.getString("msg");
+                            if (jsonObject.getBoolean("isSuc")){
+                                finish();
+                            }else{
+                                runOnUiThread(()-> {
+                                    ToastUtils.showShort(DetailedPersonalDataActivity.this, msg);
+                                });
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+//                Log.d("888","name = "+name+"\nsex = "+sex+"\nbirthday = "+birthday+"\naddress = "+address+"\nsignature = "+signature);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            if (requestCode == 1){
+                tv_signature.setText(data.getStringExtra("signature"));
+            }
+            if (requestCode == 2){
+                tv_name.setText(data.getStringExtra("nickname"));
+            }
+
+            if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
+                civ_icon.setImageDrawable(null);
+                imageUri = UCrop.getOutput(data);
+                civ_icon.setImageURI(imageUri);
+            } else if (resultCode == UCrop.RESULT_ERROR) {
+                final Throwable cropError = UCrop.getError(data);
+            } else if (requestCode == 202) {
+                if (data != null) {
+                    ImageUtils.startPhotoCrop(DetailedPersonalDataActivity.this,data.getData());
+                }
+            } else if (requestCode == 222) {
+                ImageUtils.startPhotoCrop(DetailedPersonalDataActivity.this,imageUri);
+
+            }
+        }
+
+    }
+    // 权限申请回调
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1){
+            if (grantResults.length > 0){
+                for (int result : grantResults){
+                    if (result != PackageManager.PERMISSION_GRANTED){
+                        Toast.makeText(this,"需要同意权限才能使用相机",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+                openSysCamera();
+            }else{
+                ToastUtils.showShort(DetailedPersonalDataActivity.this,"未知错误");
+            }
+        }
+    }
+    /**
+     * 打开系统相册
+     */
+    private void openSysAlbum() {
+        Intent albumIntent = new Intent(Intent.ACTION_PICK);
+        albumIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        startActivityForResult(albumIntent, 202);
+    }
+
+    /**
+     * 打开系统相机
+     */
+    private void openSysCamera() {
+        File outputImage = new File(Environment.getExternalStorageDirectory(),
+                key);
+        try {
+            if (outputImage.exists()) {
+                outputImage.delete();
+            }
+            outputImage.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (Build.VERSION.SDK_INT < 24){
+            imageUri = Uri.fromFile(outputImage);
+        }else{
+            // 7.0 之后只能如此使用
+            imageUri = FileProvider.getUriForFile(DetailedPersonalDataActivity.this, this.getApplicationContext().getPackageName() + ".provider", outputImage);
+        }
+        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        startActivityForResult(intent, 222);
+
+    }
+
+    /**
+     * 上传图片到七牛
+     *
+     * @param token    在七牛官网上注册的token
+     */
+    private void uploadImageToQiniu(byte[] b, String token) {
+        UploadManager uploadManager = new UploadManager();
+        uploadManager.put(b, key, token, new UpCompletionHandler() {
+                    @Override
+                    public void complete(String key, ResponseInfo info, JSONObject res) {
+                        // info.error中包含了错误信息，可打印调试
+                        // 上传成功后将key值上传到自己的服务器
+
+                        if (info.isOK()) {
+                            ToastUtils.showShort(DetailedPersonalDataActivity.this, "上传成功");
+                            Log.i("qiniu", "Upload Success");
+
+                            String url = (HttpQYUtils.getUpdateIcon(phone, "http://pnb0vwgfl.bkt.clouddn.com/" + key));
+                            HttpUtils.sendOkHttpRequest(url, new Callback() {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+                                    runOnUiThread(()-> {
+                                            ToastUtils.showShort(DetailedPersonalDataActivity.this, "插入服务器失败");
+                                    });
+                                }
+
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String responseText = response.body().string();
+                                    try {
+                                        JSONObject jsonObject = new JSONObject(responseText);
+                                        final String msg = jsonObject.getString("msg");
+                                        boolean isSuc = jsonObject.getBoolean("isSuc");
+                                        runOnUiThread(()-> {
+                                                ToastUtils.showShort(DetailedPersonalDataActivity.this, msg);
+                                        });
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+
+                        } else {
+                            ToastUtils.showShort(DetailedPersonalDataActivity.this, "上传失败");
+                            Log.i("qiniu", "Upload Fail");
+                            //如果失败，这里可以把info信息上报自己的服务器，便于后面分析上传错误原因
+                        }
+                    }
+                },
+                new UploadOptions(null, null, false, (key,percent)-> {
+                        Log.i("qiniu", key + ": " + percent);
+                }, null));
     }
 
     private void showAddressDialog(){
@@ -270,7 +545,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
     }
     private String getTime(Date date) {//可根据需要自行截取数据显示
         Log.d("getTime()", "choice date millis: " + date.getTime());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy - MM - dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.format(date);
     }
 }
