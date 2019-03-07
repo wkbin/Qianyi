@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.qy.R;
 import com.example.qy.ui.SexChooseDialog;
+import com.example.qy.utils.ToastUtils;
 
 public class NicknameActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView action_bar_text;
@@ -38,6 +40,8 @@ public class NicknameActivity extends AppCompatActivity implements View.OnClickL
         iv_clear.setOnClickListener(this);
         action_bar_iv_right.setOnClickListener(this);
 
+
+
         et_nickname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -53,6 +57,7 @@ public class NicknameActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         });
+        et_nickname.setText(getIntent().getStringExtra("name"));
     }
 
     @Override
@@ -65,9 +70,14 @@ public class NicknameActivity extends AppCompatActivity implements View.OnClickL
                 et_nickname.setText(null);
                 break;
             case R.id.action_bar_iv_right:
+                String name = et_nickname.getText().toString();
+                if (TextUtils.isEmpty(name)){
+                    ToastUtils.showShort(NicknameActivity.this,"昵称不能为空");
+                    return;
+                }
                 // 保存
                 Intent intent = new Intent();
-                intent.putExtra("nickname",et_nickname.getText().toString());
+                intent.putExtra("nickname",name);
                 setResult(RESULT_OK,intent);
                 finish();
                 break;

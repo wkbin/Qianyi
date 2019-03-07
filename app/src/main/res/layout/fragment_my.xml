@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:background="#F2F2F2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ScrollView
-        android:id="@+id/sv_my"
-        android:scrollbars="none"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+        <!--android:id="@+id/sv_my"-->
+        <!--android:scrollbars="none"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
+            android:background="#F2F2F2"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <RelativeLayout
@@ -192,6 +189,12 @@
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/sv_my"
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_marginTop="21dp"
@@ -512,14 +515,12 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="50dp"/>
-
-
-
             </LinearLayout>
-           
+
+            </ScrollView>
         </LinearLayout>
 
-    </ScrollView>
+
 
 
     <!--<LinearLayout-->
@@ -539,4 +540,4 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:text="二维码名片"/>-->
     <!--</LinearLayout>-->
-</RelativeLayout>
+

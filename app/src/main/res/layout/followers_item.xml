@@ -32,5 +32,5 @@
         android:id="@+id/btn_followers_focus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="已关注"/>
+        android:text="-"/>
 </LinearLayout>

@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.example.qy.activity.DetailedPersonalDataActivity;
 import com.example.qy.activity.FocusActivity;
+import com.example.qy.activity.MyHomePageActivity;
 import com.example.qy.activity.QrCodeActivity;
 import com.example.qy.activity.SettingsActivity;
 import com.example.qy.bean.UserInfo;
@@ -109,7 +110,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.li_home_page){
-            startActivity(new Intent(getActivity(),DetailedPersonalDataActivity.class));
+            startActivity(new Intent(getActivity(),MyHomePageActivity.class));
         }else if(v.getId() == R.id.iv_my_settings){
             startActivity(new Intent(getActivity(),SettingsActivity.class));
         }else if (v.getId() == R.id.li_my_attention){
@@ -119,8 +120,5 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         }else if (v.getId() == R.id.li_my_fans){
             startActivity(new Intent(getActivity(),FocusActivity.class));
         }
-//        else if (v.getId() == R.id.btn_qr_code){
-//            startActivity(new Intent(getActivity(),QrCodeActivity.class));
-//        }
     }
 }

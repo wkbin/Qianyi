@@ -45,6 +45,9 @@ public class HomeFragment extends Fragment {
 
     private boolean isShowFragment;
 
+    private int index;  // 当前的视频id
+    private int destructionIndex = 2;   // 需要销毁的视频id
+
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -84,6 +87,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onPageSelected(int position, boolean isBottom) {
                         Log.e(TAG,"选中位置:"+position+"  是否是滑动到底部:"+isBottom);
+                        index = position;
                         startPlay();
                     }
                 });
@@ -146,6 +150,12 @@ public class HomeFragment extends Fragment {
     public void startPlay(){
         View itemView = rv_home.getChildAt(0);
         PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
+
+//        int aspectRatio = plVideoView.getDisplayAspectRatio();
+//        int height = plVideoView.getHeight();
+//        int width = plVideoView.getWidth();
+//        Log.d("HomeAdapter","高宽比 == "+aspectRatio+",高 = "+height+"，宽 = "+width);
+
         if (!plVideoView.isPlaying())
             plVideoView.start();
     }
@@ -153,8 +163,14 @@ public class HomeFragment extends Fragment {
         View itemView = rv_home.getChildAt(index);
         PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
         if (plVideoView.isPlaying()){
-//            plVideoView.pause();
-            plVideoView.stopPlayback();
+
+//            if (index > destructionIndex){
+//                destructionIndex += 2;
+//                plVideoView.pause();
+//
+//            }else{
+                plVideoView.stopPlayback();
+//            }
         }
 
     }

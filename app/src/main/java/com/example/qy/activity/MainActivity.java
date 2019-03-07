@@ -16,6 +16,7 @@ import com.example.qy.R;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.fragment.FocusFragment;
 import com.example.qy.fragment.HomeFragment;
+import com.example.qy.fragment.MallFragment;
 import com.example.qy.fragment.MyFragment;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
@@ -34,6 +35,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private HomeFragment mHomeFragment;
     private MyFragment mMyFragment;
     private FocusFragment mFocusFragment;
+    private MallFragment mMallFragment;
     private LinearLayout mLiHome,mLiFocus,mLiCamera,mLiShopping,mLiMy;
     private LinearLayout li_bottom;
     private ImageView iv_home,iv_focus,iv_shopping,iv_my;
@@ -159,6 +161,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mLiHome.setOnClickListener(this);
         mLiMy.setOnClickListener(this);
         mLiFocus.setOnClickListener(this);
+        mLiShopping.setOnClickListener(this);
 
     }
     private void showHome(){
@@ -229,6 +232,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 transaction.show(mFocusFragment);
                 break;
+            case "shopping":
+                if (mMallFragment == null){
+                    mMallFragment = new MallFragment();
+                    transaction.add(R.id.fm_main, mMallFragment);
+                }
+                transaction.show(mMallFragment);
+                break;
         }
         transaction.commit();
     }
@@ -242,6 +252,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         if (mFocusFragment != null){
             transaction.hide(mFocusFragment);
+        }
+        if (mMallFragment != null){
+            transaction.hide(mMallFragment);
         }
     }
 
@@ -259,6 +272,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.li_camera:
                 break;
             case R.id.li_shopping:
+                initFragment("shopping");
+                showOther("shopping");
                 break;
             case R.id.li_my:
                 MyApplication application = (MyApplication) getApplication();

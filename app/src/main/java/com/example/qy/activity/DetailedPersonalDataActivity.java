@@ -194,6 +194,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 break;
             case R.id.li_sex:
                 SexChooseDialog d = new SexChooseDialog(DetailedPersonalDataActivity.this);
+               d.isBoy = (tv_sex.getText().equals("男"))?true:false;
                 d.setOnClickListener(new SexChooseDialog.OnClickListener() {
                     @Override
                     public void onConfirmClick(boolean isBoy) {
@@ -257,7 +258,9 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 startActivityForResult(new Intent(DetailedPersonalDataActivity.this,IndividualitySignatureActivity.class),1);
                 break;
             case R.id.li_nickname:
-                startActivityForResult(new Intent(DetailedPersonalDataActivity.this,NicknameActivity.class),2);
+                Intent intent = new Intent(DetailedPersonalDataActivity.this,NicknameActivity.class);
+                intent.putExtra("name",tv_name.getText().toString().trim());
+                startActivityForResult(intent,2);
                 break;
             case R.id.action_bar_iv_right:
                 // 保存

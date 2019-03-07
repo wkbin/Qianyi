@@ -71,9 +71,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
     public void onBindViewHolder(@NonNull ViewHolder viewHolder,final int i) {
         String url = playPathList.get(i);
         viewHolder.PLvv_play.setVideoPath(url);
-        int aspectRatio = viewHolder.PLvv_play.getDisplayAspectRatio();
-
-        Log.d("HomeAdapter","长宽比 == "+aspectRatio);
+//        int aspectRatio = viewHolder.PLvv_play.getDisplayAspectRatio();
+//        int height = viewHolder.PLvv_play.getHeight();
+//        int width = viewHolder.PLvv_play.getWidth();
+//
+//        Log.d("HomeAdapter","高宽比 == "+aspectRatio+",高 = "+height+"，宽 = "+width);
 //        if (width > height){
 //            // 16:9
 //            viewHolder.PLvv_play.setDisplayAspectRatio(PLVideoView.ASPECT_RATIO_16_9);

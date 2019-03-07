@@ -29,7 +29,7 @@ import okhttp3.Response;
 
 public class FocusActivity extends AppCompatActivity {
     private RecyclerView rl_focus;
-        private List<Follwers> lists;
+    private List<Follwers> lists;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +61,10 @@ public class FocusActivity extends AppCompatActivity {
                             for (int i = 0;i<array.length();i++){
                                 JSONObject userInfo = array.getJSONObject(i).getJSONObject("userInfo");
                                 Follwers follwers = new Follwers();
-                                follwers.setName(userInfo.getString("infoNickname"));
-                                String icon = userInfo.getString("infoIcon");
-                                follwers.setIcon(icon);
-                                Log.d("888","infoIcon = "+icon);
+                                follwers.together = array.getJSONObject(i).getString("together");
+                                follwers.name = userInfo.getString("infoNickname");
+                                follwers.icon = userInfo.getString("infoIcon");
+                                follwers.signature = userInfo.getString("infoSignature");
                                 lists.add(follwers);
                             }
                             runOnUiThread(()->{

@@ -64,6 +64,18 @@ public class SexChooseDialog extends Dialog implements View.OnClickListener {
         rl_nv.setOnClickListener(this);
         btn_confirm.setOnClickListener(this);
         tv_quit.setOnClickListener(this);
+
+        if (isBoy){
+            tv_nan.setTextColor(Color.parseColor("#1a1a1a"));
+            tv_nv.setTextColor(Color.parseColor("#999999"));
+            iv_nan.setImageResource(R.mipmap.nandianji);
+            iv_nv.setImageResource(R.mipmap.nvweidianji);
+        }else{
+            tv_nan.setTextColor(Color.parseColor("#999999"));
+            tv_nv.setTextColor(Color.parseColor("#1a1a1a"));
+            iv_nan.setImageResource(R.mipmap.nanweidianji);
+            iv_nv.setImageResource(R.mipmap.nvdianji);
+        }
     }
 
     @Override

@@ -49,9 +49,15 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Follwers follwers = lists.get(i);
-        Glide.with(context).load(follwers.getIcon()).into(viewHolder.civ_followers_icon);
-        viewHolder.tv_followers_name.setText(follwers.getName());
-        viewHolder.tv_followers_work_and_fans.setText(follwers.getWorkAndFans());
+        Glide.with(context).load(follwers.icon).into(viewHolder.civ_followers_icon);
+        viewHolder.tv_followers_name.setText(follwers.name);
+        viewHolder.tv_followers_work_and_fans.setText(follwers.signature);
+        if (follwers.together.equals("0")){
+            viewHolder.btn_followers_focus.setText("已关注");
+        }else{
+            viewHolder.btn_followers_focus.setText("互相关注");
+        }
+
     }
 
 
