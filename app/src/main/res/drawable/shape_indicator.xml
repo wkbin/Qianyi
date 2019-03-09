@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+    <!--<item>-->
+        <!--<shape android:shape="rectangle">-->
+            <!--<gradient android:type="linear"-->
+                <!--android:useLevel="true"-->
+                <!--android:startColor="#ff3db3a3"-->
+                <!--android:endColor="#ff91e673"-->
+                <!--android:angle="135" />-->
+            <!--&lt;!&ndash;<item name="android:shadowDx">0</item>&ndash;&gt;-->
+            <!--&lt;!&ndash;<item name="android:shadowDy">2</item>&ndash;&gt;-->
+            <!--&lt;!&ndash;<item name="android:shadowColor">#8090f0a9</item>&ndash;&gt;-->
+
+            <!--<corners android:topLeftRadius="3dp" android:topRightRadius="3dp" android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp" />-->
+        <!--</shape>-->
+    <!--</item>-->
+<!--</selector>-->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 底部圆角,参数是固定的 -->
+    <item
+        android:width="38dp"
+        android:height="5dp"
+        android:gravity="center_horizontal">
         <shape android:shape="rectangle">
             <gradient android:type="linear"
                 android:useLevel="true"
-                android:startColor="#ff3db3a3"
-                android:endColor="#ff91e673"
+                android:startColor="#3db3a3"
+                android:endColor="#91e673"
                 android:angle="135" />
-            <!--<item name="android:shadowDx">0</item>-->
-            <!--<item name="android:shadowDy">2</item>-->
-            <!--<item name="android:shadowColor">#8090f0a9</item>-->
-
-            <corners android:topLeftRadius="3dp" android:topRightRadius="3dp" android:bottomLeftRadius="3dp" android:bottomRightRadius="3dp" />
+            <corners android:radius="3dp" />
         </shape>
     </item>
-</selector>
+</layer-list>

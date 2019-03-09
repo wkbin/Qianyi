@@ -64,6 +64,7 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
         switch (state) {
             case RecyclerView.SCROLL_STATE_IDLE:
                 View viewIdle = mPagerSnapHelper.findSnapView(this);
+                if (viewIdle == null) return;
                 int positionIdle = getPosition(viewIdle);
                 if (mOnViewPagerListener != null && getChildCount() == 1) {
                     mOnViewPagerListener.onPageSelected(positionIdle,positionIdle == getItemCount() - 1);
@@ -71,10 +72,12 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
                 break;
             case RecyclerView.SCROLL_STATE_DRAGGING:
                 View viewDrag = mPagerSnapHelper.findSnapView(this);
+                if (viewDrag == null) return;
                 int positionDrag = getPosition(viewDrag);
                 break;
             case RecyclerView.SCROLL_STATE_SETTLING:
                 View viewSettling = mPagerSnapHelper.findSnapView(this);
+                if (viewSettling == null) return;
                 int positionSettling = getPosition(viewSettling);
                 break;
 

@@ -178,28 +178,32 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
     private void showOther(String type){
         li_bottom.setBackgroundColor(Color.parseColor("#ffffff"));
-        iv_home.setImageResource(R.mipmap.home01);
-        iv_focus.setImageResource(R.mipmap.guazhu01);
-        iv_shopping.setImageResource(R.mipmap.gouwu01);
-        iv_my.setImageResource(R.mipmap._wo01);
-
         tv_home.setTextColor(Color.parseColor("#B3B3B3"));
-        tv_focus.setTextColor(Color.parseColor("#B3B3B3"));
-        tv_shopping.setTextColor(Color.parseColor("#B3B3B3"));
-        tv_my.setTextColor(Color.parseColor("#B3B3B3"));
-
+        iv_home.setImageResource(R.mipmap.home01);
         switch (type){
             case "focus":
                 iv_focus.setImageResource(R.mipmap.guazhu02);
+                iv_shopping.setImageResource(R.mipmap.gouwu01);
+                iv_my.setImageResource(R.mipmap._wo01);
                 tv_focus.setTextColor(Color.parseColor("#1a1a1a"));
+                tv_shopping.setTextColor(Color.parseColor("#B3B3B3"));
+                tv_my.setTextColor(Color.parseColor("#B3B3B3"));
                 break;
             case "shopping":
                 iv_shopping.setImageResource(R.mipmap.gouwu02);
+                iv_focus.setImageResource(R.mipmap.guazhu01);
+                iv_my.setImageResource(R.mipmap._wo01);
                 tv_shopping.setTextColor(Color.parseColor("#1a1a1a"));
+                tv_focus.setTextColor(Color.parseColor("#B3B3B3"));
+                tv_my.setTextColor(Color.parseColor("#B3B3B3"));
                 break;
             case "my":
                 iv_my.setImageResource(R.mipmap._wo02);
+                iv_focus.setImageResource(R.mipmap.guazhu01);
+                iv_shopping.setImageResource(R.mipmap.gouwu01);
                 tv_my.setTextColor(Color.parseColor("#1a1a1a"));
+                tv_focus.setTextColor(Color.parseColor("#B3B3B3"));
+                tv_shopping.setTextColor(Color.parseColor("#B3B3B3"));
                 break;
         }
     }

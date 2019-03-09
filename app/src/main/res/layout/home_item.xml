@@ -2,13 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#000000"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-    <com.pili.pldroid.player.widget.PLVideoView
+    <com.pili.pldroid.player.widget.PLVideoTextureView
         android:id="@+id/PLvv_play"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -75,6 +72,33 @@
                 android:text="庐山，又名匡山、匡庐，是中华十大名山、世界文化遗产、国家AAAAA级旅 ..."
                 android:textColor="#fffefefe"
                 android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/yw"/>
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ycbq"/>
+                <TextView
+                    android:layout_marginLeft="7dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fefefe"
+                    android:textSize="13sp"
+                    android:maxLines="1"
+                    android:maxEms="15"
+                    android:text="影视原声《庐山恋》插曲《啊，故乡》" />
+            </LinearLayout>
+
             <RelativeLayout
                 android:background="@drawable/shape_home_btn"
                 android:layout_marginTop="13dp"
@@ -100,14 +124,17 @@
         </LinearLayout>
 
 
+
+
+
         <LinearLayout
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="right|bottom"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginBottom="20dp"
                 android:layout_width="48dp"
@@ -168,10 +195,34 @@
                     android:textSize="14sp"
                     android:text="2312"/>
             </LinearLayout>
+
+          <RelativeLayout
+              android:layout_marginBottom="80dp"
+              android:layout_marginTop="50dp"
+              android:layout_width="50dp"
+              android:layout_height="50dp">
+              <de.hdodenhof.circleimageview.CircleImageView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:src="#333333"/>
+              <de.hdodenhof.circleimageview.CircleImageView
+                  android:id="@+id/civ_dp"
+                  android:layout_centerInParent="true"
+                  android:layout_width="26dp"
+                  android:layout_height="26dp"
+                  android:src="@mipmap/tx"/>
+          </RelativeLayout>
     </LinearLayout>
 
 
     </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_pause"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/_bofang"/>
 
 
 </RelativeLayout>

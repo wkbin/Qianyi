@@ -5,6 +5,8 @@ import android.util.Log;
 public class HttpQYUtils {
     private static final String ipUrl = "http://192.168.10.6:8080/QianYi/";
 
+//    private static final String ipUrl = "http://ruianshen.oicp.io/QianYi/";
+
     // 密码登录
     private static final String loginPassWord = "login?";
     // 验证码登录
@@ -33,6 +35,8 @@ public class HttpQYUtils {
     private static final String attention = "countAttention?";
     // 查看关注用户信息
     private static final String showAttention = "showAttention?";
+    // 获取积分详情
+    private static final String findByIntegrals = "findbyIntegrals?";
 
     public static String getLoginPassWord(String loginPhone,String loginPwd,String loginId){
         return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd+"&MEID="+loginId;
@@ -129,6 +133,10 @@ public class HttpQYUtils {
 
     public static String getShowAttention(int followId,int page){
         return ipUrl+showAttention+"followId="+followId+"&page="+page;
+    }
+
+    public static String getFindByIntegrals(int userId){
+        return ipUrl+findByIntegrals+"userId="+userId;
     }
 
     /**

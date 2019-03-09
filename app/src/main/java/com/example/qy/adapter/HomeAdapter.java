@@ -1,25 +1,35 @@
 package com.example.qy.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.MediaController;
 
 import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.pili.pldroid.player.AVOptions;
+import com.pili.pldroid.player.IMediaController;
 import com.pili.pldroid.player.PLOnImageCapturedListener;
+import com.pili.pldroid.player.widget.PLVideoTextureView;
 import com.pili.pldroid.player.widget.PLVideoView;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> implements PLOnImageCapturedListener {
     List<String> playPathList;
-    Context context;
+    public Context context;
 
     // 点击事件接口
     OnItemClickListener mOnItemClickListener;
@@ -41,9 +51,18 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         this.playPathList = list;
     }
     static class ViewHolder extends RecyclerView.ViewHolder{
-        PLVideoView PLvv_play;
+        PLVideoTextureView PLvv_play;
+        CircleImageView civ_dp;
+        ImageView iv_pause;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            civ_dp = itemView.findViewById(R.id.civ_dp);
+            iv_pause = itemView.findViewById(R.id.iv_pause);
+
+
+
+
+
             PLvv_play = itemView.findViewById(R.id.PLvv_play);
             PLvv_play.setLooping(true);
             AVOptions options = new AVOptions();
@@ -56,6 +75,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
             PLvv_play.setAVOptions(options);
 //            View loadingView = itemView.findViewById(R.id.);
 //            PLvv_play.setBufferingIndicator(loadingView);
+
+            PLvv_play.setDisplayAspectRatio(PLVideoTextureView.ASPECT_RATIO_PAVED_PARENT);
         }
 
     }
@@ -71,18 +92,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
     public void onBindViewHolder(@NonNull ViewHolder viewHolder,final int i) {
         String url = playPathList.get(i);
         viewHolder.PLvv_play.setVideoPath(url);
-//        int aspectRatio = viewHolder.PLvv_play.getDisplayAspectRatio();
-//        int height = viewHolder.PLvv_play.getHeight();
-//        int width = viewHolder.PLvv_play.getWidth();
-//
-//        Log.d("HomeAdapter","高宽比 == "+aspectRatio+",高 = "+height+"，宽 = "+width);
-//        if (width > height){
-//            // 16:9
-//            viewHolder.PLvv_play.setDisplayAspectRatio(PLVideoView.ASPECT_RATIO_16_9);
-//        }else{
-//            // 铺满屏幕
-//            viewHolder.PLvv_play.setDisplayAspectRatio(PLVideoView.ASPECT_RATIO_PAVED_PARENT);
-//        }
+
+
+
+
+
         if (mOnItemClickListener != null){
             viewHolder.itemView.setOnClickListener(v-> {
                     mOnItemClickListener.onClick(i);
@@ -92,6 +106,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
     }
 
 
+    // 获取视频第一帧缩略图
+    public static Bitmap getVideoThumbnail(String videoPath) {
+        MediaMetadataRetriever media =new MediaMetadataRetriever();
+        media.setDataSource(videoPath);
+        Bitmap bitmap = media.getFrameAtTime();
+        return bitmap;
+    }
 
     @Override
     public int getItemCount() {

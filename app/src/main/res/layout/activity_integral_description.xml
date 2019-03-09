@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F2F2"
+    tools:context=".activity.IntegralDescriptionActivity">
+    <include layout="@layout/action_bar"/>
+    <LinearLayout
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="29dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"
+            android:textSize="16sp"
+            android:text="一、什么是积分"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"
+            android:textSize="13sp"
+            android:text="积分是平台新增的会员体系，所有注册用户可免费获得。"/>
+
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"
+            android:textSize="16sp"
+            android:text="二、如何获得"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"
+            android:textSize="13sp"
+            android:text="每天参与并完成任务即可免费获得积分。"/>
+
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"
+            android:textSize="16sp"
+            android:text="三、积分的使用"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"
+            android:textSize="13sp"
+            android:text="使用积分可以兑换相应的商城物品。"/>
+
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"
+            android:textSize="16sp"
+            android:text="四、积分的有效期"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#1a1a1a"
+            android:textSize="13sp"
+            android:text="积分有效期为12个月，超过有效期的积分将被系统自动回收。"/>
+    </LinearLayout>
+
+</LinearLayout>

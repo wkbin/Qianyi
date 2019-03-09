@@ -69,4 +69,7 @@ dependencies {
     // 二维码
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'
 
+    // lottie动画
+    implementation 'com.airbnb.android:lottie:2.7.0'
+
 }

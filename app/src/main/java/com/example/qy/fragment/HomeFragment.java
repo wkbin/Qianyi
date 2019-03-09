@@ -1,6 +1,5 @@
 package com.example.qy.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 import com.example.qy.R;
@@ -20,7 +22,7 @@ import com.example.qy.adapter.HomeAdapter;
 import com.example.qy.ui.ViewPagerLayoutManager;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
-import com.jaeger.library.StatusBarUtil;
+import com.pili.pldroid.player.widget.PLVideoTextureView;
 import com.pili.pldroid.player.widget.PLVideoView;
 
 import org.json.JSONArray;
@@ -29,8 +31,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -42,11 +46,13 @@ public class HomeFragment extends Fragment {
     private List<String> list;
     private ImageView iv_home,iv_search;
     private ViewPagerLayoutManager viewPagerLayoutManager;
+    HomeAdapter adapter;
 
     private boolean isShowFragment;
 
-    private int index;  // 当前的视频id
-    private int destructionIndex = 2;   // 需要销毁的视频id
+
+    // 旋转动画
+    private RotateAnimation animation;
 
     private Handler handler = new Handler(){
         @Override
@@ -56,14 +62,15 @@ public class HomeFragment extends Fragment {
 
                 viewPagerLayoutManager = new ViewPagerLayoutManager(getActivity(),OrientationHelper.VERTICAL);
                 rv_home.setLayoutManager(viewPagerLayoutManager);
-                HomeAdapter adapter = new HomeAdapter(getActivity(),list);
+                Collections.shuffle(list);
+                adapter = new HomeAdapter(getActivity(),list);
                 rv_home.setAdapter(adapter);
 
 
                 adapter.setOnItemClickListener(postion->{
 
                         View itemView = rv_home.getChildAt(0);
-                        PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
+                        PLVideoTextureView plVideoView = itemView.findViewById(R.id.PLvv_play);
                         if (plVideoView.isPlaying()){
                             pausePlay();
                         }else{
@@ -87,7 +94,6 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onPageSelected(int position, boolean isBottom) {
                         Log.e(TAG,"选中位置:"+position+"  是否是滑动到底部:"+isBottom);
-                        index = position;
                         startPlay();
                     }
                 });
@@ -111,12 +117,22 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(){
-//        iv_home = getActivity().findViewById(R.id.iv_home);
-//        iv_search = getActivity().findViewById(R.id.iv_search);
-//        iv_home.setBackgroundResource(R.mipmap.ic_home);
-//        iv_search.setBackgroundResource(R.mipmap.ic_search);
-        rv_home = getActivity().findViewById(R.id.rv_home);
 
+        int magnify = 10000;
+        int toDegrees = 360;
+        int duration = 4000;    //旋转速度
+        toDegrees *= magnify;
+        duration *= magnify;
+        animation = new RotateAnimation(0,toDegrees,
+                Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+        animation.setDuration(duration);
+        LinearInterpolator lir = new LinearInterpolator();
+        animation.setInterpolator(lir);
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setRepeatMode(Animation.RESTART);
+
+
+        rv_home = getActivity().findViewById(R.id.rv_home);
         list = new ArrayList<>();
         HttpUtils.sendOkHttpRequest(HttpQYUtils.getVideos(), new Callback() {
             @Override
@@ -130,13 +146,15 @@ public class HomeFragment extends Fragment {
                 try {
                     JSONObject object = new JSONObject(responseText);
                     JSONArray jsonArray = object.getJSONArray("data");
-                    for(int i = jsonArray.length() -1 ; i > 0;i --){
-                        list.add("http://192.168.10.6:8080/QianYi/views/videos/" + jsonArray.getString(i));
-//                        Log.d("777","jsonArray == "+"http://192.168.10.6:8080/QianYi/views/videos/"+jsonArray.getString(i));
+                    if (jsonArray != null){
+                        for(int i = jsonArray.length() -1 ; i > 0;i --){
+                            list.add("http://192.168.10.6:8080/QianYi/views/videos/" + jsonArray.getString(i));
+                        }
+                        Message msg = new Message();
+                        msg.what = 0x333;
+                        handler.sendMessage(msg);
                     }
-                    Message msg = new Message();
-                    msg.what = 0x333;
-                    handler.sendMessage(msg);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -149,36 +167,30 @@ public class HomeFragment extends Fragment {
 
     public void startPlay(){
         View itemView = rv_home.getChildAt(0);
-        PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
-
-//        int aspectRatio = plVideoView.getDisplayAspectRatio();
-//        int height = plVideoView.getHeight();
-//        int width = plVideoView.getWidth();
-//        Log.d("HomeAdapter","高宽比 == "+aspectRatio+",高 = "+height+"，宽 = "+width);
+        if (itemView == null) return;
+        PLVideoTextureView plVideoView = itemView.findViewById(R.id.PLvv_play);
+        CircleImageView civ_tx = itemView.findViewById(R.id.civ_dp);
+        ImageView iv_pause = itemView.findViewById(R.id.iv_pause);
+        iv_pause.setVisibility(View.GONE);
+        civ_tx.startAnimation(animation);
 
         if (!plVideoView.isPlaying())
             plVideoView.start();
     }
     public void pausePlay(int index){
         View itemView = rv_home.getChildAt(index);
-        PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
+        PLVideoTextureView  plVideoView = itemView.findViewById(R.id.PLvv_play);
         if (plVideoView.isPlaying()){
-
-//            if (index > destructionIndex){
-//                destructionIndex += 2;
-//                plVideoView.pause();
-//
-//            }else{
-                plVideoView.stopPlayback();
-//            }
+            plVideoView.pause();
+//            plVideoView.stopPlayback();
         }
-
     }
     public void pausePlay(){
         View itemView = rv_home.getChildAt(0);
         if (itemView == null) return;
-        PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
-
+        PLVideoTextureView  plVideoView = itemView.findViewById(R.id.PLvv_play);
+        ImageView iv_pause = itemView.findViewById(R.id.iv_pause);
+        iv_pause.setVisibility(View.VISIBLE);
         if (plVideoView.isPlaying()){
             plVideoView.pause();
         }
@@ -198,8 +210,10 @@ public class HomeFragment extends Fragment {
         View itemView = rv_home.getChildAt(0);
         if (itemView == null)
             return;
-        PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
-        if (!plVideoView.isPlaying())
+//        PLVideoTextureView  plVideoView = itemView.findViewById(R.id.PLvv_play);
+//        if (!plVideoView.isPlaying())
+
+
             startPlay();
     }
 
@@ -214,7 +228,7 @@ public class HomeFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         View itemView = rv_home.getChildAt(0);
-        PLVideoView plVideoView = itemView.findViewById(R.id.PLvv_play);
+        PLVideoTextureView  plVideoView = itemView.findViewById(R.id.PLvv_play);
         plVideoView.stopPlayback();
     }
 

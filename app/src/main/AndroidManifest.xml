@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.qy">
 
     <!-- 网络权限 -->
@@ -71,7 +72,9 @@
         <activity android:name=".activity.IndividualitySignatureActivity" />
         <activity android:name=".activity.NicknameActivity" />
         <activity android:name=".activity.QrCodeActivity" />
-        <activity android:name=".activity.MyHomePageActivity"></activity>
+        <activity android:name=".activity.MyHomePageActivity" />
+        <activity android:name=".activity.IntegralDescriptionActivity" />
+        <activity android:name=".activity.IntegralSubsidiaryActivity"></activity>
     </application>
 
 </manifest>
