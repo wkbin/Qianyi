@@ -22,12 +22,9 @@
         android:text="-"
         android:layout_height="wrap_content" />
     <TextView
-        android:id="@+id/action_bar_iv_right"
-        android:textColor="#1A1A1A"
-        android:textSize="14sp"
-        android:gravity="center"
-        android:text="保存"
+        android:visibility="invisible"
         android:layout_marginRight="20dp"
         android:layout_width="30dp"
         android:layout_height="30dp" />
 </LinearLayout>
+

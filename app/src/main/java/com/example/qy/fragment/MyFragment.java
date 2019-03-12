@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,9 +21,12 @@ import com.example.qy.activity.FocusActivity;
 import com.example.qy.activity.IntegralTaskActivity;
 import com.example.qy.activity.MyHomePageActivity;
 import com.example.qy.activity.SettingsActivity;
+import com.example.qy.activity.UpdatePhoneActivity;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.whs.MyApplication;
 import com.jaeger.library.StatusBarUtil;
+
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -41,6 +42,10 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private ImageView iv_my_settings;
     private LinearLayout li_my_attention,li_my_fans;
     private LottieAnimationView lav_heart;
+    private LinearLayout li_binding_phone;
+    private TextView tv_binding;
+
+    private String phone;
 
 //    private CircleImageView civ_sign;
 
@@ -73,6 +78,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tv_my_attention = getActivity().findViewById(R.id.tv_my_attention);
         tv_my_fans = getActivity().findViewById(R.id.tv_my_fans);
         lav_heart = getActivity().findViewById(R.id.lav_heart);
+        tv_binding = getActivity().findViewById(R.id.tv_binding);
+        li_binding_phone = getActivity().findViewById(R.id.li_binding_phone);
 
         lav_heart.setImageAssetsFolder("images");
         lav_heart.setAnimation("data.json");
@@ -88,6 +95,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         li_my_fans = getActivity().findViewById(R.id.li_my_fans);
         li_my_attention.setOnClickListener(this);
         li_my_fans.setOnClickListener(this);
+        li_binding_phone.setOnClickListener(this);
 
 
 
@@ -97,6 +105,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         UserInfo userInfo = ((MyApplication)getActivity().getApplication()).getUserInfo();
         if (userInfo == null) return;
         Log.d("MyFragment","userInfo = "+userInfo.toString());
+        phone = userInfo.phone;
+        if (TextUtils.isEmpty(phone)){
+            tv_binding.setText("未绑定");
+        }else{
+            tv_binding.setText("已绑定");
+        }
         tv_my_nickname.setText(userInfo.nickname);
         tv_my_id.setText("千艺号："+userInfo.qianyiID);
         tv_my_signature.setText(userInfo.signature);
@@ -107,19 +121,35 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.li_home_page){
-            startActivity(new Intent(getActivity(),MyHomePageActivity.class));
-        }else if(v.getId() == R.id.iv_my_settings){
-            startActivity(new Intent(getActivity(),SettingsActivity.class));
-        }else if (v.getId() == R.id.li_my_attention){
-            Intent intent = new Intent(getActivity(),FocusActivity.class);
-            intent.putExtra("type",1);
-            startActivity(intent);
-        }else if (v.getId() == R.id.li_my_fans){
-            startActivity(new Intent(getActivity(),FocusActivity.class));
-        }
-        else if(v.getId() == R.id.lav_heart){
-            startActivity(new Intent(getActivity(),IntegralTaskActivity.class));
+        switch (v.getId()){
+            case R.id.li_home_page:
+                startActivity(new Intent(getActivity(),MyHomePageActivity.class));
+                break;
+            case R.id.iv_my_settings:
+                startActivity(new Intent(getActivity(),SettingsActivity.class));
+                break;
+            case R.id.li_my_attention:
+                Intent intent = new Intent(getActivity(),FocusActivity.class);
+                intent.putExtra("type",1);
+                startActivity(intent);
+                break;
+            case R.id.li_my_fans:
+                Intent i1 = new Intent(getActivity(),FocusActivity.class);
+                i1.putExtra("type",2);
+                startActivity(i1);
+                break;
+            case R.id.lav_heart:
+                startActivity(new Intent(getActivity(),IntegralTaskActivity.class));
+                break;
+            case R.id.li_binding_phone:
+                if (TextUtils.isEmpty(phone)){
+
+                }else{
+                    Intent updatePhoneIntent = new Intent(getActivity(),UpdatePhoneActivity.class);
+                    updatePhoneIntent.putExtra("phone",phone);
+                    startActivity(updatePhoneIntent);
+                }
+                break;
         }
     }
 }

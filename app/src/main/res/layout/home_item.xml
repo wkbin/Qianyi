@@ -128,61 +128,65 @@
 
 
         <LinearLayout
-            android:layout_marginRight="10dp"
+
+            android:paddingRight="15dp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_gravity="right|bottom"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|right"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_marginBottom="20dp"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:src="@mipmap/touxiang"/>
             <LinearLayout
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <com.like.LikeButton
+                    android:id="@+id/lb_like"
                     app:like_drawable="@mipmap/sz01"
                     app:unlike_drawable="@mipmap/sz"
+                    app:circle_start_color="#ff0000"
                     app:icon_size="35dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
-
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
                 <TextView
+                    android:id="@+id/tv_like_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="@color/qy_white"
-                    android:text="2312"/>
+                    android:text="-"/>
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:src="@mipmap/pl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/tv_comments_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/qy_white"
                     android:textSize="14sp"
-                    android:text="2312"/>
+                    android:text="-"/>
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:gravity="center"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:src="@mipmap/fx"
@@ -193,25 +197,48 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/qy_white"
                     android:textSize="14sp"
-                    android:text="2312"/>
+                    android:text="-"/>
             </LinearLayout>
 
-          <RelativeLayout
-              android:layout_marginBottom="80dp"
-              android:layout_marginTop="50dp"
-              android:layout_width="50dp"
-              android:layout_height="50dp">
-              <de.hdodenhof.circleimageview.CircleImageView
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:src="#333333"/>
-              <de.hdodenhof.circleimageview.CircleImageView
-                  android:id="@+id/civ_dp"
-                  android:layout_centerInParent="true"
-                  android:layout_width="26dp"
-                  android:layout_height="26dp"
-                  android:src="@mipmap/tx"/>
-          </RelativeLayout>
+            <RelativeLayout
+                android:gravity="right"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp">
+                <RelativeLayout
+                    android:id="@+id/rl_dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:src="#333333"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_dp"
+                        android:layout_centerInParent="true"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@mipmap/tx"/>
+                </RelativeLayout>
+                <ImageView
+                    android:id="@+id/iv_yficon"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@id/rl_dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/yficon"/>
+                <ImageView
+                    android:id="@+id/iv_yficon1"
+                    android:visibility="gone"
+                    android:layout_below="@id/rl_dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/yficon01"/>
+            </RelativeLayout>
+
+
     </LinearLayout>
 
 

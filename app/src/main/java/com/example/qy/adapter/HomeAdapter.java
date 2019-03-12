@@ -1,10 +1,14 @@
 package com.example.qy.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,25 +18,44 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.qy.R;
+import com.example.qy.activity.LoginActivity;
+import com.example.qy.bean.Video;
+import com.example.qy.utils.HttpQYUtils;
+import com.example.qy.utils.HttpUtils;
+import com.example.qy.utils.ToastUtils;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 import com.pili.pldroid.player.AVOptions;
 import com.pili.pldroid.player.IMediaController;
 import com.pili.pldroid.player.PLOnImageCapturedListener;
 import com.pili.pldroid.player.widget.PLVideoTextureView;
 import com.pili.pldroid.player.widget.PLVideoView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Handler;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> implements PLOnImageCapturedListener {
-    List<String> playPathList;
+    public List<Video> videoList;
     public Context context;
+    public int user_id;
 
     // 点击事件接口
     OnItemClickListener mOnItemClickListener;
+
+
 
     @Override
     public void onImageCaptured(byte[] bytes) {
@@ -46,24 +69,33 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         this.mOnItemClickListener=onItemClickListener;
     }
 
-    public HomeAdapter(Context context,List<String> list){
+    public HomeAdapter(Context context,List<Video> list,int user_id){
         this.context = context;
-        this.playPathList = list;
+        this.videoList = list;
+        this.user_id = user_id;
     }
     static class ViewHolder extends RecyclerView.ViewHolder{
         PLVideoTextureView PLvv_play;
         CircleImageView civ_dp;
         ImageView iv_pause;
+        ImageView iv_yficon;
+        ImageView iv_yficon1;
+
+        TextView tv_like_count;
+        TextView tv_comments_count;
+        LikeButton lb_like;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            tv_like_count = itemView.findViewById(R.id.tv_like_count);
+            tv_comments_count = itemView.findViewById(R.id.tv_comments_count);
+            lb_like = itemView.findViewById(R.id.lb_like);
+
             civ_dp = itemView.findViewById(R.id.civ_dp);
             iv_pause = itemView.findViewById(R.id.iv_pause);
-
-
-
-
-
+            iv_yficon = itemView.findViewById(R.id.iv_yficon);
+            iv_yficon1 = itemView.findViewById(R.id.iv_yficon1);
             PLvv_play = itemView.findViewById(R.id.PLvv_play);
+
             PLvv_play.setLooping(true);
             AVOptions options = new AVOptions();
             // 设置视频偏好格式MP4
@@ -88,13 +120,84 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         return holder;
     }
 
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder,final int i) {
-        String url = playPathList.get(i);
+        Video video = videoList.get(i);
+        String url = video.videoPath;
         viewHolder.PLvv_play.setVideoPath(url);
+        viewHolder.tv_like_count.setText(video.countLike+"");
+        viewHolder.tv_comments_count.setText(video.countComments);
 
 
+        viewHolder.lb_like.setLiked(video.liked);
 
+        viewHolder.lb_like.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                if (user_id == 0){
+                    context.startActivity(new Intent(context,LoginActivity.class));
+                    return;
+                }
+                HttpUtils.sendOkHttpRequest(HttpQYUtils.getAddLike(user_id, video.id), new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        ((Activity)context).runOnUiThread(()->{
+                            ToastUtils.showShort(context,"网络连接失败");
+                        });
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String responseText =response.body().string();
+                        try {
+                            JSONObject object = new JSONObject(responseText);
+                            if (object.getBoolean("isSuc")){
+                                ((Activity)context).runOnUiThread(()->{
+                                    video.countLike += 1;
+                                    viewHolder.tv_like_count.setText(video.countLike+"");
+                                });
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+                if (user_id == 0){
+                    context.startActivity(new Intent(context,LoginActivity.class));
+                    return;
+                }
+                HttpUtils.sendOkHttpRequest(HttpQYUtils.getDelLike(user_id, video.id), new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        ((Activity)context).runOnUiThread(()->{
+                            ToastUtils.showShort(context,"网络连接失败");
+                        });
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String responseText =response.body().string();
+                        try {
+                            JSONObject object = new JSONObject(responseText);
+                            if (object.getBoolean("isSuc")){
+                                ((Activity)context).runOnUiThread(()->{
+                                    video.countLike -= 1;
+                                    viewHolder.tv_like_count.setText(video.countLike+"");
+                                });
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+        });
 
 
         if (mOnItemClickListener != null){
@@ -116,6 +219,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
 
     @Override
     public int getItemCount() {
-        return playPathList.size();
+        return videoList.size();
     }
 }

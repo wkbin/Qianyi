@@ -27,7 +27,7 @@ public class HttpQYUtils {
     private static final String updateIcon = "updateIcon?";
     // 获取头像上传token
     private static final String iconToken = "getIconToken?";
-    // 查询粉丝信息
+    // 查看粉丝用户信息
     private static final String findFansDetails = "findFansDetails?";
     // 获取城市地址api
     private static final String address = "city.json";
@@ -37,6 +37,19 @@ public class HttpQYUtils {
     private static final String showAttention = "showAttention?";
     // 获取积分详情
     private static final String findByIntegrals = "findbyIntegrals?";
+    // 取消关注
+    private static final String offAttention = "offAttention?";
+    // 分页查询视频
+    private static final String selectVideoWithLikesAndCommentsCount = "selectVideoWithLikesAndCommentsCount?";
+    // 视频点赞
+    private static final String addLike = "addLike?";
+    // 取消点赞
+    private static final String delLike = "delLike?";
+    // 判断是否签到
+    private static final String judgeDailyAttendance = "judgeDailyAttendance?";
+    // 积分签到
+    private static final String signin = "signin?";
+
 
     public static String getLoginPassWord(String loginPhone,String loginPwd,String loginId){
         return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd+"&MEID="+loginId;
@@ -87,7 +100,6 @@ public class HttpQYUtils {
      * @return
      */
     public static String getMaterial(String loginPhone,String infoNickname,String infoSex,String infoBirthday,String infoHome,String infoSignature){
-        Log.d("888","name = "+infoNickname+"\nsex = "+infoSex+"\nbirthday = "+infoBirthday+"\naddress = "+infoHome+"\nsignature = "+infoSignature);
         String url = ipUrl+material
                 +"loginPhone="+loginPhone
                 +"&infoNickname="+infoNickname
@@ -123,8 +135,10 @@ public class HttpQYUtils {
         return ipUrl+updateIcon+"loginPhone="+loginPhone+"&infoIcon="+infoIcon;
     }
 
-    public static String getFindFansDetails(String loginPhone){
-        return ipUrl+findFansDetails+"loginPhone="+loginPhone;
+    public static String getFindFansDetails(int userId,int page){
+        String url = ipUrl+findFansDetails+"userId="+userId+"&pn="+page;
+        Log.d("888","url == "+url);
+        return url;
     }
 
     public static String getAttention(String userId){
@@ -139,10 +153,40 @@ public class HttpQYUtils {
         return ipUrl+findByIntegrals+"userId="+userId;
     }
 
+
+    public static String getOffAttention(int userId,String users){
+        String url = ipUrl+offAttention+"followId="+userId+"&userIdArrary="+users;
+        Log.d("666","url = "+url);
+        return url;
+    }
+
+    public static String getSelectVideo(int userId,int pn){
+        String url = ipUrl+selectVideoWithLikesAndCommentsCount+"userId="+userId+"&pn="+pn;
+        Log.d("666","url = "+url);
+        return url;
+    }
+
+    public static String getAddLike(int user_id,String video_id){
+        return ipUrl+addLike+"fromuid="+user_id+"&videoid="+video_id;
+    }
+
+    public static String getDelLike(int user_id,String video_id){
+        return ipUrl+delLike+"fromuid="+user_id+"&videoid="+video_id;
+    }
+
+    public static String getJudgeDailyAttendance(int user_id,String integralType){
+        return ipUrl+judgeDailyAttendance+"userId="+user_id+"&integralType="+integralType;
+    }
+
+    public static String getSignin(int userId,String integralNumber,String integralType){
+        return ipUrl+signin+"userId="+userId+"&integralNumber="+integralNumber+"&integralType="+integralType;
+    }
+
     /**
      * 获取服务器视频
      */
     public static String getVideos(){
         return ipUrl+"queryVideo";
     }
+
 }

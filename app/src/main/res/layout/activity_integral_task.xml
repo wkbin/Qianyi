@@ -54,16 +54,32 @@
             android:textSize="13sp"
             android:layout_centerHorizontal="true"
             android:text="今日获得积分"/>
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="35dp"
-            android:textColor="#ffffff"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:text="0/80"/>
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_sign_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="35dp"
+                android:textColor="#ffffff"
+                android:text="0"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="35dp"
+                android:textColor="#ffffff"
+                android:text="/80"/>
+        </LinearLayout>
+
+
     </RelativeLayout>
 
     <TextView
@@ -113,6 +129,7 @@
                 android:layout_marginBottom="4dp"
                 android:text="连续签到天数越多，积分越高"/>
             <TextView
+                android:id="@+id/tv_sign"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_width="64dp"
@@ -124,6 +141,7 @@
                 android:shadowColor="#9991e573"
                 android:background="@drawable/shape_integral_task"/>
             <ImageView
+                android:id="@+id/iv_sign"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

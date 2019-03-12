@@ -4,12 +4,44 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F2F2"
     tools:context=".activity.FocusActivity">
-    <View
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/statusbar_view_height" />-->
+    <LinearLayout
+        android:background="@color/actionBar"
+        android:orientation="horizontal"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/statusbar_view_height" />
+        android:layout_height="?attr/actionBarSize">
+        <ImageView
+            android:id="@+id/action_bar_iv_left"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/fanhui2"/>
+        <TextView
+            android:id="@+id/action_bar_text"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:textColor="#1a1a1a"
+            android:text="-"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/action_bar_iv_right"
+            android:gravity="center"
+            android:src="@mipmap/friendsicon"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
-    android:id="@+id/rl_focus"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+        android:layout_marginTop="15dp"
+        android:id="@+id/rl_focus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

@@ -104,52 +104,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         tv_shopping = findViewById(R.id.tv_shopping);
         tv_my = findViewById(R.id.tv_my);
 
-        SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
 
-        int id = pref.getInt("id",-1);
-
-        Log.d("666","id == "+id);
-        if (id != -1){
-            String url = HttpQYUtils.getFindPersonalnfoWithId(id);
-            Log.d("MainActivity","url == "+url);
-            HttpUtils.sendOkHttpRequest(url, new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    runOnUiThread(()->{
-                        ToastUtils.showShort(MainActivity.this,"网络连接失败");
-                    });
-                }
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String responseText = response.body().string();
-                    try {
-                        JSONObject jsonObject = new JSONObject(responseText);
-                        boolean isSuc = jsonObject.getBoolean("isSuc");
-                        if (isSuc){
-                            UserInfo userInfo = new UserInfo();
-                            JSONObject dataObject = jsonObject.getJSONObject("data");
-                            userInfo.birthday = dataObject.getString("birthday");
-                            userInfo.phone = dataObject.getString("phone");
-                            userInfo.signature = dataObject.getString("signature");
-                            userInfo.integral = dataObject.getString("integral");
-                            userInfo.sex = dataObject.getString("sex");
-                            userInfo.nickname = dataObject.getString("nickname");
-                            userInfo.icon = dataObject.getString("icon");
-                            userInfo.manifesto = dataObject.getString("manifesto");
-                            userInfo.home = dataObject.getString("home");
-                            userInfo.fans = dataObject.getString("fans");
-                            userInfo.qianyiID = dataObject.getString("qianyiID");
-                            userInfo.loginId = dataObject.getInt("loginId");
-                            userInfo.follow = dataObject.getString("follow");
-                            MyApplication application = (MyApplication) getApplication();
-                            application.setUserInfo(userInfo);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
 
         initFragment("home");
         mLiHome = findViewById(R.id.li_home);
@@ -165,7 +120,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
     private void showHome(){
-        li_bottom.setBackgroundResource(0);
+
         iv_home.setImageResource(R.mipmap.home);
         iv_focus.setImageResource(R.mipmap.guazhu);
         iv_shopping.setImageResource(R.mipmap.gouwu);
@@ -175,11 +130,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         tv_focus.setTextColor(Color.parseColor("#7ffefefe"));
         tv_shopping.setTextColor(Color.parseColor("#7ffefefe"));
         tv_my.setTextColor(Color.parseColor("#7ffefefe"));
+
+        li_bottom.setBackgroundResource(0);
     }
     private void showOther(String type){
-        li_bottom.setBackgroundColor(Color.parseColor("#ffffff"));
-        tv_home.setTextColor(Color.parseColor("#B3B3B3"));
-        iv_home.setImageResource(R.mipmap.home01);
+
         switch (type){
             case "focus":
                 iv_focus.setImageResource(R.mipmap.guazhu02);
@@ -205,7 +160,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 tv_focus.setTextColor(Color.parseColor("#B3B3B3"));
                 tv_shopping.setTextColor(Color.parseColor("#B3B3B3"));
                 break;
+
         }
+        li_bottom.setBackgroundColor(Color.parseColor("#ffffff"));
+        tv_home.setTextColor(Color.parseColor("#B3B3B3"));
+        iv_home.setImageResource(R.mipmap.home01);
     }
 
     private void initFragment(String tag){

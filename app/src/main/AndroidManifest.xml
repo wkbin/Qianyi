@@ -37,8 +37,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
-            android:launchMode="singleTask">
+            android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -74,7 +73,12 @@
         <activity android:name=".activity.QrCodeActivity" />
         <activity android:name=".activity.MyHomePageActivity" />
         <activity android:name=".activity.IntegralDescriptionActivity" />
-        <activity android:name=".activity.IntegralSubsidiaryActivity"></activity>
+        <activity android:name=".activity.IntegralSubsidiaryActivity" />
+        <activity android:name=".activity.UpdatePhoneActivity" />
+        <activity android:name=".activity.UpdatePhoneVerificationActivity" />
+        <activity android:name=".activity.MainActivity" android:launchMode="singleTask"/>
+
+
     </application>
 
 </manifest>

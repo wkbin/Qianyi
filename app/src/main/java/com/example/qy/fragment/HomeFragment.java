@@ -15,13 +15,17 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 import com.example.qy.R;
 import com.example.qy.adapter.HomeAdapter;
+import com.example.qy.bean.UserInfo;
+import com.example.qy.bean.Video;
 import com.example.qy.ui.ViewPagerLayoutManager;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
+import com.example.qy.whs.MyApplication;
 import com.pili.pldroid.player.widget.PLVideoTextureView;
 import com.pili.pldroid.player.widget.PLVideoView;
 
@@ -33,6 +37,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
@@ -43,16 +48,20 @@ import okhttp3.Response;
 public class HomeFragment extends Fragment {
     private String TAG = "HomeFragment";
     private RecyclerView rv_home;
-    private List<String> list;
+    private List<Video> list;
     private ImageView iv_home,iv_search;
     private ViewPagerLayoutManager viewPagerLayoutManager;
     HomeAdapter adapter;
 
     private boolean isShowFragment;
 
+    private int user_id;
+
 
     // 旋转动画
     private RotateAnimation animation;
+    // 音符移动动画
+    private TranslateAnimation ta,ta1;
 
     private Handler handler = new Handler(){
         @Override
@@ -62,8 +71,8 @@ public class HomeFragment extends Fragment {
 
                 viewPagerLayoutManager = new ViewPagerLayoutManager(getActivity(),OrientationHelper.VERTICAL);
                 rv_home.setLayoutManager(viewPagerLayoutManager);
-                Collections.shuffle(list);
-                adapter = new HomeAdapter(getActivity(),list);
+//                Collections.shuffle(list);
+                adapter = new HomeAdapter(getActivity(),list,user_id);
                 rv_home.setAdapter(adapter);
 
 
@@ -132,12 +141,59 @@ public class HomeFragment extends Fragment {
         animation.setRepeatMode(Animation.RESTART);
 
 
+
+        // 音符动画  以自身为坐标点   参数： x轴的起始点,结束点   y轴的起始点,结束点
+
+
+        Random rand = new Random();
+        int xDelta = -(rand.nextInt(100)+100);
+        ta = new TranslateAnimation(0,xDelta,0,-200);
+        // 设置动画时长
+        ta.setRepeatCount(Animation.INFINITE);
+        ta.setRepeatMode(Animation.RESTART);
+        ta.setDuration(3000);
+
+        ta.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        // 音符动画  以自身为坐标点   参数： x轴的起始点,结束点   y轴的起始点,结束点
+//        ta1 = new TranslateAnimation(0,-50,0,-250);
+//        // 设置动画时长
+//        ta1.setRepeatCount(Animation.INFINITE);
+//        ta1.setRepeatMode(Animation.RESTART);
+//        ta1.setDuration(3000);
+
+
+
+
         rv_home = getActivity().findViewById(R.id.rv_home);
         list = new ArrayList<>();
-        HttpUtils.sendOkHttpRequest(HttpQYUtils.getVideos(), new Callback() {
+
+        UserInfo userInfo = ((MyApplication)getActivity().getApplication()).getUserInfo();
+        if (userInfo != null){
+            user_id = userInfo.loginId;
+        }
+
+        String url = HttpQYUtils.getSelectVideo(user_id,0);
+
+        Log.d("666","url = "+url);
+        HttpUtils.sendOkHttpRequest(url , new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
             }
 
             @Override
@@ -145,11 +201,26 @@ public class HomeFragment extends Fragment {
                 String responseText = response.body().string();
                 try {
                     JSONObject object = new JSONObject(responseText);
-                    JSONArray jsonArray = object.getJSONArray("data");
+                    JSONObject dataObject = object.getJSONObject("data");
+                    JSONArray jsonArray = dataObject.getJSONArray("videolist");
                     if (jsonArray != null){
-                        for(int i = jsonArray.length() -1 ; i > 0;i --){
-                            list.add("http://192.168.10.6:8080/QianYi/views/videos/" + jsonArray.getString(i));
+                        for(int i = 0 ; i < jsonArray.length();i ++){
+                            Video v = new Video();
+                            JSONObject video = jsonArray.getJSONObject(i);
+                            v.id = video.getString("id");
+                            v.videoPath = video.getString("videoPath");
+                            v.coverPath = video.getString("coverPath");
+                            v.countLike = video.getJSONObject("likes").getInt("countLike");
+                            v.liked = video.getJSONObject("likes").getBoolean("liked");
+                            v.createdate = video.getString("createdate");
+                            v.videoDesc = video.getString("videoDesc");
+                            v.musicId = video.getString("musicId");
+                            v.type = video.getString("type");
+                            v.addressId = video.getString("addressId");
+                            v.countComments = video.getString("countComments");
+                            list.add(v);
                         }
+
                         Message msg = new Message();
                         msg.what = 0x333;
                         handler.sendMessage(msg);
@@ -170,9 +241,15 @@ public class HomeFragment extends Fragment {
         if (itemView == null) return;
         PLVideoTextureView plVideoView = itemView.findViewById(R.id.PLvv_play);
         CircleImageView civ_tx = itemView.findViewById(R.id.civ_dp);
+        ImageView iv_yficon = itemView.findViewById(R.id.iv_yficon);
+//        ImageView iv_yficon1 = itemView.findViewById(R.id.iv_yficon1);
         ImageView iv_pause = itemView.findViewById(R.id.iv_pause);
         iv_pause.setVisibility(View.GONE);
         civ_tx.startAnimation(animation);
+
+        iv_yficon.startAnimation(ta);
+
+//        iv_yficon1.startAnimation(ta1);
 
         if (!plVideoView.isPlaying())
             plVideoView.start();
@@ -205,6 +282,20 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        UserInfo userInfo = ((MyApplication)getActivity().getApplication()).getUserInfo();
+        if (userInfo != null) {
+
+            if (user_id != userInfo.loginId){
+                user_id = userInfo.loginId;
+                if (adapter != null){
+                    adapter.setUser_id(user_id);
+                }
+
+            }
+        }
+
+
+
         Log.d("666","onStart");
         if (!isShowFragment) return;
         View itemView = rv_home.getChildAt(0);

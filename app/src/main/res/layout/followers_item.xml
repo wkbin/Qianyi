@@ -3,6 +3,7 @@
     android:id="@+id/li_travel"
     android:orientation="horizontal"
     android:padding="10dp"
+    android:gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <de.hdodenhof.circleimageview.CircleImageView
@@ -12,25 +13,32 @@
         android:src="@mipmap/touxiang"/>
     <LinearLayout
         android:layout_width="0dp"
+        android:layout_marginLeft="10dp"
         android:padding="5dp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:layout_height="match_parent">
         <TextView
             android:id="@+id/tv_followers_name"
+            android:textColor="#1A1A1A"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="昵称"/>
         <TextView
-            android:id="@+id/tv_followers_work_and_fans"
+            android:id="@+id/tv_signature"
             android:layout_marginTop="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="作品 1 粉丝 1"/>
+            android:text="签名"/>
     </LinearLayout>
     <Button
         android:id="@+id/btn_followers_focus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/shape_focus"
+        android:layout_width="84dp"
+        android:layout_height="33dp"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        android:layout_marginRight="20dp"
         android:text="-"/>
 </LinearLayout>

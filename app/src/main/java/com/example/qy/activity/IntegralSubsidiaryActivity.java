@@ -36,6 +36,7 @@ public class IntegralSubsidiaryActivity extends AppCompatActivity implements Vie
     private TextView action_bar_text;
     private TextView action_bar_iv_right;
     private TextView tv_user_name;
+    private TextView tv_integral;
     private RecyclerView rv_integral_details;
     private List<Integral> list;
 
@@ -54,6 +55,10 @@ public class IntegralSubsidiaryActivity extends AppCompatActivity implements Vie
 
         civ_icon = findViewById(R.id.civ_icon);
         rv_integral_details = findViewById(R.id.rv_integral_details);
+        tv_integral = findViewById(R.id.tv_integral);
+
+        String integral = ((MyApplication)getApplication()).getUserInfo().integral;
+        tv_integral.setText(integral);
 
         action_bar_iv_left.setOnClickListener(this);
 

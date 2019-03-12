@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".activity.UpdatePhoneActivity">
+
+    <include layout="@layout/action_bar"/>
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_marginTop="64dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#1a1a1a"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:text="-"/>
+    <TextView
+        android:id="@+id/tv_update"
+        android:layout_marginTop="24dp"
+        android:layout_width="64dp"
+        android:gravity="center"
+        android:layout_height="33dp"
+        android:textSize="16sp"
+        android:textColor="#1a1a1a"
+        android:text="修改"
+        android:background="@drawable/shape_update_phone"/>
+
+    <View
+        android:layout_marginTop="51dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:background="#F2F2F2"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textColor="#1a1a1a"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改绑定手机会影响以下功能"/>
+
+    <RelativeLayout
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/phonelogin"/>
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#1a1a1a"
+                android:text="手机登录"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/notice"/>
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="#1a1a1a"
+                android:text="安全通知"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
