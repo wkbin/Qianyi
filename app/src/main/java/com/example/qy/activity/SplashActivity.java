@@ -12,6 +12,7 @@ import com.example.qy.bean.UserInfo;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
+import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
 
 import org.json.JSONException;
@@ -23,7 +24,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

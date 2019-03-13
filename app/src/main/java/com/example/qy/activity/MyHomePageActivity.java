@@ -3,13 +3,10 @@ package com.example.qy.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,16 +17,15 @@ import com.example.qy.bean.UserInfo;
 import com.example.qy.fragment.CollectFragment;
 import com.example.qy.fragment.LikeFragment;
 import com.example.qy.fragment.ProductionFragment;
+import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
 import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public class MyHomePageActivity extends AppCompatActivity implements View.OnClickListener {
-    private CircleImageView cv_my_icon;
+public class MyHomePageActivity extends BaseActivity implements View.OnClickListener {
+    private de.hdodenhof.circleimageview.CircleImageView cv_my_icon;
     private TextView tv_my_nickname;
     private TextView tv_my_id;
     private TextView tv_my_signature;
@@ -88,6 +84,7 @@ public class MyHomePageActivity extends AppCompatActivity implements View.OnClic
     private void initData(){
         MyApplication application = (MyApplication) getApplication();
         UserInfo userInfo = application.getUserInfo();
+
         Glide.with(MyHomePageActivity.this).load(userInfo.icon).into(cv_my_icon);
         tv_my_nickname.setText(userInfo.nickname);
         tv_my_id.setText("千艺号："+userInfo.qianyiID);

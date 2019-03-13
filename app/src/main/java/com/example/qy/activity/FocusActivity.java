@@ -17,6 +17,7 @@ import com.example.qy.bean.UserInfo;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
+import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
 
 import org.json.JSONArray;
@@ -32,7 +33,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class FocusActivity extends AppCompatActivity implements View.OnClickListener {
+public class FocusActivity extends BaseActivity implements View.OnClickListener {
     private RecyclerView rl_focus;
     private List<Follwers> lists;
     private TextView action_bar_text;

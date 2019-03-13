@@ -14,8 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.qy.R;
+import com.example.qy.whs.BaseActivity;
 
-public class UpdatePhoneVerificationActivity extends AppCompatActivity implements View.OnClickListener {
+public class UpdatePhoneVerificationActivity extends BaseActivity implements View.OnClickListener {
     private TextView action_bar_text;
     private ImageView action_bar_iv_left;
     private EditText et_verification;

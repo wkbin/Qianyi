@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.qy.R;
@@ -59,9 +60,6 @@ public class IconChooseDialog extends Dialog {
         initView();
     }
     private void initView(){
-
-
-
 
 
 

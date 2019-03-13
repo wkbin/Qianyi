@@ -137,7 +137,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
         UserInfo userInfo = application.getUserInfo();
 
         phone = userInfo.phone;
-        key = "icon_" + phone + ".jpg";
+//        key = "icon_" + phone + ".jpg";
         permissionList = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(DetailedPersonalDataActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
             permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -168,7 +168,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
             case R.id.rl_choose_icon:
                 IconChooseDialog dialog = new IconChooseDialog(DetailedPersonalDataActivity.this);
                 dialog.setOnClickListener(new IconChooseDialog.onClickListener() {
-                    @Override
+
                     public void onPicturesClick() {
                         // 版本判断。当手机系统大于 23 时，才有必要去判断权限是否获取
 
@@ -180,7 +180,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                         }
                         dialog.dismiss();
                     }
-                    @Override
+
                     public void onGalleryClick() {
                         openSysAlbum();
                         dialog.dismiss();
@@ -270,8 +270,9 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 String address = tv_address.getText().toString().trim();
                 String signature = tv_signature.getText().toString().trim();
 
-                // 如果没有相机权限，申请打开相机
-
+                // 以时间戳命名
+                SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
+                key   = "icon_" + phone + df.format(new Date())+".jpg";
                 if (imageUri != null) {
                     String tokenUrl = HttpQYUtils.getIconToken(key);
                     HttpUtils.sendOkHttpRequest(tokenUrl, new Callback() {
@@ -424,6 +425,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
      */
     private void uploadImageToQiniu(byte[] b, String token) {
         UploadManager uploadManager = new UploadManager();
+
         uploadManager.put(b, key, token, new UpCompletionHandler() {
                     @Override
                     public void complete(String key, ResponseInfo info, JSONObject res) {

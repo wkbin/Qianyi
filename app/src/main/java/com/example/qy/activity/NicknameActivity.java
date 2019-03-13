@@ -14,8 +14,9 @@ import android.widget.TextView;
 import com.example.qy.R;
 import com.example.qy.ui.SexChooseDialog;
 import com.example.qy.utils.ToastUtils;
+import com.example.qy.whs.BaseActivity;
 
-public class NicknameActivity extends AppCompatActivity implements View.OnClickListener {
+public class NicknameActivity extends BaseActivity implements View.OnClickListener {
     private TextView action_bar_text;
     private TextView tv_character_length;
     private EditText et_nickname;

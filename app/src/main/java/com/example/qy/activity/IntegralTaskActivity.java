@@ -12,6 +12,7 @@ import com.example.qy.R;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
+import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
 
 import org.json.JSONException;
@@ -23,7 +24,7 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class IntegralTaskActivity extends AppCompatActivity implements View.OnClickListener {
+public class IntegralTaskActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_integral_description;
     private ImageView action_bar_iv_left;
     private TextView action_bar_iv_right;

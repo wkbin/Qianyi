@@ -19,16 +19,14 @@ import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.example.qy.activity.FocusActivity;
 import com.example.qy.activity.IntegralTaskActivity;
+import com.example.qy.activity.MessageActivity;
 import com.example.qy.activity.MyHomePageActivity;
 import com.example.qy.activity.SettingsActivity;
 import com.example.qy.activity.UpdatePhoneActivity;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.whs.MyApplication;
-import com.jaeger.library.StatusBarUtil;
 
-import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MyFragment extends Fragment implements View.OnClickListener {
@@ -43,11 +41,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private LinearLayout li_my_attention,li_my_fans;
     private LottieAnimationView lav_heart;
     private LinearLayout li_binding_phone;
+    private LinearLayout li_message;
     private TextView tv_binding;
 
     private String phone;
 
-//    private CircleImageView civ_sign;
+
 
 
 //    private Button btn_qr_code;
@@ -65,11 +64,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        StatusBarUtil.setTransparent(getActivity());
         super.onActivityCreated(savedInstanceState);
-
-
-
 
         cv_my_icon = getActivity().findViewById(R.id.cv_my_icon);
         tv_my_nickname = getActivity().findViewById(R.id.tv_my_nickname);
@@ -80,6 +75,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         lav_heart = getActivity().findViewById(R.id.lav_heart);
         tv_binding = getActivity().findViewById(R.id.tv_binding);
         li_binding_phone = getActivity().findViewById(R.id.li_binding_phone);
+        li_message = getActivity().findViewById(R.id.li_message);
 
         lav_heart.setImageAssetsFolder("images");
         lav_heart.setAnimation("data.json");
@@ -96,6 +92,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         li_my_attention.setOnClickListener(this);
         li_my_fans.setOnClickListener(this);
         li_binding_phone.setOnClickListener(this);
+        li_message.setOnClickListener(this);
 
 
 
@@ -149,6 +146,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     updatePhoneIntent.putExtra("phone",phone);
                     startActivity(updatePhoneIntent);
                 }
+                break;
+            case R.id.li_message:
+                startActivity(new Intent(getActivity(),MessageActivity.class));
                 break;
         }
     }

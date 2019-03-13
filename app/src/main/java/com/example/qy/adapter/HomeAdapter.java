@@ -24,6 +24,8 @@ import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.example.qy.activity.LoginActivity;
 import com.example.qy.bean.Video;
+import com.example.qy.ui.CircleImageView;
+import com.example.qy.ui.CommentsSheetBottomDialog;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
@@ -42,7 +44,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Handler;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -76,7 +78,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
     }
     static class ViewHolder extends RecyclerView.ViewHolder{
         PLVideoTextureView PLvv_play;
-        CircleImageView civ_dp;
+        de.hdodenhof.circleimageview.CircleImageView civ_dp;
         ImageView iv_pause;
         ImageView iv_yficon;
         ImageView iv_yficon1;
@@ -84,11 +86,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         TextView tv_like_count;
         TextView tv_comments_count;
         LikeButton lb_like;
+        ImageView iv_comments;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_like_count = itemView.findViewById(R.id.tv_like_count);
             tv_comments_count = itemView.findViewById(R.id.tv_comments_count);
             lb_like = itemView.findViewById(R.id.lb_like);
+            iv_comments = itemView.findViewById(R.id.iv_comments);
 
             civ_dp = itemView.findViewById(R.id.civ_dp);
             iv_pause = itemView.findViewById(R.id.iv_pause);
@@ -197,6 +201,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
                     }
                 });
             }
+        });
+
+        viewHolder.iv_comments.setOnClickListener(v->{
+            CommentsSheetBottomDialog dialog = new CommentsSheetBottomDialog(context,1600,1800);
+            dialog.show();
         });
 
 

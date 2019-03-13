@@ -11,8 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.qy.R;
+import com.example.qy.whs.BaseActivity;
 
-public class IndividualitySignatureActivity extends AppCompatActivity implements View.OnClickListener {
+public class IndividualitySignatureActivity extends BaseActivity implements View.OnClickListener {
     private TextView action_bar_text;
     private TextView tv_character_length;
     private EditText et_signature;

@@ -22,6 +22,7 @@ import com.example.qy.R;
 import com.example.qy.adapter.HomeAdapter;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.bean.Video;
+import com.example.qy.ui.CircleImageView;
 import com.example.qy.ui.ViewPagerLayoutManager;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
@@ -39,7 +40,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -240,7 +240,7 @@ public class HomeFragment extends Fragment {
         View itemView = rv_home.getChildAt(0);
         if (itemView == null) return;
         PLVideoTextureView plVideoView = itemView.findViewById(R.id.PLvv_play);
-        CircleImageView civ_tx = itemView.findViewById(R.id.civ_dp);
+        de.hdodenhof.circleimageview.CircleImageView civ_tx = itemView.findViewById(R.id.civ_dp);
         ImageView iv_yficon = itemView.findViewById(R.id.iv_yficon);
 //        ImageView iv_yficon1 = itemView.findViewById(R.id.iv_yficon1);
         ImageView iv_pause = itemView.findViewById(R.id.iv_pause);

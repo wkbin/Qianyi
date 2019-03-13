@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dl_mall"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -19,25 +13,59 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"/>
+                <View
+                    android:id="@+id/action_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/statusbar_view_height"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/_bjzz"/>
+                <LinearLayout
+                    android:layout_below="@+id/action_view"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="35dp">
                 <ImageView
+                    android:id="@+id/iv_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/gdicon"/>
+                <RelativeLayout
+                    android:background="@drawable/shape_mall_serch"
+                    android:layout_marginLeft="23dp"
+                    android:layout_width="290dp"
+                    android:layout_height="33dp">
+                    <ImageView
+                        android:id="@+id/iv_ss_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@mipmap/ssicon"/>
+                    <TextView
+                        android:layout_toRightOf="@id/iv_ss_icon"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:text="搜索你心仪的商品"
+                        android:textSize="14sp"
+                        android:textColor="#ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                </LinearLayout>
+                <com.example.qy.ui.RoundImageView
                     android:id="@+id/iv_top"
+                    android:background="@drawable/shape_corner_login"
                     android:layout_width="match_parent"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:scaleType="centerCrop"
                     android:layout_alignParentBottom="true"
                     android:layout_height="150dp" />
-                <!--<Button-->
-                <!--android:id="@+id/btn_open"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="打开菜单"/>-->
             </RelativeLayout>
         </LinearLayout>
 
 
-    </FrameLayout>
-
-    <include layout="@layout/mall_menu"/>
-
-</android.support.v4.widget.DrawerLayout>

@@ -49,7 +49,8 @@ public class HttpQYUtils {
     private static final String judgeDailyAttendance = "judgeDailyAttendance?";
     // 积分签到
     private static final String signin = "signin?";
-
+    // 今日签到总积分
+    private static final String statisticsIntegralToday = "statisticsIntegralToday?";
 
     public static String getLoginPassWord(String loginPhone,String loginPwd,String loginId){
         return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd+"&MEID="+loginId;
@@ -63,6 +64,7 @@ public class HttpQYUtils {
     public static String getIconToken(String iconName){
         return ipUrl + iconToken+"iconName="+iconName;
     }
+
 
 
 
@@ -180,6 +182,10 @@ public class HttpQYUtils {
 
     public static String getSignin(int userId,String integralNumber,String integralType){
         return ipUrl+signin+"userId="+userId+"&integralNumber="+integralNumber+"&integralType="+integralType;
+    }
+
+    public static String getStatisticsIntegralToday(){
+        return "";
     }
 
     /**

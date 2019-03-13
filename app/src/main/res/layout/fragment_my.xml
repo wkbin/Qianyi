@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-        <!--android:id="@+id/sv_my"-->
-        <!--android:scrollbars="none"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F2F2F2"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/sv_my"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="258dp">
@@ -190,11 +196,7 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <ScrollView
-                android:id="@+id/sv_my"
-                android:scrollbars="none"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+
 
             <LinearLayout
                 android:layout_marginTop="21dp"
@@ -248,7 +250,7 @@
                         app:lottie_loop="true"
                         app:lottie_autoPlay="true"/>
                 </RelativeLayout>
-                
+
                 <LinearLayout
                     android:layout_marginTop="21dp"
                     android:layout_width="match_parent"
@@ -311,6 +313,7 @@
                             android:src="@mipmap/jump"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/li_message"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:gravity="center_vertical"
@@ -537,35 +540,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"/>
-                    </LinearLayout>
+                </LinearLayout>
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
             </LinearLayout>
-
-            </ScrollView>
         </LinearLayout>
-
-
-
-
-    <!--<LinearLayout-->
-        <!--android:orientation="vertical"-->
-        <!--android:id="@+id/li_bottom"-->
-        <!--android:layout_margin="20dp"-->
+    </ScrollView>
+    <!--<TextView-->
         <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-        <!--<Button-->
-            <!--android:text="每日领积分"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
+        <!--android:background="#ffffff"-->
+        <!--android:gravity="center"-->
+        <!--android:text="121215"-->
+        <!--android:layout_height="50dp" />-->
 
-        <!--<Button-->
-            <!--android:id="@+id/btn_qr_code"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="二维码名片"/>-->
-    <!--</LinearLayout>-->
+</RelativeLayout>
+
+
+
+
 

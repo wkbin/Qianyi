@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.utils.ToastUtils;
+import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
 import com.yzq.zxinglibrary.android.CaptureActivity;
 import com.yzq.zxinglibrary.bean.ZxingConfig;
@@ -24,7 +25,7 @@ import com.yzq.zxinglibrary.encode.CodeCreator;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class QrCodeActivity extends AppCompatActivity {
+public class QrCodeActivity extends BaseActivity {
     private ImageView iv_qr_code;
     private LinearLayout li_scan;
     private ImageView action_bar_iv_left;

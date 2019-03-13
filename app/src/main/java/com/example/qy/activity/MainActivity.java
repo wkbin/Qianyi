@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,6 +41,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout li_bottom;
     private ImageView iv_home,iv_focus,iv_shopping,iv_my;
     private TextView tv_home,tv_focus,tv_shopping,tv_my;
+
+    public DrawerLayout dl_mall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //                }
 //            }
 //        });
+
+        dl_mall = findViewById(R.id.dl_mall);
+        //禁止手势滑动
+        dl_mall.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         // 自动登录
         iv_home = findViewById(R.id.iv_home);

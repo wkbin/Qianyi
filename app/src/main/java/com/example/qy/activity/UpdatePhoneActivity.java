@@ -8,8 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.qy.R;
+import com.example.qy.whs.BaseActivity;
 
-public class UpdatePhoneActivity extends AppCompatActivity {
+public class UpdatePhoneActivity extends BaseActivity {
     private TextView tv_phone;
     private ImageView action_bar_iv_left;
     private TextView action_bar_text;

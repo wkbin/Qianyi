@@ -20,7 +20,7 @@
     <!-- 底部圆角,参数是固定的 -->
     <item
         android:width="38dp"
-        android:height="5dp"
+        android:height="3dp"
         android:gravity="center_horizontal">
         <shape android:shape="rectangle">
             <gradient android:type="linear"
