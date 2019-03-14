@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/shape_bottom_dialog"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <RelativeLayout
-        android:background="#ffffff"
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="45dp">
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textColor="#1a1a1a"
-            android:textSize="14sp"
-            android:text="- 条评论"/>
+            android:textSize="14sp" />
         <ImageView
             android:id="@+id/iv_close"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="16dp"
@@ -31,17 +32,18 @@
         android:layout_below="@id/rl_top"
         android:id="@+id/rc_first_comments"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
     <LinearLayout
-        android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#ffffff"
-        android:text="假设此处发表评论">
-        <EditText
-            android:hint="发表你的精彩评论"
-            android:textColorHint="#B3B3B3"
+        android:background="#ffffff">
+        <TextView
+            android:id="@+id/tv_input_comments"
+            android:gravity="center_vertical"
+            android:text="发表你的精彩评论"
+            android:textColor="#B3B3B3"
             android:textSize="14sp"
             android:paddingLeft="16dp"
             android:layout_width="0dp"
@@ -59,4 +61,4 @@
             android:layout_marginRight="19dp"
             android:src="@mipmap/bqicon"/>
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

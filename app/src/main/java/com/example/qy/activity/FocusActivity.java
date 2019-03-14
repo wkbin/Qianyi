@@ -1,5 +1,6 @@
 package com.example.qy.activity;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,12 +39,16 @@ public class FocusActivity extends BaseActivity implements View.OnClickListener 
     private RecyclerView rl_focus;
     private List<Follwers> lists;
     private TextView action_bar_text;
-    private List<String> listIds;
     private FollowersAdapter adapter;
     private ImageView action_bar_iv_left;
     private int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            //修改为深色，因为我们把状态栏的背景色修改为主题色白色，默认的文字及图标颜色为白色，导致看不到了。
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_focus);
 
@@ -126,40 +132,69 @@ public class FocusActivity extends BaseActivity implements View.OnClickListener 
 
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             // Do something.
+            int userId = ((MyApplication)getApplication()).getUserInfo().loginId;
             if(type == 1){
+                Log.d("888","type = 1");
                 if (lists.size() == 0) return true;
                 Map<String,Boolean> map = adapter.getMap();
                 StringBuilder stringBuilder = new StringBuilder();
                 for (Follwers follwers:lists){
                     if (map.containsKey(follwers.loginId) && map.get(follwers.loginId) != null && map.get(follwers.loginId)){
+                        Log.d("154","取消关注 = "+follwers.loginId);
                         stringBuilder.append(follwers.loginId).append(",");
                     }
                 }
-
-                int userId = ((MyApplication)getApplication()).getUserInfo().loginId;
                 HttpUtils.sendOkHttpRequest(HttpQYUtils.getOffAttention(userId, stringBuilder.toString()), new Callback() {
                     @Override
-                    public void onFailure(Call call, IOException e) {
-                        runOnUiThread(()->{
-                            ToastUtils.showShort(FocusActivity.this,"网络中断");
-                        });
-                    }
+                    public void onFailure(Call call, IOException e) {}
                     @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                    }
+                    public void onResponse(Call call, Response response) throws IOException {}
                 });
-                Log.d("666","listId = "+stringBuilder.toString());
+
+
+
             }else if(type == 2){
-                if (lists.size() == 0) return true;
-                Map<String,Boolean> map = adapter.getMap();
-                StringBuilder stringBuilder = new StringBuilder();
+                Log.d("888","type = 2");
+                if (lists.size() == 0 ) return true;
+                Map<String,Map<String,Boolean>> map2 = adapter.getMap2();
+                StringBuilder attentionBuilder = new StringBuilder();
+                StringBuilder cancelBuilder = new StringBuilder();
                 for (Follwers follwers:lists){
-                    if (map.containsKey(follwers.loginId) && map.get(follwers.loginId) != null && map.get(follwers.loginId)){
-                        stringBuilder.append(follwers.loginId).append(",");
+                    if (map2.containsKey(follwers.loginId) && map2.get(follwers.loginId) != null){
+                        Map<String,Boolean> map = map2.get(follwers.loginId);
+                        if (map.get("together")){
+                            Log.d("154","取消关注 = "+follwers.loginId);
+                            cancelBuilder.append(follwers.loginId).append(",");
+                        }else{
+                            Log.d("154","添加关注 = "+follwers.loginId);
+                            attentionBuilder.append(follwers.loginId).append(",");
+                        }
                     }
                 }
-                Log.d("666","listId = "+stringBuilder.toString());
-            }
+//                Log.d("154","stringBuilder = "+stringBuilder.toString());
+
+                if (attentionBuilder.toString().length() == 0 &&cancelBuilder.toString().length() == 0 ) return true;
+                    Log.d("154","attentionBuilder ==" +attentionBuilder.toString());
+                    HttpUtils.sendOkHttpRequest(HttpQYUtils.getAddAttention(userId,attentionBuilder.toString()), new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {}
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {}
+                    });
+
+
+
+                    Log.d("666","cancelBuilder == "+cancelBuilder.toString().length());
+                    HttpUtils.sendOkHttpRequest(HttpQYUtils.getOffAttention(userId,cancelBuilder.toString()), new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {}
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {}
+                    });
+                }
+
+
 
             return true;
         }

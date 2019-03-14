@@ -39,6 +39,8 @@ public class HttpQYUtils {
     private static final String findByIntegrals = "findbyIntegrals?";
     // 取消关注
     private static final String offAttention = "offAttention?";
+    // 新增关注
+    private static final String addAttention = "getAttention?";
     // 分页查询视频
     private static final String selectVideoWithLikesAndCommentsCount = "selectVideoWithLikesAndCommentsCount?";
     // 视频点赞
@@ -51,6 +53,10 @@ public class HttpQYUtils {
     private static final String signin = "signin?";
     // 今日签到总积分
     private static final String statisticsIntegralToday = "statisticsIntegralToday?";
+    // 获取评论列表
+    private static final String commentsContentWithReply = "getCommentsContentWithReply?";
+    // 插入评论
+    private static final String insertComments = "insertComments?";
 
     public static String getLoginPassWord(String loginPhone,String loginPwd,String loginId){
         return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd+"&MEID="+loginId;
@@ -64,8 +70,6 @@ public class HttpQYUtils {
     public static String getIconToken(String iconName){
         return ipUrl + iconToken+"iconName="+iconName;
     }
-
-
 
 
     /**
@@ -93,7 +97,7 @@ public class HttpQYUtils {
     }
     /**
      *
-     * @param loginPhone 手机号
+     * @param loginId ID
      * @param infoNickname 昵称
      * @param infoSex 性别
      * @param infoBirthday 生日
@@ -101,9 +105,9 @@ public class HttpQYUtils {
      * @param infoSignature 签名
      * @return
      */
-    public static String getMaterial(String loginPhone,String infoNickname,String infoSex,String infoBirthday,String infoHome,String infoSignature){
+    public static String getMaterial(int loginId,String infoNickname,String infoSex,String infoBirthday,String infoHome,String infoSignature){
         String url = ipUrl+material
-                +"loginPhone="+loginPhone
+                +"loginId="+loginId
                 +"&infoNickname="+infoNickname
                 +"&infoSex="+infoSex
                 +"&infoBirthday=" +infoBirthday
@@ -133,8 +137,8 @@ public class HttpQYUtils {
         return ipUrl+findPersonInfo+"loginPhone="+loginPhone;
     }
 
-    public static String getUpdateIcon(String loginPhone,String infoIcon){
-        return ipUrl+updateIcon+"loginPhone="+loginPhone+"&infoIcon="+infoIcon;
+    public static String getUpdateIcon(int loginId,String infoIcon){
+        return ipUrl+updateIcon+"loginId="+loginId+"&infoIcon="+infoIcon;
     }
 
     public static String getFindFansDetails(int userId,int page){
@@ -183,9 +187,22 @@ public class HttpQYUtils {
     public static String getSignin(int userId,String integralNumber,String integralType){
         return ipUrl+signin+"userId="+userId+"&integralNumber="+integralNumber+"&integralType="+integralType;
     }
+    public static String getAddAttention(int user_id,String integralType){
+        String url = ipUrl+addAttention+"followId="+user_id+"&userIdArrary="+integralType;
+        Log.d("666","url = "+url);
+        return url;
+    }
 
     public static String getStatisticsIntegralToday(){
         return "";
+    }
+
+    public static String getCommentsContentWithReply(int user_id,int video_id,int page){
+        return ipUrl+commentsContentWithReply+"fromUid="+user_id+"&videoId="+video_id+"&pn="+page;
+    }
+
+    public static String getInsertComments(int user_id,int video_id,String content){
+        return ipUrl+insertComments+"fromUid="+user_id+"&videoId="+video_id+"&content="+content;
     }
 
     /**

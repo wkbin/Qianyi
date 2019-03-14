@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     tools:context=".activity.IntegralTaskActivity">
+    <include layout="@layout/action_view"/>
     <RelativeLayout
         android:background="@color/actionBar"
         android:gravity="center_vertical"

@@ -25,6 +25,8 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.View
     public Context context;
     public int type;
     public Map<String,Boolean> map = new HashMap();
+    public Map<String,Map<String,Boolean>> map2 = new HashMap<>();   // 存状态
+
     public FollowersAdapter(Context context, List<Follwers> lists,int type){
         this.lists = lists;
         this.context = context;
@@ -93,18 +95,22 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.View
                 viewHolder.btn_followers_focus.setBackgroundResource(R.drawable.shape_focus);
             }
             viewHolder.btn_followers_focus.setOnClickListener(v->{
-                if (map.containsKey(follwers.loginId) && map.get(follwers.loginId)){
-                    map.put(follwers.loginId,false);
+                Map<String,Boolean> m = new HashMap<>();
+                if (map2.containsKey(follwers.loginId) && map.get(follwers.loginId)){
+                    m.put("state",false);
+                    m.put("together",follwers.together.equals("1"));
+                    map2.put(follwers.loginId,m);
                 }else{
-                    map.put(follwers.loginId,true);
+                    m.put("state",true);
+                    m.put("together",follwers.together.equals("1"));
+                    map2.put(follwers.loginId,m);
                 }
                 if (follwers.together.equals("1")){
-                    follwers.together = "0";
                     viewHolder.btn_followers_focus.setText("关注TA");
                     viewHolder.btn_followers_focus.setTextColor(Color.parseColor("#ffffff"));
                     viewHolder.btn_followers_focus.setBackgroundResource(R.drawable.shape_integral_task);
                 }else{
-                    follwers.together = "1";
+
                     viewHolder.btn_followers_focus.setText("互相关注");
                     viewHolder.btn_followers_focus.setTextColor(Color.parseColor("#666666"));
                     viewHolder.btn_followers_focus.setBackgroundResource(R.drawable.shape_focus);
@@ -114,6 +120,10 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.View
         }
 
 
+    }
+
+    public Map<String, Map<String, Boolean>> getMap2() {
+        return map2;
     }
 
     public Map<String,Boolean> getMap(){

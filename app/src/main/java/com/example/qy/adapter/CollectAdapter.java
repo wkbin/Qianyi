@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.example.qy.bean.Collect;
+import com.example.qy.ui.RoundImageView;
 import com.example.qy.utils.ToastUtils;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class CollectAdapter extends RecyclerView.Adapter<CollectAdapter.ViewHold
         this.list = list;
     }
     class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView iv_collect_image;
+        RoundImageView iv_collect_image;
         TextView tv_collect_title;
         TextView tv_collect_like;
         TextView tv_collect_details;

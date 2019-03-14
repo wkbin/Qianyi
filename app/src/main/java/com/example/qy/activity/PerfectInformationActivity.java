@@ -21,9 +21,11 @@ import com.bigkoo.pickerview.view.TimePickerView;
 import com.contrarywind.view.WheelView;
 import com.example.qy.R;
 import com.example.qy.bean.CityBean;
+import com.example.qy.bean.UserInfo;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
+import com.example.qy.utils.UniquePsuedoUtils;
 import com.example.qy.whs.BaseActivity;
 
 import org.json.JSONArray;
@@ -63,6 +65,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
 
     // 判断选中男女
     private boolean isBoy = true;
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,37 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
     }
     private void initView(){
         phone = getIntent().getStringExtra("phone");
+        String phoneId = UniquePsuedoUtils.getUniquePsuedoID();
+        HttpUtils.sendOkHttpRequest(HttpQYUtils.getValidationLogin(phone,phoneId), new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtils.showShort(PerfectInformationActivity.this,"连接断开");
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String responseText = response.body().string();
+                try {
+                    JSONObject jsonObject = new JSONObject(responseText);
+                    boolean isSuc = jsonObject.getBoolean("isSuc");
+                    if (isSuc){
+
+                        JSONObject dataObject = jsonObject.getJSONObject("data");
+                        id = dataObject.getInt("loginId");
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
         rl_birthday = findViewById(R.id.rl_birthday);
         rl_address = findViewById(R.id.rl_address);
@@ -156,7 +190,7 @@ public class PerfectInformationActivity extends BaseActivity implements View.OnC
                 String address = tv_address.getText().toString().trim();
                 String declaration = et_declaration.getText().toString().trim();
 
-                HttpUtils.sendOkHttpRequest(HttpQYUtils.getMaterial(phone,"" ,sex, birthday, address, declaration), new Callback() {
+                HttpUtils.sendOkHttpRequest(HttpQYUtils.getMaterial(id,"" ,sex, birthday, address, declaration), new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         runOnUiThread(() ->{

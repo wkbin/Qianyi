@@ -53,6 +53,8 @@ public class IndividualitySignatureActivity extends BaseActivity implements View
                 }
             }
         });
+        String signature = getIntent().getStringExtra("signature");
+        et_signature.setText(signature);
 
 
     }

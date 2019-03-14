@@ -28,7 +28,7 @@
                     android:layout_height="232dp">
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/statusbar_view_height" />
+                        android:layout_height="50dp" />
                     <ImageView
                         android:id="@+id/iv_my_settings"
                         android:layout_width="wrap_content"
@@ -245,8 +245,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:id="@+id/lav_heart"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
                         app:lottie_loop="true"
                         app:lottie_autoPlay="true"/>
                 </RelativeLayout>

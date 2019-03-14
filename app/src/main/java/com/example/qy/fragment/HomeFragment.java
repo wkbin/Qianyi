@@ -22,7 +22,6 @@ import com.example.qy.R;
 import com.example.qy.adapter.HomeAdapter;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.bean.Video;
-import com.example.qy.ui.CircleImageView;
 import com.example.qy.ui.ViewPagerLayoutManager;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
@@ -72,7 +71,7 @@ public class HomeFragment extends Fragment {
                 viewPagerLayoutManager = new ViewPagerLayoutManager(getActivity(),OrientationHelper.VERTICAL);
                 rv_home.setLayoutManager(viewPagerLayoutManager);
 //                Collections.shuffle(list);
-                adapter = new HomeAdapter(getActivity(),list,user_id);
+                adapter = new HomeAdapter(getActivity(),list,user_id,getFragmentManager());
                 rv_home.setAdapter(adapter);
 
 

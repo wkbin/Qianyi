@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
+import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -52,6 +55,7 @@ import okhttp3.Response;
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> implements PLOnImageCapturedListener {
     public List<Video> videoList;
     public Context context;
+    private FragmentManager manager;
     public int user_id;
 
     // 点击事件接口
@@ -71,10 +75,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         this.mOnItemClickListener=onItemClickListener;
     }
 
-    public HomeAdapter(Context context,List<Video> list,int user_id){
+    public HomeAdapter(Context context,List<Video> list,int user_id,FragmentManager manager){
         this.context = context;
         this.videoList = list;
         this.user_id = user_id;
+        this.manager = manager;
     }
     static class ViewHolder extends RecyclerView.ViewHolder{
         PLVideoTextureView PLvv_play;
@@ -204,8 +209,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         });
 
         viewHolder.iv_comments.setOnClickListener(v->{
-            CommentsSheetBottomDialog dialog = new CommentsSheetBottomDialog(context,1600,1800);
-            dialog.show();
+
+            CommentsSheetBottomDialog dialog = new CommentsSheetBottomDialog();
+            Bundle bundle = new Bundle();
+            bundle.putInt("user_id",user_id);
+            bundle.putString("video_id",video.id);
+            dialog.setArguments(bundle);
+            dialog.show(manager,"tag");
         });
 
 

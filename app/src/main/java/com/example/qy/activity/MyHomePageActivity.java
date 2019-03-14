@@ -3,6 +3,7 @@ package com.example.qy.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+
 import com.example.qy.R;
 import com.example.qy.adapter.MyPagerAdapter;
 import com.example.qy.bean.UserInfo;
@@ -160,11 +162,29 @@ public class MyHomePageActivity extends BaseActivity implements View.OnClickList
         });
     }
 
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2){
+            if (resultCode == RESULT_OK){
+                // 信息修改后回调
+                MyApplication application = (MyApplication) getApplication();
+                UserInfo userInfo = application.getUserInfo();
+                Glide.with(MyHomePageActivity.this).load(userInfo.icon).into(cv_my_icon);
+                tv_my_nickname.setText(userInfo.nickname);
+                tv_my_signature.setText(userInfo.signature);
+            }
+        }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_update_data:
-                startActivity(new Intent(MyHomePageActivity.this,DetailedPersonalDataActivity.class));
+                Intent intent = new Intent(MyHomePageActivity.this,DetailedPersonalDataActivity.class);
+                startActivityForResult(intent,2);
                 break;
             case R.id.iv_back:
                 finish();

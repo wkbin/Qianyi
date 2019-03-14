@@ -32,6 +32,7 @@ import com.bumptech.glide.Glide;
 import com.contrarywind.view.WheelView;
 import com.example.qy.R;
 import com.example.qy.bean.CityBean;
+import com.example.qy.bean.User;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.ui.IconChooseDialog;
 import com.example.qy.ui.SexChooseDialog;
@@ -89,8 +90,15 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
 
     private CircleImageView civ_icon;
 
+    private MyApplication application;
+    private String name;
+    private String sex;
+    private String birthday;
+    private String address;
+    private String signature;
+
     // 上传头像所需
-    private String phone;
+    private int id;
     private String key;
     private Uri imageUri;
     // 要申请的权限
@@ -133,10 +141,10 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
 
     private void initData(){
         action_bar_text.setText("修改资料");
-        MyApplication application = (MyApplication) getApplication();
+        application = (MyApplication) getApplication();
         UserInfo userInfo = application.getUserInfo();
 
-        phone = userInfo.phone;
+        id = userInfo.loginId;
 //        key = "icon_" + phone + ".jpg";
         permissionList = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(DetailedPersonalDataActivity.this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
@@ -255,7 +263,9 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 finish();
                 break;
             case R.id.li_signature:
-                startActivityForResult(new Intent(DetailedPersonalDataActivity.this,IndividualitySignatureActivity.class),1);
+                Intent i2 = new Intent(DetailedPersonalDataActivity.this,IndividualitySignatureActivity.class);
+                i2.putExtra("signature",tv_signature.getText().toString().trim());
+                startActivityForResult(i2,1);
                 break;
             case R.id.li_nickname:
                 Intent intent = new Intent(DetailedPersonalDataActivity.this,NicknameActivity.class);
@@ -264,15 +274,17 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 break;
             case R.id.action_bar_iv_right:
                 // 保存
-                String name = tv_name.getText().toString().trim();
-                String sex = tv_sex.getText().toString().trim();
-                String birthday = tv_birthday.getText().toString().trim();
-                String address = tv_address.getText().toString().trim();
-                String signature = tv_signature.getText().toString().trim();
+                 name = tv_name.getText().toString().trim();
+                 sex = tv_sex.getText().toString().trim();
+                 birthday = tv_birthday.getText().toString().trim();
+                 address = tv_address.getText().toString().trim();
+                 signature = tv_signature.getText().toString().trim();
+                // 存储头像
+
 
                 // 以时间戳命名
                 SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
-                key   = "icon_" + phone + df.format(new Date())+".jpg";
+                key   = "icon_" + id + "_" + df.format(new Date())+".jpg";
                 if (imageUri != null) {
                     String tokenUrl = HttpQYUtils.getIconToken(key);
                     HttpUtils.sendOkHttpRequest(tokenUrl, new Callback() {
@@ -289,16 +301,12 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                             try {
                                 JSONObject jsonObject = new JSONObject(responseText);
                                 boolean isSuc = jsonObject.getBoolean("isSuc");
-                                final String msg = jsonObject.getString("msg");
                                 JSONObject jsonData = jsonObject.getJSONObject("data");
                                 if (isSuc) {
                                     String token = jsonData.getString("token");
+                                    // 图片压缩1M以内
                                     byte[] b = ImageUtils.getImgByteFromUri(DetailedPersonalDataActivity.this,imageUri);
                                     uploadImageToQiniu(b, token);
-                                } else {
-                                    runOnUiThread(()->{
-                                        ToastUtils.showShort(DetailedPersonalDataActivity.this, msg);
-                                    });
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -306,7 +314,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                         }
                     });
                 }
-                HttpUtils.sendOkHttpRequest(HttpQYUtils.getMaterial(phone, name, sex, birthday, address, signature), new Callback() {
+                HttpUtils.sendOkHttpRequest(HttpQYUtils.getMaterial(id, name, sex, birthday, address, signature), new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         runOnUiThread(()-> {
@@ -320,6 +328,15 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                             JSONObject jsonObject = new JSONObject(responseText);
                             String msg = jsonObject.getString("msg");
                             if (jsonObject.getBoolean("isSuc")){
+                                // TODO 存储个人信息
+                                UserInfo userInfo = application.getUserInfo();
+                                userInfo.nickname = name;
+                                userInfo.sex = sex;
+                                userInfo.birthday = birthday;
+                                userInfo.home = address;
+                                userInfo.signature = signature;
+                                application.setUserInfo(userInfo);
+                                setResult(RESULT_OK);
                                 finish();
                             }else{
                                 runOnUiThread(()-> {
@@ -396,8 +413,10 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
      * 打开系统相机
      */
     private void openSysCamera() {
-        File outputImage = new File(Environment.getExternalStorageDirectory(),
-                key);
+        // 以时间戳命名
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");//设置日期格式
+        key   = "icon_" + id + "_" + df.format(new Date())+".jpg";
+        File outputImage = new File(Environment.getExternalStorageDirectory(), key);
         try {
             if (outputImage.exists()) {
                 outputImage.delete();
@@ -436,7 +455,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                             ToastUtils.showShort(DetailedPersonalDataActivity.this, "上传成功");
                             Log.i("qiniu", "Upload Success");
 
-                            String url = (HttpQYUtils.getUpdateIcon(phone, "http://pnb0vwgfl.bkt.clouddn.com/" + key));
+                            String url = (HttpQYUtils.getUpdateIcon(id, "http://pnb0vwgfl.bkt.clouddn.com/" + key));
                             HttpUtils.sendOkHttpRequest(url, new Callback() {
                                 @Override
                                 public void onFailure(Call call, IOException e) {
@@ -455,6 +474,12 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                                         runOnUiThread(()-> {
                                                 ToastUtils.showShort(DetailedPersonalDataActivity.this, msg);
                                         });
+                                        if (isSuc){
+                                            //TODO 存储头像
+                                            UserInfo userInfo = application.getUserInfo();
+                                            userInfo.icon = "http://pnb0vwgfl.bkt.clouddn.com/"+key;
+                                            application.setUserInfo(userInfo);
+                                        }
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();

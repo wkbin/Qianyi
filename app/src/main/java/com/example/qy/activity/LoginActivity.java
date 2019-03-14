@@ -346,6 +346,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                             if (isSuc){
                                 userInfo = new UserInfo();
                                 JSONObject dataObject = jsonObject.getJSONObject("data");
+                                userInfo.loginId = dataObject.getInt("loginId");
                                 userInfo.birthday = dataObject.getString("birthday");
                                 userInfo.phone = dataObject.getString("phone");
                                 userInfo.signature = dataObject.getString("signature");
@@ -388,7 +389,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         try {
                             JSONObject jsonObject = new JSONObject(responseText);
                             boolean isSuc = jsonObject.getBoolean("isSuc");
-                            final String msg = jsonObject.getString("msg");
                             if (isSuc){
                                 userInfo = new UserInfo();
                                 JSONObject dataObject = jsonObject.getJSONObject("data");

@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="#F2F2F2"
     tools:context=".activity.MessageActivity">
+    <include layout="@layout/action_view_2"/>
     <include layout="@layout/action_bar_2"/>
     <LinearLayout
         android:background="#ffffff"

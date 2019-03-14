@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     android:background="#F2F2F2"
     tools:context=".activity.FocusActivity">
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/statusbar_view_height" />-->
+    <View
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_height="@dimen/statusbar_view_height" />
     <LinearLayout
-        android:background="@color/actionBar"
+        android:background="#fff"
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_width="match_parent"

@@ -43,13 +43,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private LinearLayout li_binding_phone;
     private LinearLayout li_message;
     private TextView tv_binding;
-
     private String phone;
-
-
-
-
-//    private Button btn_qr_code;
 
 
 
@@ -117,10 +111,23 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        UserInfo userInfo = ((MyApplication)getActivity().getApplication()).getUserInfo();
+        tv_my_nickname.setText(userInfo.nickname);
+        tv_my_signature.setText(userInfo.signature);
+        tv_my_attention.setText(userInfo.follow);
+        tv_my_fans.setText(userInfo.fans);
+        Glide.with(getActivity()).load(userInfo.icon).into(cv_my_icon);
+    }
+
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.li_home_page:
-                startActivity(new Intent(getActivity(),MyHomePageActivity.class));
+                Intent i = new Intent(getActivity(),MyHomePageActivity.class);
+                startActivityForResult(i,1);
                 break;
             case R.id.iv_my_settings:
                 startActivity(new Intent(getActivity(),SettingsActivity.class));
