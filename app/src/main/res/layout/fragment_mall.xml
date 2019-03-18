@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
         <LinearLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -8,11 +8,12 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="245dp">
-                <ImageView
-                    android:id="@+id/iv_reproduction"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"/>
+                    <ImageView
+                        android:id="@+id/iv_reproduction"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"/>
+
                 <View
                     android:id="@+id/action_view"
                     android:layout_width="match_parent"
@@ -56,16 +57,212 @@
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
                 </LinearLayout>
-                <com.example.qy.ui.RoundImageView
-                    android:id="@+id/iv_top"
-                    android:background="@drawable/shape_corner_login"
-                    android:layout_width="match_parent"
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="1dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:scaleType="centerCrop"
-                    android:layout_alignParentBottom="true"
-                    android:layout_height="150dp" />
+                    app:cardCornerRadius="10dp">
+                    <cn.bingoogolapple.bgabanner.BGABanner
+                        android:id="@+id/banner_guide_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+
+                        app:banner_pageChangeDuration="1000"
+                        app:banner_pointAutoPlayAble="false"
+                        app:banner_pointContainerBackground="@android:color/transparent"
+                        app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
+                        app:banner_pointTopBottomMargin="15dp"
+                        app:banner_transitionEffect="alpha" />
+                </android.support.v7.widget.CardView>
+                <!--<com.example.qy.ui.RoundImageView-->
+                    <!--android:id="@+id/iv_top"-->
+                    <!--android:background="@drawable/shape_corner_login"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:scaleType="centerCrop"-->
+                    <!--android:layout_alignParentBottom="true"-->
+                    <!--android:layout_height="150dp" />-->
             </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/techan"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="特产"
+                android:textColor="#333333"
+                android:textSize="13sp"/>
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jingdian"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="景点"
+                android:textColor="#333333"
+                android:textSize="13sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jipiao"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="机票"
+                android:textColor="#333333"
+                android:textSize="13sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/huochepiao"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="火车票"
+                android:textColor="#333333"
+                android:textSize="13sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/jiudian"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="酒店"
+                android:textColor="#333333"
+                android:textSize="13sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_seckill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/xsms"/>
+        <TextView
+            android:id="@+id/tv_end"
+            android:layout_toRightOf="@id/iv_seckill"
+            android:layout_alignBottom="@id/iv_seckill"
+            android:layout_marginLeft="14dp"
+            android:textSize="11sp"
+            android:textColor="#333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="距离结束"/>
+        <LinearLayout
+            android:layout_marginLeft="9dp"
+            android:layout_toRightOf="@id/tv_end"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="@drawable/shape_seckill_text"
+                android:textSize="11sp"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:text="00"/>
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#333333"
+                android:text=":"/>
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/shape_seckill_text"
+                android:textSize="11sp"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:text="00"/>
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="#333333"
+                android:text=":"/>
+            <TextView
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/shape_seckill_text"
+                android:textSize="11sp"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:text="00"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textSize="13sp"
+            android:textColor="#3DB2A3"
+            android:text="更多 >"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rl_seckill"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/iv_seckill"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+</LinearLayout>
 
 

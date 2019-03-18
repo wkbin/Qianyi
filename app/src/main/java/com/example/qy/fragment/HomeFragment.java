@@ -27,18 +27,13 @@ import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.whs.MyApplication;
 import com.pili.pldroid.player.widget.PLVideoTextureView;
-import com.pili.pldroid.player.widget.PLVideoView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -75,7 +70,7 @@ public class HomeFragment extends Fragment {
                 rv_home.setAdapter(adapter);
 
 
-                adapter.setOnItemClickListener(postion->{
+                adapter.setOnItemClickListener(position->{
 
                         View itemView = rv_home.getChildAt(0);
                         PLVideoTextureView plVideoView = itemView.findViewById(R.id.PLvv_play);
@@ -152,22 +147,6 @@ public class HomeFragment extends Fragment {
         ta.setRepeatMode(Animation.RESTART);
         ta.setDuration(3000);
 
-        ta.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
 
         // 音符动画  以自身为坐标点   参数： x轴的起始点,结束点   y轴的起始点,结束点
 //        ta1 = new TranslateAnimation(0,-50,0,-250);

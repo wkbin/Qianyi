@@ -7,6 +7,7 @@
     android:layout_height="?attr/actionBarSize">
     <ImageView
         android:id="@+id/action_bar_iv_left"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

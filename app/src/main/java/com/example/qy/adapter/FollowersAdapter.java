@@ -96,7 +96,7 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.View
             }
             viewHolder.btn_followers_focus.setOnClickListener(v->{
                 Map<String,Boolean> m = new HashMap<>();
-                if (map2.containsKey(follwers.loginId) && map.get(follwers.loginId)){
+                if (map2.containsKey(follwers.loginId) && follwers != null && map.get(follwers.loginId) ){
                     m.put("state",false);
                     m.put("together",follwers.together.equals("1"));
                     map2.put(follwers.loginId,m);

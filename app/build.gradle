@@ -71,5 +71,11 @@ dependencies {
 
     // lottie动画
     implementation 'com.airbnb.android:lottie:2.7.0'
+    // SwitchButton
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+    // 轮播
+    implementation 'cn.bingoogolapple:bga-banner:2.2.5'
+    // 高斯模糊
+
 
 }

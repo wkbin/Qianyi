@@ -37,7 +37,7 @@ public class SexChooseDialog extends Dialog implements View.OnClickListener {
         void onCancelClick();
     }
 
-    public OnClickListener onClickListener;
+    private OnClickListener onClickListener;
     public void setOnClickListener(OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }

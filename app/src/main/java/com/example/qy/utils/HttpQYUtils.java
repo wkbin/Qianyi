@@ -3,7 +3,7 @@ package com.example.qy.utils;
 import android.util.Log;
 
 public class HttpQYUtils {
-    private static final String ipUrl = "http://192.168.10.6:8080/QianYi/";
+    private static final String ipUrl = "http://192.168.10.24:8080/QianYi/";
 
 //    private static final String ipUrl = "http://ruianshen.oicp.io/QianYi/";
 
@@ -55,8 +55,14 @@ public class HttpQYUtils {
     private static final String statisticsIntegralToday = "statisticsIntegralToday?";
     // 获取评论列表
     private static final String commentsContentWithReply = "getCommentsContentWithReply?";
-    // 插入评论
+    // 插入一级评论
     private static final String insertComments = "insertComments?";
+    // 一级评论点赞
+    private static final String updateLikeCounts = "updateLikeCounts?";
+    // 删除一级评论
+    private static final String deleteComments = "deleteComments?";
+    // 插入评论
+    private static final String insertReply = "insertReply?";
 
     public static String getLoginPassWord(String loginPhone,String loginPwd,String loginId){
         return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd+"&MEID="+loginId;
@@ -204,6 +210,38 @@ public class HttpQYUtils {
     public static String getInsertComments(int user_id,int video_id,String content){
         return ipUrl+insertComments+"fromUid="+user_id+"&videoId="+video_id+"&content="+content;
     }
+
+    /**
+     *
+     * @param commentsId 评论id
+     * @param fromUid 发表评论者id
+     * @param likeId 点赞者id
+     * @return
+     */
+    public static String getUpdateLikeCounts(int commentsId,int fromUid,int likeId){
+        return ipUrl+updateLikeCounts+"commentsId="+commentsId+"&fromUid="+fromUid+"&likeId="+likeId;
+    }
+
+    public static String getDeleteComments(int id){
+        return ipUrl+deleteComments+"id="+id;
+    }
+
+    /**
+     *
+     * @param comentsid     评论目标id(必填）
+     * @param touid          B回复A回复的内容，A的id(可不填，但参数必须有)
+     * @param content        评论内容
+     * @param fromuid        回复者id(必填)
+     * @param likecounts     点赞数，默认填0
+     * @param type            类型，0为回复评论（touid为空），1为回复回复
+     * @return
+     */
+    public static String getInsertReply(int comentsid,String touid,String content,int fromuid,int likecounts,int type){
+        String url = ipUrl+insertReply+"comentsid="+comentsid+"&touid="+touid+"&content="+content+"&fromuid="+fromuid+"&likecounts="+likecounts+"&type="+type;
+        Log.d("9998","url = "+url);
+        return url;
+    }
+
 
     /**
      * 获取服务器视频

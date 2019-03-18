@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_width="wrap_content"
+    android:layout_height="203dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="9dp"
+    app:cardCornerRadius="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_height="195dp">
+        <ImageView
+            android:id="@+id/iv_seckill"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/test1"/>
+        <ImageView
+            android:src="@mipmap/top01"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginRight="11dp"
+            android:layout_below="@id/iv_seckill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#1a1a1a"
+            android:ellipsize="end"
+            android:lines="2"
+            android:text="江西赣南脐橙新鲜橙子生鲜水果直江西赣南"/>
+
+        <ImageView
+            android:id="@+id/iv_vie_for"
+            android:layout_marginTop="7dp"
+            android:layout_below="@id/tv_content"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/_qiang"/>
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_alignBottom="@id/iv_vie_for"
+            android:layout_marginLeft="10dp"
+            android:textSize="14sp"
+            android:textColor="#F53131"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥89.00"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -6,46 +6,33 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
-import android.widget.MediaController;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.example.qy.activity.LoginActivity;
 import com.example.qy.bean.Video;
-import com.example.qy.ui.CircleImageView;
 import com.example.qy.ui.CommentsSheetBottomDialog;
+import com.example.qy.ui.VideoShareSheetBottomDialog;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 import com.pili.pldroid.player.AVOptions;
-import com.pili.pldroid.player.IMediaController;
 import com.pili.pldroid.player.PLOnImageCapturedListener;
 import com.pili.pldroid.player.widget.PLVideoTextureView;
-import com.pili.pldroid.player.widget.PLVideoView;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Handler;
 
 
 import okhttp3.Call;
@@ -87,11 +74,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         ImageView iv_pause;
         ImageView iv_yficon;
         ImageView iv_yficon1;
-
         TextView tv_like_count;
         TextView tv_comments_count;
         LikeButton lb_like;
         ImageView iv_comments;
+
+        LinearLayout li_video_share;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_like_count = itemView.findViewById(R.id.tv_like_count);
@@ -104,6 +92,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
             iv_yficon = itemView.findViewById(R.id.iv_yficon);
             iv_yficon1 = itemView.findViewById(R.id.iv_yficon1);
             PLvv_play = itemView.findViewById(R.id.PLvv_play);
+            li_video_share = itemView.findViewById(R.id.li_video_share);
 
             PLvv_play.setLooping(true);
             AVOptions options = new AVOptions();
@@ -140,7 +129,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         viewHolder.PLvv_play.setVideoPath(url);
         viewHolder.tv_like_count.setText(video.countLike+"");
         viewHolder.tv_comments_count.setText(video.countComments);
-
+        viewHolder.li_video_share.setOnClickListener(v->{
+            VideoShareSheetBottomDialog dialog = new VideoShareSheetBottomDialog(context);
+            dialog.show();
+        });
 
         viewHolder.lb_like.setLiked(video.liked);
 

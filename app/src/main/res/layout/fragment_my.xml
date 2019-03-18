@@ -257,7 +257,7 @@
                     android:background="@drawable/shape_choose_dialog"
                     android:orientation="vertical"
                     android:paddingLeft="11dp"
-                    android:layout_height="250dp">
+                    android:layout_height="200dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -285,33 +285,7 @@
                             android:layout_height="wrap_content"
                             android:src="@mipmap/jump"/>
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:layout_weight="1">
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/record"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#1a1a1a"
-                            android:textStyle="bold"
-                            android:layout_marginLeft="10dp"
-                            android:text="录制小视频"/>
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
-                        <ImageView
-                            android:layout_marginRight="16dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/jump"/>
-                    </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/li_message"
                         android:layout_width="match_parent"

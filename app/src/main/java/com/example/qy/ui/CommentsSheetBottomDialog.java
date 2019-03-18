@@ -1,6 +1,5 @@
 package com.example.qy.ui;
 
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +10,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +22,12 @@ import com.example.qy.R;
 import com.example.qy.activity.LoginActivity;
 import com.example.qy.adapter.CommentAdapter;
 import com.example.qy.bean.Comment;
+import com.example.qy.bean.SecondComment;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
 import com.example.qy.utils.ToastUtils;
 import com.example.qy.whs.MyApplication;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,8 +116,9 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                 window.setSoftInputMode(params.SOFT_INPUT_STATE_VISIBLE);
                 inputDialog.show();
                 inputDialog.setOnClickListener(content -> {
-                    if (TextUtils.isEmpty(content)){
+                    if (TextUtils.isEmpty(content) || content.equals("")){
                         ToastUtils.showShort(getActivity(),"您还没有输入文字");
+                        return;
                     }
                     HttpUtils.sendOkHttpRequest(HttpQYUtils.getInsertComments(user_id, Integer.parseInt(video_id), content), new Callback() {
                         @Override
@@ -137,7 +138,13 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                                     ToastUtils.showShort(getContext(),msg);
                                 });
                                 if (object.getBoolean("isSuc")){
+                                    MyApplication application = (MyApplication) getActivity().getApplication();;
+                                    int user_id = application.getUserInfo().loginId;
                                     Comment comment = new Comment();
+                                    comment.id = object.getJSONObject("data").getInt("id");
+                                    if (user_id == 0){
+                                        return;
+                                    }
                                     comment.fromUid = user_id;
                                     comment.icon = userInfo.icon;
                                     comment.name = userInfo.nickname;
@@ -145,6 +152,7 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                                     comment.content = content;
                                     comment.giveLike = false;
                                     getActivity().runOnUiThread(()->{
+                                        tv_title.setText(total+1+" 条评论");
                                         if (list == null){
                                             list = new ArrayList<>();
                                         }
@@ -158,20 +166,14 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                                             adapter.notifyDataSetChanged();
                                         }
                                         inputDialog.dismiss();
-
                                     });
-
-
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
                         }
                     });
                 });
-
         });
         iv_close.setOnClickListener(v->{
             dismiss();
@@ -182,9 +184,9 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
         HttpUtils.sendOkHttpRequest(HttpQYUtils.getCommentsContentWithReply(user_id,Integer.parseInt(video_id), 0), new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                getActivity().runOnUiThread(()->{
-                    ToastUtils.showShort(getContext(),"连接断开");
-                });
+//                getActivity().runOnUiThread(()->{
+//                    ToastUtils.showShort(getContext(),"连接断开");
+//                });
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
@@ -203,12 +205,43 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                             comment.videoId = commentObject.getInt("videoId");
                             comment.content = commentObject.getString("content");
                             comment.giveLike = commentObject.getBoolean("giveLike");
+
                             comment.date = commentObject.getString("createdate");
+                            comment.fromUid = commentObject.getInt("fromUid");
                             if(!commentObject.isNull("userInfo")){
                                 comment.name = commentObject.getJSONObject("userInfo").getString("infoNickname");
                                 comment.icon = commentObject.getJSONObject("userInfo").getString("infoIcon");
                             }
                             comment.likeCounts = commentObject.getInt("likeCounts");
+
+                            if (!commentObject.isNull("reply")){
+                                JSONObject replyObject = commentObject.getJSONObject("reply");
+                                if (!replyObject.isNull("replyList")){
+                                    JSONArray replyList = replyObject.getJSONArray("replyList");
+                                    comment.secondList = new ArrayList<>();
+                                    for (int j = 0 ; j < replyList.length() ; j++){
+                                        JSONObject comment2Object = replyList.getJSONObject(j);
+                                        JSONObject replyObject2 = comment2Object.getJSONObject("reply");
+                                        SecondComment comment2 = new SecondComment();
+//                                        comment2.giveLike = replyObject.getBoolean("giveLike");
+                                        comment2.giveLike = false;
+                                        comment2.comentsId = replyObject2.getInt("comentsId");
+                                        comment2.id = replyObject2.getInt("id");
+                                        if (replyObject2.isNull("toUid")) continue;
+                                        comment2.toUid = replyObject2.getInt("toUid");
+                                        comment2.content = replyObject2.getString("content");
+                                        comment2.fromUid = replyObject2.getInt("fromUid");
+                                        comment2.date = replyObject2.getString("createdate");
+                                        comment2.likeCounts = replyObject2.getInt("likeCounts");
+                                        comment2.type = replyObject2.getString("type");
+                                        comment2.toName = comment2Object.getString("nickname");
+                                        comment2.name = comment2Object.getJSONObject("replyUserInfo").getString("infoNickname");
+                                        comment2.infoIcon = comment2Object.getJSONObject("replyUserInfo").getString("infoIcon");
+                                        comment.secondList.add(comment2);
+                                    }
+                                }
+                            }
+
                             list.add(comment);
                         }
 
@@ -226,9 +259,6 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
             }
         });
     }
-
-
-
     /**
      * 得到屏幕的高
      *
