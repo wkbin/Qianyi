@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.qy.R;
@@ -22,10 +24,12 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private TextView action_bar_iv_right;
     private ImageView action_bar_iv_left;
     private TextView tv_change_the_account;
+
+    private LinearLayout li_account_security;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBarUtil.setColor(this,getResources().getColor(R.color.qy_white));
+
         setContentView(R.layout.activity_settings);
 
         action_bar_text = findViewById(R.id.action_bar_text);
@@ -37,6 +41,10 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         tv_change_the_account = findViewById(R.id.tv_change_the_account);
         tv_change_the_account.setOnClickListener(this);
         action_bar_iv_left.setOnClickListener(this);
+
+        li_account_security = findViewById(R.id.li_account_security);
+
+        li_account_security.setOnClickListener(this);
 
     }
 
@@ -62,10 +70,13 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                     }
                 });
                 normalDialog.setNegativeButton("关闭",(dialog,which)-> {
-
                 });
                 // 显示
                 normalDialog.show();
+                break;
+
+            case R.id.li_account_security:
+                startActivity(new Intent(SettingsActivity.this,AccountSecurityActivity.class));
                 break;
         }
     }

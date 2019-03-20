@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="#F2F2F2"
     tools:context=".activity.QrCodeActivity">
+    <include layout="@layout/action_view"/>
     <LinearLayout
         android:orientation="horizontal"
         android:gravity="center"

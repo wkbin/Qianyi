@@ -17,9 +17,13 @@ public class BaseActivity extends AppCompatActivity {
         StatusBarUtil.setTranslucent(BaseActivity.this);
         // 强制竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        // 默认黑色图标
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         super.onCreate(savedInstanceState);
         Log.d("BaseActivity",getClass().getSimpleName());
         ActivityCollector.addActivity(this);
+
+
     }
 
     @Override

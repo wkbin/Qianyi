@@ -20,7 +20,6 @@ import com.example.qy.R;
  */
 public class SexChooseDialog extends Dialog implements View.OnClickListener {
     public boolean isBoy = true;
-
     private RelativeLayout rl_nan;
     private RelativeLayout rl_nv;
     private Button btn_confirm;

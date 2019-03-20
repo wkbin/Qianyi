@@ -107,6 +107,7 @@
                     android:layout_height="75dp">
                     <LinearLayout
                         android:id="@+id/li_my_attention"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -130,6 +131,7 @@
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/li_my_fans"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -156,6 +158,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:orientation="vertical"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
                         android:layout_height="match_parent">
                         <TextView
                             android:layout_width="wrap_content"
@@ -176,6 +179,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:background="?android:attr/selectableItemBackgroundBorderless"
                         android:orientation="vertical"
                         android:layout_height="match_parent">
                         <TextView
@@ -259,6 +263,7 @@
                     android:paddingLeft="11dp"
                     android:layout_height="200dp">
                     <LinearLayout
+                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:gravity="center_vertical"
@@ -287,6 +292,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:background="?android:attr/selectableItemBackground"
                         android:id="@+id/li_message"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -315,6 +321,7 @@
                             android:src="@mipmap/jump"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:background="?android:attr/selectableItemBackground"
                         android:id="@+id/li_binding_phone"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
@@ -348,6 +355,7 @@
                             android:src="@mipmap/jump"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:gravity="center_vertical"
@@ -392,6 +400,7 @@
                     android:paddingLeft="11dp"
                     android:layout_height="150dp">
                     <LinearLayout
+                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:gravity="center_vertical"
@@ -419,6 +428,7 @@
                             android:src="@mipmap/jump"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:gravity="center_vertical"
@@ -446,6 +456,8 @@
                             android:src="@mipmap/jump"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/li_shipping_address"
+                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:gravity="center_vertical"
@@ -484,6 +496,7 @@
                     android:paddingLeft="11dp"
                     android:layout_height="100dp">
                     <LinearLayout
+                        android:background="?android:attr/selectableItemBackground"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:gravity="center_vertical"

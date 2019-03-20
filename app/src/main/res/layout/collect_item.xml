@@ -40,16 +40,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9999"/>
-        <TextView
-            android:id="@+id/tv_collect_details"
-            android:background="@drawable/shape_integral_task"
-            android:layout_centerVertical="true"
+        <!--<TextView-->
+            <!--android:id="@+id/tv_collect_details"-->
+            <!--android:background="@drawable/shape_integral_task"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_width="64dp"-->
+            <!--android:layout_height="19dp"-->
+            <!--android:textSize="12sp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:gravity="center"-->
+            <!--android:text="查看详情"/>-->
+        <ImageView
+            android:id="@+id/iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_width="64dp"
-            android:layout_height="19dp"
-            android:textSize="12sp"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:text="查看详情"/>
+            android:src="@mipmap/andmore"/>
     </RelativeLayout>
 </LinearLayout>

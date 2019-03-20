@@ -1,268 +1,357 @@
 <?xml version="1.0" encoding="utf-8"?>
-        <LinearLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="245dp">
-                    <ImageView
-                        android:id="@+id/iv_reproduction"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"/>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-                <View
-                    android:id="@+id/action_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/statusbar_view_height"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@mipmap/_bjzz"/>
-                <LinearLayout
-                    android:layout_below="@+id/action_view"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="35dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="245dp">
+
+            <ImageView
+                android:id="@+id/iv_reproduction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:id="@+id/action_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/statusbar_view_height" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/_bjzz" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/action_view"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/iv_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/gdicon"/>
+                    android:src="@mipmap/gdicon" />
+
                 <RelativeLayout
-                    android:background="@drawable/shape_mall_serch"
-                    android:layout_marginLeft="23dp"
                     android:layout_width="290dp"
-                    android:layout_height="33dp">
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="23dp"
+                    android:background="@drawable/shape_mall_serch">
+
                     <ImageView
                         android:id="@+id/iv_ss_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:src="@mipmap/ssicon"/>
+                        android:src="@mipmap/ssicon" />
+
                     <TextView
-                        android:layout_toRightOf="@id/iv_ss_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@id/iv_ss_icon"
                         android:text="搜索你心仪的商品"
-                        android:textSize="14sp"
                         android:textColor="#ffffff"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textSize="14sp" />
                 </RelativeLayout>
-                </LinearLayout>
+            </LinearLayout>
 
-                <android.support.v7.widget.CardView
+            <android.support.v7.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                app:cardCornerRadius="10dp">
+
+                <cn.bingoogolapple.bgabanner.BGABanner
+                    android:id="@+id/banner_guide_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    app:banner_pageChangeDuration="1000"
+                    app:banner_pointAutoPlayAble="false"
+                    app:banner_pointContainerBackground="@android:color/transparent"
+                    app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
+                    app:banner_pointTopBottomMargin="15dp"
+                    app:banner_transitionEffect="alpha" />
+            </android.support.v7.widget.CardView>
+            <!--<com.example.qy.ui.RoundImageView-->
+            <!--android:id="@+id/iv_top"-->
+            <!--android:background="@drawable/shape_corner_login"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_height="150dp" />-->
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="1dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    app:cardCornerRadius="10dp">
-                    <cn.bingoogolapple.bgabanner.BGABanner
-                        android:id="@+id/banner_guide_content"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                    android:src="@mipmap/techan" />
 
-                        app:banner_pageChangeDuration="1000"
-                        app:banner_pointAutoPlayAble="false"
-                        app:banner_pointContainerBackground="@android:color/transparent"
-                        app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
-                        app:banner_pointTopBottomMargin="15dp"
-                        app:banner_transitionEffect="alpha" />
-                </android.support.v7.widget.CardView>
-                <!--<com.example.qy.ui.RoundImageView-->
-                    <!--android:id="@+id/iv_top"-->
-                    <!--android:background="@drawable/shape_corner_login"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_marginLeft="15dp"-->
-                    <!--android:layout_marginRight="15dp"-->
-                    <!--android:scaleType="centerCrop"-->
-                    <!--android:layout_alignParentBottom="true"-->
-                    <!--android:layout_height="150dp" />-->
-            </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="特产"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/jingdian" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="景点"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/jipiao" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="机票"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/huochepiao" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="火车票"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/jiudian" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="酒店"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
+
             <ImageView
+                android:id="@+id/iv_seckill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/techan"/>
+                android:src="@mipmap/xsms" />
+
+            <TextView
+                android:id="@+id/tv_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_seckill"
+                android:layout_marginLeft="14dp"
+                android:layout_toRightOf="@id/iv_seckill"
+                android:text="距离结束"
+                android:textColor="#333333"
+                android:textSize="11sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:layout_toRightOf="@id/tv_end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/shape_seckill_text"
+                    android:gravity="center"
+                    android:text="00"
+                    android:textColor="#fff"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text=":"
+                    android:textColor="#333333"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="4dp"
+                    android:background="@drawable/shape_seckill_text"
+                    android:gravity="center"
+                    android:text="00"
+                    android:textColor="#fff"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text=":"
+                    android:textColor="#333333"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="4dp"
+                    android:background="@drawable/shape_seckill_text"
+                    android:gravity="center"
+                    android:text="00"
+                    android:textColor="#fff"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="特产"
-                android:textColor="#333333"
-                android:textSize="13sp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-            <ImageView
+                android:layout_alignParentRight="true"
+                android:text="更多 >"
+                android:textColor="#3DB2A3"
+                android:textSize="13sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_seckill"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/jingdian"/>
+                android:layout_height="match_parent"
+                android:layout_below="@id/iv_seckill"
+                android:layout_marginTop="15dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+            <View
+                android:id="@+id/v_hot_recommend"
+                android:background="@drawable/shape_indicator"
+                android:layout_alignBottom="@id/tv_hot_recommend"
+                android:layout_width="72dp"
+                android:layout_height="8dp" />
             <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/tv_hot_recommend"
+                android:textSize="18sp"
+                android:textColor="#1a1a1a"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="景点"
-                android:textColor="#333333"
-                android:textSize="13sp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/jipiao"/>
+                android:text="热门推荐"/>
+
+
+            <View
+                android:id="@+id/v_guess_like"
+                android:background="@drawable/shape_indicator"
+                android:layout_alignBottom="@id/tv_guess_like"
+                android:layout_alignLeft="@id/tv_guess_like"
+                android:visibility="invisible"
+                android:layout_width="72dp"
+                android:layout_height="8dp" />
             <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/tv_hot_recommend"
+                android:id="@+id/tv_guess_like"
+                android:textSize="14sp"
+                android:textColor="#333333"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="机票"
-                android:textColor="#333333"
-                android:textSize="13sp"/>
-        </LinearLayout>
+                android:text="猜你喜欢"/>
+
+        </RelativeLayout>
+
         <LinearLayout
+            android:id="@+id/fm_mall"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/huochepiao"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="火车票"
-                android:textColor="#333333"
-                android:textSize="13sp"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/jiudian"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="酒店"
-                android:textColor="#333333"
-                android:textSize="13sp"/>
-        </LinearLayout>
+            android:layout_marginBottom="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_margin="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/iv_seckill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/xsms"/>
-        <TextView
-            android:id="@+id/tv_end"
-            android:layout_toRightOf="@id/iv_seckill"
-            android:layout_alignBottom="@id/iv_seckill"
-            android:layout_marginLeft="14dp"
-            android:textSize="11sp"
-            android:textColor="#333333"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="距离结束"/>
-        <LinearLayout
-            android:layout_marginLeft="9dp"
-            android:layout_toRightOf="@id/tv_end"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:background="@drawable/shape_seckill_text"
-                android:textSize="11sp"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:text="00"/>
-            <TextView
-                android:layout_marginLeft="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="#333333"
-                android:text=":"/>
-            <TextView
-                android:layout_marginLeft="4dp"
-                android:background="@drawable/shape_seckill_text"
-                android:textSize="11sp"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:text="00"/>
-            <TextView
-                android:layout_marginLeft="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="#333333"
-                android:text=":"/>
-            <TextView
-                android:layout_marginLeft="4dp"
-                android:background="@drawable/shape_seckill_text"
-                android:textSize="11sp"
-                android:textColor="#fff"
-                android:gravity="center"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:text="00"/>
-        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textSize="13sp"
-            android:textColor="#3DB2A3"
-            android:text="更多 >"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rl_seckill"
-            android:layout_marginTop="15dp"
-            android:layout_below="@id/iv_seckill"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
-    </RelativeLayout>
-</LinearLayout>
-
-
+</android.support.v4.widget.NestedScrollView>

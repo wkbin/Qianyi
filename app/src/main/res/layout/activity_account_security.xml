@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    tools:context=".activity.AccountSecurityActivity">
+    <include layout="@layout/action_view_2"/>
+    <include layout="@layout/action_bar_2"/>
+
+    <RelativeLayout
+        android:background="#fff"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="110dp">
+        <TextView
+            android:id="@+id/tv_uid"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="22dp"
+            android:textSize="16sp"
+            android:textColor="#1a1a1a"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="当前绑定账号（UID：1234567）"/>
+        <LinearLayout
+            android:layout_below="@id/tv_uid"
+            android:orientation="horizontal"
+            android:layout_marginTop="21dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/phone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1A1A1A"
+                android:textSize="16sp"
+                android:text="手机号"/>
+            <TextView
+                android:layout_marginLeft="11dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已绑定：151****6641"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:background="@drawable/shape_updata"
+                android:text="修改"
+                android:textSize="16sp"
+                android:textColor="#1a1a1a"
+                android:gravity="center"
+                android:layout_width="64dp"
+                android:layout_height="33dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:background="#fff"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_dsf"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="22dp"
+            android:textSize="16sp"
+            android:textColor="#1a1a1a"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="第三方账号绑定"/>
+        <LinearLayout
+            android:id="@+id/li_qq_bd"
+            android:layout_below="@id/tv_dsf"
+            android:orientation="horizontal"
+            android:layout_marginTop="21dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/qqdefault"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1A1A1A"
+                android:textSize="16sp"
+                android:text="QQ"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:background="@drawable/shape_updata_wbd"
+                android:text="绑定"
+                android:textSize="16sp"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:layout_width="64dp"
+                android:layout_height="33dp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v_bd"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="11dp"
+            android:layout_below="@id/li_qq_bd"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#E6E6E6"/>
+
+        <LinearLayout
+            android:layout_below="@id/v_bd"
+            android:orientation="horizontal"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="11dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/qqdefault"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#1A1A1A"
+                android:textSize="16sp"
+                android:text="微信"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:background="@drawable/shape_updata_wbd"
+                android:text="绑定"
+                android:textSize="16sp"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:layout_width="64dp"
+                android:layout_height="33dp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

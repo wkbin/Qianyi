@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".activity.IndividualitySignatureActivity">
 
+    <include layout="@layout/action_view_2"/>
     <include layout="@layout/action_bar"/>
 
     <TextView

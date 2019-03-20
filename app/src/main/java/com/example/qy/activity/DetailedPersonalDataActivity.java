@@ -106,6 +106,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_detailed_personal_data);
 
         rl_choose_icon = findViewById(R.id.rl_choose_icon);

@@ -75,7 +75,6 @@ dependencies {
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
     // 轮播
     implementation 'cn.bingoogolapple:bga-banner:2.2.5'
-    // 高斯模糊
 
 
 }

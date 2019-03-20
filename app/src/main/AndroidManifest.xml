@@ -27,6 +27,9 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <!-- 读取联系人所需权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <!-- hardwareAccelerated 开启硬件加速 -->
     <application
         android:name=".whs.MyApplication"
@@ -82,7 +85,10 @@
         <activity android:name=".activity.MessageActivity" />
         <activity android:name=".activity.OtherHomePageActivity" />
         <activity android:name=".activity.ReceiverAddressActivity" />
-        <activity android:name=".activity.AddReceiverAddressActivity"></activity>
+        <activity android:name=".activity.AddReceiverAddressActivity" />
+        <activity android:name=".activity.ShippingAddressActivity" />
+        <activity android:name=".activity.AccountSecurityActivity" />
+        <activity android:name=".activity.MusicCollectionActivity"></activity>
     </application>
 
 </manifest>

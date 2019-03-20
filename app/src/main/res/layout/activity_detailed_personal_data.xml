@@ -6,10 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     tools:context=".activity.DetailedPersonalDataActivity">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/statusbar_view_height" />
-
+    <include layout="@layout/action_view_2"/>
     <include layout="@layout/action_bar"/>
 
     <RelativeLayout

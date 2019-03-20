@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/shape_choose_dialog"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="地址标签"
+        android:layout_marginTop="21dp"
+        android:textColor="#1A1A1A"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/rl_my_self"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_my_self"
+            android:background="@drawable/shape_my_self"
+            android:gravity="center"
+            android:text="自"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
+        <EditText
+            android:layout_marginLeft="16dp"
+            android:layout_toLeftOf="@id/iv_my_self"
+            android:layout_centerVertical="true"
+            android:hint="默认显示姓名，可自定义"
+            android:textSize="13sp"
+            android:id="@+id/et_self_content"
+            android:layout_toRightOf="@id/tv_my_self"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <View
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/tv_my_self"
+            android:layout_below="@id/et_self_content"
+            android:background="#E6E6E6"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+
+        <ImageView
+            android:id="@+id/iv_my_self"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/hookicon"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_home"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_home_icon"
+            android:src="@mipmap/homeicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@id/iv_home_icon"
+            android:layout_toLeftOf="@id/iv_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="家"
+            android:textSize="13sp"/>
+        <ImageView
+            android:id="@+id/iv_home"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/hookicon"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_company"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_company_icon"
+            android:src="@mipmap/companyicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@id/iv_company_icon"
+            android:layout_toLeftOf="@id/iv_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="公司"
+            android:textSize="13sp"/>
+        <ImageView
+            android:id="@+id/iv_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/hookicon"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_school"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_school_icon"
+            android:src="@mipmap/schoolicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@id/iv_school_icon"
+            android:layout_toLeftOf="@id/iv_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="学校"
+            android:textSize="13sp"/>
+        <ImageView
+            android:id="@+id/iv_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/hookicon"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:text="确定"
+        android:background="@drawable/shape_settings_pwd_on"
+        android:layout_height="45dp" />
+    <TextView
+        android:id="@+id/tv_quit"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginRight="23dp"
+        android:text="取消"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:textColor="#666666"
+        android:layout_height="wrap_content" />
+</LinearLayout>

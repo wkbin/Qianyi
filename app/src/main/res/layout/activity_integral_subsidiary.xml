@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.IntegralSubsidiaryActivity">
+    <include layout="@layout/action_view_2"/>
     <include layout="@layout/action_bar"/>
     <RelativeLayout
         android:layout_width="match_parent"

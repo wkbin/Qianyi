@@ -1,36 +1,24 @@
 package com.example.qy.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.qy.R;
-import com.example.qy.bean.UserInfo;
 import com.example.qy.fragment.FocusFragment;
 import com.example.qy.fragment.HomeFragment;
 import com.example.qy.fragment.MallFragment;
 import com.example.qy.fragment.MyFragment;
-import com.example.qy.utils.HttpQYUtils;
-import com.example.qy.utils.HttpUtils;
-import com.example.qy.utils.ToastUtils;
+import com.example.qy.ui.VideoClassificationPopupWindow;
 import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.IOException;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private HomeFragment mHomeFragment;
@@ -122,6 +110,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mLiMy.setOnClickListener(this);
         mLiFocus.setOnClickListener(this);
         mLiShopping.setOnClickListener(this);
+        mLiCamera.setOnClickListener(this);
 
     }
     private void showHome(){
@@ -230,20 +219,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.li_home:
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
                 initFragment("home");
                 showHome();
                 break;
             case R.id.li_focus:
                 initFragment("focus");
                 showOther("focus");
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 break;
             case R.id.li_camera:
+                VideoClassificationPopupWindow popupWindow = new VideoClassificationPopupWindow(MainActivity.this, view ->  {
+
+                });
+                popupWindow.show();
                 break;
             case R.id.li_shopping:
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 initFragment("shopping");
                 showOther("shopping");
                 break;
             case R.id.li_my:
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 MyApplication application = (MyApplication) getApplication();
                 if (application.getUserInfo() != null){
                     initFragment("my");
@@ -251,6 +248,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }else{
                     startActivity(new Intent(MainActivity.this,LoginActivity.class));
                 }
+
                 break;
         }
     }

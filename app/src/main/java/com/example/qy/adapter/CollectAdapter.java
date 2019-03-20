@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.example.qy.bean.Collect;
+import com.example.qy.ui.MyVideoShareSheetBottomDialog;
 import com.example.qy.ui.RoundImageView;
 import com.example.qy.utils.ToastUtils;
 
@@ -34,13 +35,15 @@ public class CollectAdapter extends RecyclerView.Adapter<CollectAdapter.ViewHold
         RoundImageView iv_collect_image;
         TextView tv_collect_title;
         TextView tv_collect_like;
-        TextView tv_collect_details;
+//        TextView tv_collect_details;
+        ImageView iv_more;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             iv_collect_image = itemView.findViewById(R.id.iv_collect_image);
             tv_collect_title = itemView.findViewById(R.id.tv_collect_title);
             tv_collect_like = itemView.findViewById(R.id.tv_collect_like);
-            tv_collect_details = itemView.findViewById(R.id.tv_collect_details);
+//            tv_collect_details = itemView.findViewById(R.id.tv_collect_details);
+            iv_more = itemView.findViewById(R.id.iv_more);
         }
     }
     @NonNull
@@ -57,8 +60,12 @@ public class CollectAdapter extends RecyclerView.Adapter<CollectAdapter.ViewHold
         viewHolder.tv_collect_title.setText(collect.title);
         viewHolder.tv_collect_like.setText(collect.like);
         Log.d("CollectAdapter","打印 == "+collect.toString());
-        viewHolder.tv_collect_details.setOnClickListener(v-> {
-                ToastUtils.showShort(context,i+"");
+//        viewHolder.tv_collect_details.setOnClickListener(v-> {
+//                ToastUtils.showShort(context,i+"");
+//        });
+        viewHolder.iv_more.setOnClickListener(v->{
+            MyVideoShareSheetBottomDialog dialog = new MyVideoShareSheetBottomDialog(context);
+            dialog.show();
         });
     }
 

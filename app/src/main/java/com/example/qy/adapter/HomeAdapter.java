@@ -15,9 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.qy.R;
 import com.example.qy.activity.LoginActivity;
+import com.example.qy.activity.MusicCollectionActivity;
 import com.example.qy.bean.Video;
 import com.example.qy.ui.CommentsSheetBottomDialog;
 import com.example.qy.ui.VideoShareSheetBottomDialog;
@@ -78,6 +80,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         TextView tv_comments_count;
         LikeButton lb_like;
         ImageView iv_comments;
+        RelativeLayout rl_dp;
 
         LinearLayout li_video_share;
         public ViewHolder(@NonNull View itemView) {
@@ -86,6 +89,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
             tv_comments_count = itemView.findViewById(R.id.tv_comments_count);
             lb_like = itemView.findViewById(R.id.lb_like);
             iv_comments = itemView.findViewById(R.id.iv_comments);
+            rl_dp = itemView.findViewById(R.id.rl_dp);
 
             civ_dp = itemView.findViewById(R.id.civ_dp);
             iv_pause = itemView.findViewById(R.id.iv_pause);
@@ -132,6 +136,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         viewHolder.li_video_share.setOnClickListener(v->{
             VideoShareSheetBottomDialog dialog = new VideoShareSheetBottomDialog(context);
             dialog.show();
+        });
+
+        viewHolder.rl_dp.setOnClickListener(v->{
+            context.startActivity(new Intent(context,MusicCollectionActivity.class));
         });
 
         viewHolder.lb_like.setLiked(video.liked);

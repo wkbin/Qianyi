@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.qy.R;
@@ -110,11 +111,19 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                 }
                 //弹出评论输入框
                 InputDialog inputDialog = new InputDialog(getActivity());
+
                 Window window = inputDialog.getWindow();
                 WindowManager.LayoutParams params = window.getAttributes();
                 //设置软键盘通常是可见的
                 window.setSoftInputMode(params.SOFT_INPUT_STATE_VISIBLE);
+
                 inputDialog.show();
+
+
+
+
+
+
                 inputDialog.setOnClickListener(content -> {
                     if (TextUtils.isEmpty(content) || content.equals("")){
                         ToastUtils.showShort(getActivity(),"您还没有输入文字");
