@@ -17,7 +17,6 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,7 +31,6 @@ import com.bumptech.glide.Glide;
 import com.contrarywind.view.WheelView;
 import com.example.qy.R;
 import com.example.qy.bean.CityBean;
-import com.example.qy.bean.User;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.ui.IconChooseDialog;
 import com.example.qy.ui.SexChooseDialog;
@@ -44,7 +42,6 @@ import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
 import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.UpCompletionHandler;
-import com.qiniu.android.storage.UpProgressHandler;
 import com.qiniu.android.storage.UploadManager;
 import com.qiniu.android.storage.UploadOptions;
 import com.yalantis.ucrop.UCrop;
@@ -83,8 +80,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
     private TextView tv_name;
     private TextView tv_signature;
 
-    private ImageView action_bar_iv_left;
-    private TextView action_bar_text;
+
 
     private TextView action_bar_iv_right;
 
@@ -121,8 +117,6 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
         tv_address = findViewById(R.id.tv_address);
         civ_icon = findViewById(R.id.civ_icon);
         tv_sex = findViewById(R.id.tv_sex);
-        action_bar_text = findViewById(R.id.action_bar_text);
-        action_bar_iv_left = findViewById(R.id.action_bar_iv_left);
         tv_name = findViewById(R.id.tv_name);
         action_bar_iv_right = findViewById(R.id.action_bar_iv_right);
         tv_signature = findViewById(R.id.tv_signature);
@@ -134,14 +128,13 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
         li_signature.setOnClickListener(this);
         li_nickname.setOnClickListener(this);
 
-        action_bar_iv_left.setOnClickListener(this);
         action_bar_iv_right.setOnClickListener(this);
 
         initData();
     }
 
     private void initData(){
-        action_bar_text.setText("修改资料");
+        init("修改资料");
         application = (MyApplication) getApplication();
         UserInfo userInfo = application.getUserInfo();
 
@@ -259,9 +252,6 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                         }
                     }
                 });
-                break;
-            case R.id.action_bar_iv_left:
-                finish();
                 break;
             case R.id.li_signature:
                 Intent i2 = new Intent(DetailedPersonalDataActivity.this,IndividualitySignatureActivity.class);

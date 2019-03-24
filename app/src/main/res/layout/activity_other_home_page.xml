@@ -73,16 +73,35 @@
                 android:layout_width="84dp"
                 android:layout_height="29dp"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
                 android:background="@drawable/shape_update_data"
                 android:gravity="center"
                 android:text="已关注"
                 android:textColor="#3DB2A3"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_my_signature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="你猜我个性签名想写啥你猜我个性签名想写啥"
+                android:textColor="#fffefe"
+                android:textSize="11sp" />
+
+
             <RelativeLayout
                 android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
+
                 android:background="@drawable/shape_send_message"
                 android:layout_width="84dp"
                 android:layout_height="29dp">
@@ -102,19 +121,12 @@
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="发消息"/>
             </RelativeLayout>
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_my_signature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:text="你猜我个性签名想写啥你猜我个性签名想写啥"
-            android:textColor="#fffefe"
-            android:textSize="11sp" />
+
+
     </LinearLayout>
 
     <LinearLayout

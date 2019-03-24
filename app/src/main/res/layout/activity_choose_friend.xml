@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context=".activity.ChooseFriendActivity">
+
+    <include layout="@layout/action_view" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/action_bar_iv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@mipmap/fanhui2" />
+
+        <TextView
+            android:id="@+id/action_bar_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="#1a1a1a"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="6dp"
+                android:src="@mipmap/duigou" />
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="#1A1A1A"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_home_search">
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:src="@mipmap/sousuo" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/iv_search"
+                android:background="@null"
+                android:hint="搜索用户备注或昵称"
+                android:paddingLeft="7dp"
+                android:textColorHint="#666666"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/section_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_wnr"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/tv_wnr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/wuneirong"/>
+            <TextView
+                android:layout_below="@id/tv_wnr"
+                android:layout_marginTop="35dp"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索结果为空"
+                android:textColor="#ff333333"
+                android:textSize="18sp" />
+            <TextView
+                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="没有搜索到相关的内容~"
+                android:textColor="#ffb3b3b3"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

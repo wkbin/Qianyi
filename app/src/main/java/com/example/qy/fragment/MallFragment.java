@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -50,16 +51,13 @@ public class MallFragment extends Fragment implements View.OnClickListener {
             "http://192.168.10.24:8080/QianYi/views/timg2.jpg",
             "http://192.168.10.24:8080/QianYi/views/timg3.jpg",
     };
-
     public List<Seckill> list;
-
     private BGABanner banner_guide_content;
     private ImageView iv_reproduction;
     private RoundImageView iv_top;
     private ImageView iv_menu;
     private RecyclerView rl_seckill;
     private HotFragment hotFragment;
-
     private TextView tv_hot_recommend, tv_guess_like;
     private View v_hot_recommend, v_guess_like;
 
@@ -136,7 +134,6 @@ public class MallFragment extends Fragment implements View.OnClickListener {
 
 
         initHotFragment();
-
 
     }
 

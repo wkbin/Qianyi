@@ -1,5 +1,6 @@
 package com.example.qy.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 
 import com.example.qy.R;
+import com.example.qy.activity.HomeSearchActivity;
 import com.example.qy.adapter.HomeAdapter;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.bean.Video;
@@ -50,7 +52,6 @@ public class HomeFragment extends Fragment {
     private boolean isShowFragment;
 
     private int user_id;
-
 
     // 旋转动画
     private RotateAnimation animation;
@@ -209,7 +210,10 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
-
+        iv_search = getActivity().findViewById(R.id.iv_search);
+        iv_search.setOnClickListener(v->{
+            startActivity(new Intent(getActivity(),HomeSearchActivity.class));
+        });
 
 
     }

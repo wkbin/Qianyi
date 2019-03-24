@@ -46,6 +46,7 @@
             android:layout_height="1px"
             android:background="#E6E6E6"/>
         <LinearLayout
+            android:id="@+id/li_blacklist"
             android:background="?android:attr/selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -74,6 +75,7 @@
             android:layout_height="1px"
             android:background="#E6E6E6"/>
         <LinearLayout
+            android:id="@+id/li_message_set"
             android:background="?android:attr/selectableItemBackground"
             android:layout_width="match_parent"
             android:orientation="horizontal"

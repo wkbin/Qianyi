@@ -28,6 +28,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -56,7 +57,7 @@ dependencies {
     implementation 'com.qiniu:qiniu-android-sdk:7.3.15'
 
     // LitePal数据库
-    implementation 'org.litepal.android:java:3.0.0'
+//    implementation 'org.litepal.android:java:3.0.0'
     // 圆形图片控件
     implementation 'de.hdodenhof:circleimageview:3.0.0'
     // 沉浸式状态栏
@@ -76,5 +77,14 @@ dependencies {
     // 轮播
     implementation 'cn.bingoogolapple:bga-banner:2.2.5'
 
+    // RecyclerView侧滑
+    implementation 'com.nikhilpanju.recyclerviewenhanced:recyclerviewenhanced:1.1.0'
+    // 用于显示标签流式布局
+    implementation 'com.google.android:flexbox:1.0.0'
+    // viewPager指示器
+    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+    // 步骤指示器
+    implementation 'com.github.baoyachi:StepView:1.9'
+    // 带索引的RecycleView
 
 }

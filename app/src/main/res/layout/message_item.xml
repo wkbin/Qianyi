@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp">
+
+    <LinearLayout
+        android:id="@+id/rowBG"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/delete"
+            android:layout_width="74dp"
+            android:layout_height="match_parent"
+            android:background="#F53131"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rowFG"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:visibility="visible">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_icon"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/touxiang" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/civ_icon"
+            android:text="小助手"
+            android:textColor="#1A1A1A"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_name"
+            android:layout_alignLeft="@id/tv_name"
+            android:layout_marginTop="4dp"
+            android:text="消息助手：话题#哪些景点好玩#"
+            android:textColor="#666666"
+            android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tv_name"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="16dp"
+            android:text="今天"
+            android:textColor="#666666"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

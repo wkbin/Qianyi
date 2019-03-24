@@ -38,21 +38,13 @@ import okhttp3.Response;
 public class FocusActivity extends BaseActivity implements View.OnClickListener {
     private RecyclerView rl_focus;
     private List<Follwers> lists;
-    private TextView action_bar_text;
     private FollowersAdapter adapter;
-    private ImageView action_bar_iv_left;
     private int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_focus);
-
-
-        action_bar_text = findViewById(R.id.action_bar_text);
-        action_bar_iv_left = findViewById(R.id.action_bar_iv_left);
-        action_bar_iv_left.setOnClickListener(this);
-
 
 
         UserInfo userInfo = ((MyApplication)getApplication()).getUserInfo();
@@ -63,13 +55,13 @@ public class FocusActivity extends BaseActivity implements View.OnClickListener 
 
         String url = "";
         if (type == 1){
-            action_bar_text.setText("我的关注");
+            init("我的关注");
             // 关注
             url = HttpQYUtils.getShowAttention(id, 0);
 
         }else if(type == 2){
             // 粉丝
-            action_bar_text.setText("我的粉丝");
+            init("我的粉丝");
             url = HttpQYUtils.getFindFansDetails(id,0);
         }
 
@@ -200,9 +192,7 @@ public class FocusActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.action_bar_iv_left:
-                finish();
-                break;
+
         }
     }
 }

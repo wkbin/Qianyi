@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.example.qy.bean.UserInfo;
 
-import org.litepal.LitePal;
 
 public class MyApplication extends Application {
     /*
@@ -32,6 +31,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // 配置LitePal
-        LitePal.initialize(this);
+//        LitePal.initialize(this);
     }
 }

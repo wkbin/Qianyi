@@ -15,49 +15,48 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.qy.R;
 import com.example.qy.activity.FocusActivity;
+import com.example.qy.activity.HotelReservationActivity;
 import com.example.qy.activity.IntegralTaskActivity;
 import com.example.qy.activity.MessageActivity;
 import com.example.qy.activity.MyHomePageActivity;
+import com.example.qy.activity.MyOrderActivity;
+import com.example.qy.activity.RecentVisitActivity;
+import com.example.qy.activity.ScenicSpotOrders;
 import com.example.qy.activity.SettingsActivity;
 import com.example.qy.activity.ShippingAddressActivity;
+import com.example.qy.activity.SpecialOrdersActivity;
 import com.example.qy.activity.UpdatePhoneActivity;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.utils.ImageUtils;
 import com.example.qy.whs.MyApplication;
 
-
-
-
 public class MyFragment extends Fragment implements View.OnClickListener {
-    private LinearLayout li_home_page;
     private de.hdodenhof.circleimageview.CircleImageView cv_my_icon;
     private TextView tv_my_nickname;
     private TextView tv_my_id;
     private ImageView iv_beijing;
-    private TextView tv_my_signature;
     private TextView tv_my_attention;
     private TextView tv_my_fans;
     private ImageView iv_my_settings;
     private LinearLayout li_my_attention,li_my_fans;
-    private LottieAnimationView lav_heart;
     private LinearLayout li_binding_phone;
     private LinearLayout li_message;
     private LinearLayout li_shipping_address;
-    private TextView tv_binding;
     private String phone;
     private ImageView iv_integraltask;
     private RelativeLayout rl_home_page;
-
-
-
-
+    private LinearLayout li_specialty;
+    private LinearLayout li_scenic_spot;
+    private LinearLayout li_hotel;
+    private LinearLayout li_order;
+    private LinearLayout li_recent_visit;
+    private LinearLayout li_like;
+    private LinearLayout li_works;
 
     @Nullable
     @Override
@@ -74,30 +73,24 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tv_my_nickname = getActivity().findViewById(R.id.tv_my_nickname);
         tv_my_id = getActivity().findViewById(R.id.tv_my_id);
         iv_beijing = getActivity().findViewById(R.id.iv_beijing);
-
-//        tv_my_signature = getActivity().findViewById(R.id.tv_my_signature);
         tv_my_attention = getActivity().findViewById(R.id.tv_my_attention);
         tv_my_fans = getActivity().findViewById(R.id.tv_my_fans);
-//        lav_heart = getActivity().findViewById(R.id.lav_heart);
-//        tv_binding = getActivity().findViewById(R.id.tv_binding);
         li_binding_phone = getActivity().findViewById(R.id.li_binding_phone);
         li_message = getActivity().findViewById(R.id.li_message);
         li_shipping_address = getActivity().findViewById(R.id.li_shipping_address);
         iv_integraltask = getActivity().findViewById(R.id.iv_integraltask);
         rl_home_page = getActivity().findViewById(R.id.rl_home_page);
-//
-//        lav_heart.setImageAssetsFolder("images");
-//        lav_heart.setAnimation("data.json");
-//        // 开启硬件加速
-//        lav_heart.useHardwareAcceleration(true);
-//
-//        li_home_page = getActivity().findViewById(R.id.li_home_page);
         iv_my_settings = getActivity().findViewById(R.id.iv_my_settings);
         iv_my_settings.setOnClickListener(this);
-//        li_home_page.setOnClickListener(this);
-//        lav_heart.setOnClickListener(this);
         li_my_attention = getActivity().findViewById(R.id.li_my_attention);
         li_my_fans = getActivity().findViewById(R.id.li_my_fans);
+        li_specialty = getActivity().findViewById(R.id.li_specialty);
+        li_scenic_spot = getActivity().findViewById(R.id.li_scenic_spot);
+        li_hotel = getActivity().findViewById(R.id.li_hotel);
+        li_order = getActivity().findViewById(R.id.li_order);
+        li_recent_visit = getActivity().findViewById(R.id.li_recent_visit);
+        li_like = getActivity().findViewById(R.id.li_like);
+        li_works = getActivity().findViewById(R.id.li_works);
         li_my_attention.setOnClickListener(this);
         li_my_fans.setOnClickListener(this);
         li_binding_phone.setOnClickListener(this);
@@ -105,7 +98,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         li_shipping_address.setOnClickListener(this);
         iv_integraltask.setOnClickListener(this);
         rl_home_page.setOnClickListener(this);
-
+        li_specialty.setOnClickListener(this);
+        li_scenic_spot.setOnClickListener(this);
+        li_hotel.setOnClickListener(this);
+        li_order.setOnClickListener(this);
+        li_recent_visit.setOnClickListener(this);
+        li_like.setOnClickListener(this);
+        li_works.setOnClickListener(this);
 
 
         initData();
@@ -115,14 +114,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         if (userInfo == null) return;
         Log.d("MyFragment","userInfo = "+userInfo.toString());
         phone = userInfo.phone;
-//        if (TextUtils.isEmpty(phone)){
-//            tv_binding.setText("未绑定");
-//        }else{
-//            tv_binding.setText("已绑定");
-//        }
         tv_my_nickname.setText(userInfo.nickname);
         tv_my_id.setText("千艺号："+userInfo.qianyiID);
-//        tv_my_signature.setText(userInfo.signature);
         tv_my_attention.setText(userInfo.follow);
         tv_my_fans.setText(userInfo.fans);
 
@@ -140,7 +133,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         super.onStart();
         UserInfo userInfo = ((MyApplication)getActivity().getApplication()).getUserInfo();
         tv_my_nickname.setText(userInfo.nickname);
-//        tv_my_signature.setText(userInfo.signature);
         tv_my_attention.setText(userInfo.follow);
         tv_my_fans.setText(userInfo.fans);
         Glide.with(getActivity()).load(userInfo.icon).into(cv_my_icon);
@@ -150,14 +142,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.li_works:
+            case R.id.li_like:
             case R.id.rl_home_page:
                 Intent i = new Intent(getActivity(),MyHomePageActivity.class);
                 startActivityForResult(i,1);
                 break;
-//            case R.id.li_home_page:
-//                Intent i = new Intent(getActivity(),MyHomePageActivity.class);
-//                startActivityForResult(i,1);
-//                break;
             case R.id.iv_my_settings:
                 startActivity(new Intent(getActivity(),SettingsActivity.class));
                 break;
@@ -174,9 +164,6 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.iv_integraltask:
                 startActivity(new Intent(getActivity(),IntegralTaskActivity.class));
                 break;
-//            case R.id.lav_heart:
-//                startActivity(new Intent(getActivity(),IntegralTaskActivity.class));
-//                break;
             case R.id.li_binding_phone:
                 if (TextUtils.isEmpty(phone)){
 
@@ -191,6 +178,21 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.li_shipping_address:
                 startActivity(new Intent(getActivity(),ShippingAddressActivity.class));
+                break;
+            case R.id.li_specialty:
+                startActivity(new Intent(getActivity(),SpecialOrdersActivity.class));
+                break;
+            case R.id.li_hotel:
+                startActivity(new Intent(getActivity(),HotelReservationActivity.class));
+                break;
+            case R.id.li_scenic_spot:
+                startActivity(new Intent(getActivity(),ScenicSpotOrders.class));
+                break;
+            case R.id.li_order:
+                startActivity(new Intent(getActivity(),MyOrderActivity.class));
+                break;
+            case R.id.li_recent_visit:
+                startActivity(new Intent(getActivity(),RecentVisitActivity.class));
                 break;
         }
     }

@@ -26,6 +26,8 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private TextView tv_change_the_account;
 
     private LinearLayout li_account_security;
+    private LinearLayout li_message_set;
+    private LinearLayout li_blacklist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +45,12 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         action_bar_iv_left.setOnClickListener(this);
 
         li_account_security = findViewById(R.id.li_account_security);
+        li_message_set = findViewById(R.id.li_message_set);
+        li_blacklist = findViewById(R.id.li_blacklist);
 
         li_account_security.setOnClickListener(this);
+        li_message_set.setOnClickListener(this);
+        li_blacklist.setOnClickListener(this);
 
     }
 
@@ -77,6 +83,13 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
             case R.id.li_account_security:
                 startActivity(new Intent(SettingsActivity.this,AccountSecurityActivity.class));
+                break;
+
+            case R.id.li_message_set:
+                startActivity(new Intent(SettingsActivity.this,MessageSetActivity.class));
+                break;
+            case R.id.li_blacklist:
+                startActivity(new Intent(SettingsActivity.this,BlacklistActivity.class));
                 break;
         }
     }

@@ -42,9 +42,11 @@ public class CollectFragment extends Fragment {
         initData();
 
         GridLayoutManager layoutManager=new GridLayoutManager(getActivity(),2);
-        CollectAdapter adapter = new CollectAdapter(getActivity(),list);
 
+        CollectAdapter adapter = new CollectAdapter(getActivity(),list);
         rv_collect.setLayoutManager(layoutManager);
+
+
         rv_collect.setAdapter(adapter);
     }
 

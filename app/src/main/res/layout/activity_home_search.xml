@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    tools:context=".activity.HomeSearchActivity">
+    <include layout="@layout/action_view"/>
+    <RelativeLayout
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/rl_search"
+            android:layout_toLeftOf="@id/tv_cancel"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_home_search"
+            android:layout_width="match_parent"
+            android:layout_marginRight="28dp"
+            android:layout_height="33dp">
+            <ImageView
+                android:id="@+id/iv_ss"
+                android:layout_marginLeft="15dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/sousuo"/>
+            <EditText
+                android:paddingLeft="6dp"
+                android:layout_toRightOf="@id/iv_ss"
+                android:hint="庐山云雾茶"
+                android:textSize="14sp"
+                android:background="@null"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="历史记录"
+            android:textColor="#1a1a1a"
+            android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/iv_history_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="3dp"
+            android:src="@mipmap/shanchu"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="16dp"
+            android:id="@+id/rc_history_label"
+            android:layout_below="@id/iv_history_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_hot_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="热门搜索"
+            android:textColor="#1a1a1a"
+            android:textSize="16sp" />
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="16dp"
+            android:id="@+id/rc_hot_search"
+            android:layout_below="@id/tv_hot_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</LinearLayout>

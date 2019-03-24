@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.qy.R;
 import com.example.qy.bean.MallHot;
@@ -36,7 +38,13 @@ public class MallHotAdapter extends RecyclerView.Adapter<MallHotAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         Log.d("666","i == "+i);
-        MallHot hot = lists.get(i);
+        if (i == 1){
+            viewHolder.rl_food.setVisibility(View.GONE);
+            viewHolder.li_food_tickets.setVisibility(View.VISIBLE);
+        }else{
+            viewHolder.rl_food.setVisibility(View.VISIBLE);
+            viewHolder.li_food_tickets.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -44,10 +52,13 @@ public class MallHotAdapter extends RecyclerView.Adapter<MallHotAdapter.ViewHold
         return lists.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
-
+     class ViewHolder extends RecyclerView.ViewHolder{
+        RelativeLayout rl_food;
+        LinearLayout li_food_tickets;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            rl_food = itemView.findViewById(R.id.rl_food);
+            li_food_tickets = itemView.findViewById(R.id.li_food_tickets);
         }
     }
 

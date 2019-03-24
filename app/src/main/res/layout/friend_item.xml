@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_height="wrap_content">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@mipmap/touxiang"/>
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_toRightOf="@id/civ_icon"
+        android:layout_marginLeft="14dp"
+        android:layout_centerVertical="true"
+        android:text="xxx"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

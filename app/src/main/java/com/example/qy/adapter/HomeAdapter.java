@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.qy.R;
 import com.example.qy.activity.LoginActivity;
 import com.example.qy.activity.MusicCollectionActivity;
+import com.example.qy.activity.OtherHomePageActivity;
 import com.example.qy.bean.Video;
 import com.example.qy.ui.CommentsSheetBottomDialog;
 import com.example.qy.ui.VideoShareSheetBottomDialog;
@@ -37,6 +38,7 @@ import java.io.IOException;
 import java.util.List;
 
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -81,6 +83,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         LikeButton lb_like;
         ImageView iv_comments;
         RelativeLayout rl_dp;
+        CircleImageView civ_icon;
 
         LinearLayout li_video_share;
         public ViewHolder(@NonNull View itemView) {
@@ -97,6 +100,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
             iv_yficon1 = itemView.findViewById(R.id.iv_yficon1);
             PLvv_play = itemView.findViewById(R.id.PLvv_play);
             li_video_share = itemView.findViewById(R.id.li_video_share);
+            civ_icon = itemView.findViewById(R.id.civ_icon);
 
             PLvv_play.setLooping(true);
             AVOptions options = new AVOptions();
@@ -140,6 +144,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
 
         viewHolder.rl_dp.setOnClickListener(v->{
             context.startActivity(new Intent(context,MusicCollectionActivity.class));
+        });
+
+        viewHolder.civ_icon.setOnClickListener(v->{
+            context.startActivity(new Intent(context,OtherHomePageActivity.class));
         });
 
         viewHolder.lb_like.setLiked(video.liked);

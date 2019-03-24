@@ -88,7 +88,21 @@
         <activity android:name=".activity.AddReceiverAddressActivity" />
         <activity android:name=".activity.ShippingAddressActivity" />
         <activity android:name=".activity.AccountSecurityActivity" />
-        <activity android:name=".activity.MusicCollectionActivity"></activity>
+        <activity android:name=".activity.MusicCollectionActivity" />
+        <activity android:name=".activity.MessageSetActivity" />
+        <activity android:name=".activity.BlacklistActivity" />
+        <activity android:name=".activity.LikeActivity" />
+        <activity android:name=".activity.CommentsActivity" />
+        <activity android:name=".activity.DirectMessagesActivity" />
+        <activity android:name=".activity.FriendsActivity" />
+        <activity android:name=".activity.HomeSearchActivity" />
+        <activity android:name=".activity.ChooseFriendActivity" />
+        <activity android:name=".activity.SpecialOrdersActivity" />
+        <activity android:name=".activity.HotelReservationActivity" />
+        <activity android:name=".activity.ScenicSpotOrders" />
+        <activity android:name=".activity.MyOrderActivity" />
+        <activity android:name=".activity.RecentVisitActivity" />
+        <activity android:name=".activity.MallMessageActivity"></activity>
     </application>
 
 </manifest>
