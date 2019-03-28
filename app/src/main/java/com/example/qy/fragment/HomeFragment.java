@@ -1,6 +1,7 @@
 package com.example.qy.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,9 +19,11 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.qy.R;
 import com.example.qy.activity.HomeSearchActivity;
+import com.example.qy.activity.SelectAreaActivity;
 import com.example.qy.adapter.HomeAdapter;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.bean.Video;
@@ -46,6 +49,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView rv_home;
     private List<Video> list;
     private ImageView iv_home,iv_search;
+    private ImageView iv_select_area;
     private ViewPagerLayoutManager viewPagerLayoutManager;
     HomeAdapter adapter;
 
@@ -105,6 +109,9 @@ public class HomeFragment extends Fragment {
             }
         }
     };
+
+    private TextView tv_tourism;
+    private TextView tv_food;
 
     @Nullable
     @Override
@@ -215,6 +222,26 @@ public class HomeFragment extends Fragment {
             startActivity(new Intent(getActivity(),HomeSearchActivity.class));
         });
 
+        iv_select_area = getActivity().findViewById(R.id.iv_select_area);
+        iv_select_area.setOnClickListener(v->{
+            startActivity(new Intent(getActivity(),SelectAreaActivity.class));
+        });
+
+        tv_tourism = getActivity().findViewById(R.id.tv_tourism);
+        tv_food = getActivity().findViewById(R.id.tv_food);
+
+        tv_tourism.setOnClickListener(v -> {
+            tv_tourism.setTextColor(Color.parseColor("#fefefe"));
+            tv_food.setTextColor(Color.parseColor("#b3fefefe"));
+            tv_tourism.setTextSize(20);
+            tv_food.setTextSize(16);
+        });
+        tv_food.setOnClickListener(v -> {
+            tv_food.setTextColor(Color.parseColor("#fefefe"));
+            tv_tourism.setTextColor(Color.parseColor("#b3fefefe"));
+            tv_food.setTextSize(20);
+            tv_tourism.setTextSize(16);
+        });
 
     }
 

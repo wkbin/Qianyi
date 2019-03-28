@@ -1,14 +1,13 @@
 package com.example.qy.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.qy.R;
 import com.example.qy.activity.fragment.attractions.AllFragment;
@@ -16,6 +15,7 @@ import com.example.qy.activity.fragment.attractions.RefundFragment;
 import com.example.qy.activity.fragment.attractions.WaitEvaluationFragment;
 import com.example.qy.activity.fragment.attractions.WaitPaymentFragment;
 import com.example.qy.activity.fragment.attractions.WaitUseFragment;
+import com.example.qy.adapter.MyPagerAdapter;
 import com.example.qy.whs.BaseActivity;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -25,17 +25,16 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.BezierPagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ClipPagerTitleView;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.CommonPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScenicSpotOrders extends BaseActivity {
+public class ScenicSpotOrdersActivity extends BaseActivity {
     private MagicIndicator magic_indicator;
     private ViewPager view_pager;
     private List<Fragment> fragments;
+    private ImageView iv_alert;
     private String[] titles = {"全部","待付款","待使用","待评价","退款"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,13 @@ public class ScenicSpotOrders extends BaseActivity {
         init("景点订单");
 
         magic_indicator = findViewById(R.id.magic_indicator);
+        iv_alert = findViewById(R.id.iv_alert);
         view_pager = findViewById(R.id.view_pager);
+
+
+        iv_alert.setOnClickListener(v->{
+            startActivity(new Intent(ScenicSpotOrdersActivity.this,ScenicSpotDetailsActivity.class));
+        });
 
         fragments = new ArrayList<>();
         fragments.add(new AllFragment());
@@ -53,7 +58,8 @@ public class ScenicSpotOrders extends BaseActivity {
         fragments.add(new WaitEvaluationFragment());
         fragments.add(new RefundFragment());
 
-        SttractionsPagerAdapter adapter = new SttractionsPagerAdapter(getSupportFragmentManager(),fragments);
+        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(),fragments,titles);
+//        SttractionsPagerAdapter adapter = new SttractionsPagerAdapter(getSupportFragmentManager(),fragments);
         view_pager.setAdapter(adapter);
 
         CommonNavigator commonNavigator = new CommonNavigator(this);
@@ -106,28 +112,4 @@ public class ScenicSpotOrders extends BaseActivity {
         magic_indicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(magic_indicator,view_pager);
     }
-
-
-    class SttractionsPagerAdapter extends FragmentPagerAdapter {
-        private List<Fragment> fragmentList;
-        public SttractionsPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
-            super(fm);
-            this.fragmentList = fragments;
-        }
-        @Override
-        public Fragment getItem(int i) {
-            return fragmentList.get(i);
-        }
-        @Override
-        public int getCount() {
-            return titles.length;
-        }
-
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return titles[position];
-        }
-    }
-
 }

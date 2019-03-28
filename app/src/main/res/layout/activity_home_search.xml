@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/sousuo"/>
             <EditText
+                android:id="@+id/et_search"
                 android:paddingLeft="6dp"
                 android:layout_toRightOf="@id/iv_ss"
                 android:hint="庐山云雾茶"
@@ -49,55 +50,67 @@
             android:textSize="14sp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="21dp"
-        android:layout_marginRight="21dp"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/li_record"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="历史记录"
-            android:textColor="#1a1a1a"
-            android:textSize="16sp" />
-        <ImageView
-            android:id="@+id/iv_history_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="3dp"
-            android:src="@mipmap/shanchu"/>
+        <RelativeLayout
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="历史记录"
+                android:textColor="#1a1a1a"
+                android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/iv_history_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="3dp"
+                android:src="@mipmap/shanchu"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="16dp"
-            android:id="@+id/rc_history_label"
-            android:layout_below="@id/iv_history_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="16dp"
+                android:id="@+id/rc_history_label"
+                android:layout_below="@id/iv_history_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_marginTop="28dp"
-        android:layout_marginLeft="21dp"
-        android:layout_marginRight="21dp"
+        <RelativeLayout
+            android:layout_marginTop="28dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_hot_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="热门搜索"
+                android:textColor="#1a1a1a"
+                android:textSize="16sp" />
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="16dp"
+                android:id="@+id/rc_hot_search"
+                android:layout_below="@id/tv_hot_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_search_record"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_hot_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="热门搜索"
-            android:textColor="#1a1a1a"
-            android:textSize="16sp" />
-        <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="16dp"
-            android:id="@+id/rc_hot_search"
-            android:layout_below="@id/tv_hot_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

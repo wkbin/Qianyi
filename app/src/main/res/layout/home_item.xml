@@ -27,6 +27,7 @@
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <RelativeLayout
+                android:id="@+id/rl_scenic_spot"
                 android:padding="2dp"
                 android:background="@drawable/shape_address"
                 android:layout_width="wrap_content"
@@ -100,6 +101,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_attractions_details"
                 android:background="@drawable/shape_home_btn"
                 android:layout_marginTop="13dp"
 

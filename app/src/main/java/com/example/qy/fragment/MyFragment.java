@@ -26,7 +26,7 @@ import com.example.qy.activity.MessageActivity;
 import com.example.qy.activity.MyHomePageActivity;
 import com.example.qy.activity.MyOrderActivity;
 import com.example.qy.activity.RecentVisitActivity;
-import com.example.qy.activity.ScenicSpotOrders;
+import com.example.qy.activity.ScenicSpotOrdersActivity;
 import com.example.qy.activity.SettingsActivity;
 import com.example.qy.activity.ShippingAddressActivity;
 import com.example.qy.activity.SpecialOrdersActivity;
@@ -186,7 +186,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(),HotelReservationActivity.class));
                 break;
             case R.id.li_scenic_spot:
-                startActivity(new Intent(getActivity(),ScenicSpotOrders.class));
+                startActivity(new Intent(getActivity(),ScenicSpotOrdersActivity.class));
                 break;
             case R.id.li_order:
                 startActivity(new Intent(getActivity(),MyOrderActivity.class));

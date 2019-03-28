@@ -1,19 +1,21 @@
 package com.example.qy.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.example.qy.R;
 import com.example.qy.adapter.HistoryLabelAdapter;
+import com.example.qy.adapter.HomeSearchAdapter;
 import com.example.qy.whs.BaseActivity;
-import com.google.android.flexbox.FlexDirection;
-import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
-import com.google.android.flexbox.JustifyContent;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,10 @@ public class HomeSearchActivity extends BaseActivity {
     private HistoryLabelAdapter adapter;
     private FlexboxLayoutManager manager,manager2;
     private TextView tv_cancel;
+    private EditText et_search;
+    private RecyclerView rc_search_record;
+    private LinearLayout li_record;
+    private HomeSearchAdapter adapter2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,30 @@ public class HomeSearchActivity extends BaseActivity {
 
         rc_history_label = findViewById(R.id.rc_history_label);
         rc_hot_search = findViewById(R.id.rc_hot_search);
+        et_search = findViewById(R.id.et_search);
+        li_record = findViewById(R.id.li_record);
+        rc_search_record = findViewById(R.id.rc_search_record);
+
+        adapter2 = new HomeSearchAdapter(this);
+        rc_search_record.setLayoutManager(new LinearLayoutManager(this));
+        rc_search_record.setAdapter(adapter2);
+
+        et_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s.toString().trim())){
+                    li_record.setVisibility(View.VISIBLE);
+                    rc_search_record.setVisibility(View.GONE);
+                }else{
+                    rc_search_record.setVisibility(View.VISIBLE);
+                    li_record.setVisibility(View.GONE);
+                }
+            }
+        });
 
         adapter = new HistoryLabelAdapter(HomeSearchActivity.this,list);
 

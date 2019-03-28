@@ -25,6 +25,9 @@ public class BaseActivity extends AppCompatActivity {
     private TextView action_bar_text;
     private ImageView action_bar_iv_left;
 
+    public TextView getAction_bar_text() {
+        return action_bar_text;
+    }
 
     public UserInfo getUserInfo() {
         return userInfo;

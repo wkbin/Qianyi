@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.qy.R;
 import com.example.qy.adapter.MusicAdapter;
@@ -24,13 +25,20 @@ public class MusicCollectionActivity extends BaseActivity {
     private AppBarLayout app_bar;
     private Toolbar toolbar;
     private ImageView iv_back2;
+    private TextView tv_name2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
         setContentView(R.layout.activity_music_collection);
 
-        init("为爱痴狂");
+        init("用《为爱痴狂》拍摄的视频");
+
+        // 开启走马灯效果
+        getAction_bar_text().setSelected(true);
+
+        tv_name2 = findViewById(R.id.tv_name2);
+        tv_name2.setSelected(true);
 
         rc_music = findViewById(R.id.rc_music);
 

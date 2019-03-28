@@ -26,7 +26,7 @@
                 android:useLevel="true"
                 android:startColor="#3db3a3"
                 android:endColor="#91e673"
-                android:angle="135" />
+                android:angle="90" />
             <corners android:radius="3dp" />
         </shape>
     </item>

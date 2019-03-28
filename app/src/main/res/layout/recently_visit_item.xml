@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="13dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.example.qy.ui.RoundImageView
+        android:id="@+id/riv_icon"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/beijing"/>
+    <TextView
+        android:layout_toRightOf="@id/riv_icon"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="稻香村糕点礼盒2000G传统小吃京八aaaa"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#1a1a1a"
+        android:textSize="16sp"/>
+</RelativeLayout>

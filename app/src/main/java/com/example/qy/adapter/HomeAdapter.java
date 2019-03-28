@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,9 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.qy.R;
+import com.example.qy.activity.AttractionsDetails;
 import com.example.qy.activity.LoginActivity;
 import com.example.qy.activity.MusicCollectionActivity;
 import com.example.qy.activity.OtherHomePageActivity;
+import com.example.qy.activity.ScenicSpotDetails;
 import com.example.qy.bean.Video;
 import com.example.qy.ui.CommentsSheetBottomDialog;
 import com.example.qy.ui.VideoShareSheetBottomDialog;
@@ -84,6 +87,9 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
         ImageView iv_comments;
         RelativeLayout rl_dp;
         CircleImageView civ_icon;
+        RelativeLayout rl_scenic_spot;
+        RelativeLayout rl_attractions_details;
+
 
         LinearLayout li_video_share;
         public ViewHolder(@NonNull View itemView) {
@@ -101,6 +107,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
             PLvv_play = itemView.findViewById(R.id.PLvv_play);
             li_video_share = itemView.findViewById(R.id.li_video_share);
             civ_icon = itemView.findViewById(R.id.civ_icon);
+            rl_scenic_spot = itemView.findViewById(R.id.rl_scenic_spot);
+            rl_attractions_details = itemView.findViewById(R.id.rl_attractions_details);
+
+
 
             PLvv_play.setLooping(true);
             AVOptions options = new AVOptions();
@@ -233,6 +243,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> im
                     Log.d("HomeAdapter","i == "+i);
             });
         }
+        viewHolder.rl_scenic_spot.setOnClickListener(v -> {
+            context.startActivity(new Intent(context,ScenicSpotDetails.class));
+        });
+
+        viewHolder.rl_attractions_details.setOnClickListener(v -> {
+            context.startActivity(new Intent(context,AttractionsDetails.class));
+        });
+
+;
     }
 
 
