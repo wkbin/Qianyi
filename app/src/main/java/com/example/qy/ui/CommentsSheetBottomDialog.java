@@ -214,7 +214,6 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                             comment.videoId = commentObject.getInt("videoId");
                             comment.content = commentObject.getString("content");
                             comment.giveLike = commentObject.getBoolean("giveLike");
-
                             comment.date = commentObject.getString("createdate");
                             comment.fromUid = commentObject.getInt("fromUid");
                             if(!commentObject.isNull("userInfo")){
@@ -222,7 +221,6 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                                 comment.icon = commentObject.getJSONObject("userInfo").getString("infoIcon");
                             }
                             comment.likeCounts = commentObject.getInt("likeCounts");
-
                             if (!commentObject.isNull("reply")){
                                 JSONObject replyObject = commentObject.getJSONObject("reply");
                                 if (!replyObject.isNull("replyList")){

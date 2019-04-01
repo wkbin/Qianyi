@@ -43,6 +43,7 @@
                android:layout_height="64dp"
                android:src="@mipmap/touxiang"/>
            <ImageView
+               android:id="@+id/iv_member"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:src="@mipmap/silvermember"
@@ -134,6 +135,7 @@
                 android:layout_marginLeft="11dp"
                 android:text="连续签到天数越多，金币越多"/>
            <LinearLayout
+               android:id="@+id/li_integral_mall"
                android:layout_alignRight="@id/iv_integraltask"
                android:layout_centerVertical="true"
                android:layout_width="wrap_content"
@@ -361,26 +363,26 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/li_hotel"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:background="?android:attr/selectableItemBackground"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/hotelorder"/>
-                <TextView
-                    android:layout_marginTop="18dp"
-                    android:text="酒店订单"
-                    android:textColor="#000"
-                    android:textSize="12sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:id="@+id/li_hotel"-->
+                <!--android:layout_weight="1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:background="?android:attr/selectableItemBackground"-->
+                <!--android:layout_height="match_parent">-->
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@mipmap/hotelorder"/>-->
+                <!--<TextView-->
+                    <!--android:layout_marginTop="18dp"-->
+                    <!--android:text="酒店订单"-->
+                    <!--android:textColor="#000"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_weight="1"

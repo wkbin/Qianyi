@@ -86,6 +86,8 @@ dependencies {
     implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
     // 步骤指示器
     implementation 'com.github.baoyachi:StepView:1.9'
+    // 仿探探堆叠效果
+    implementation 'com.github.fashare2015:StackLayout:1.0.0'
     // 带索引的RecycleView
 
 }

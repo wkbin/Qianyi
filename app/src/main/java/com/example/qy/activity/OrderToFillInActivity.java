@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,7 +50,7 @@ public class OrderToFillInActivity extends BaseActivity {
 
         tv_commit = findViewById(R.id.tv_commit);
         tv_commit.setOnClickListener(v -> {
-
+            startActivity(new Intent(this,PayActivity.class));
         });
     }
 

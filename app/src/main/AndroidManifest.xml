@@ -110,7 +110,12 @@
         <activity android:name=".activity.ScenicSpotDetails" />
         <activity android:name=".activity.AttractionsDetails" />
         <activity android:name=".activity.OrderToFillInActivity" />
-        <activity android:name=".activity.PayActivity"></activity>
+        <activity android:name=".activity.PayActivity" />
+        <activity android:name=".activity.IntegralDrawActivity" />
+        <activity android:name=".activity.MemberActivity" />
+        <activity android:name=".activity.ClassRulesActivity" />
+        <activity android:name=".activity.IntegralMallActivity" />
+        <activity android:name=".activity.LandmarkAttractionsVideoDetailsActivity"></activity>
     </application>
 
 </manifest>

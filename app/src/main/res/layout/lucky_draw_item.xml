@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/rl_cj"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="8dp"
+    android:background="@drawable/bg_solid_yellow_20"
+    android:layout_width="70dp"
+    android:layout_height="70dp">
+    <ImageView
+        android:id="@+id/iv_images"
+        android:layout_centerInParent="true"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:src="@mipmap/fortypoints"/>
+</RelativeLayout>
+

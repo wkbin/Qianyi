@@ -21,7 +21,9 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.qy.R;
 import com.example.qy.activity.FocusActivity;
 import com.example.qy.activity.HotelReservationActivity;
+import com.example.qy.activity.IntegralMallActivity;
 import com.example.qy.activity.IntegralTaskActivity;
+import com.example.qy.activity.MemberActivity;
 import com.example.qy.activity.MessageActivity;
 import com.example.qy.activity.MyHomePageActivity;
 import com.example.qy.activity.MyOrderActivity;
@@ -52,11 +54,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private RelativeLayout rl_home_page;
     private LinearLayout li_specialty;
     private LinearLayout li_scenic_spot;
-    private LinearLayout li_hotel;
+//    private LinearLayout li_hotel;
     private LinearLayout li_order;
     private LinearLayout li_recent_visit;
     private LinearLayout li_like;
     private LinearLayout li_works;
+    private ImageView iv_member;
+    private LinearLayout li_integral_mall;
 
     @Nullable
     @Override
@@ -86,7 +90,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         li_my_fans = getActivity().findViewById(R.id.li_my_fans);
         li_specialty = getActivity().findViewById(R.id.li_specialty);
         li_scenic_spot = getActivity().findViewById(R.id.li_scenic_spot);
-        li_hotel = getActivity().findViewById(R.id.li_hotel);
+//        li_hotel = getActivity().findViewById(R.id.li_hotel);
         li_order = getActivity().findViewById(R.id.li_order);
         li_recent_visit = getActivity().findViewById(R.id.li_recent_visit);
         li_like = getActivity().findViewById(R.id.li_like);
@@ -100,12 +104,17 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         rl_home_page.setOnClickListener(this);
         li_specialty.setOnClickListener(this);
         li_scenic_spot.setOnClickListener(this);
-        li_hotel.setOnClickListener(this);
+//        li_hotel.setOnClickListener(this);
         li_order.setOnClickListener(this);
         li_recent_visit.setOnClickListener(this);
         li_like.setOnClickListener(this);
         li_works.setOnClickListener(this);
 
+        iv_member = getActivity().findViewById(R.id.iv_member);
+        iv_member.setOnClickListener(this);
+
+        li_integral_mall = getActivity().findViewById(R.id.li_integral_mall);
+        li_integral_mall.setOnClickListener(this);
 
         initData();
     }
@@ -182,9 +191,9 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.li_specialty:
                 startActivity(new Intent(getActivity(),SpecialOrdersActivity.class));
                 break;
-            case R.id.li_hotel:
-                startActivity(new Intent(getActivity(),HotelReservationActivity.class));
-                break;
+//            case R.id.li_hotel:
+//                startActivity(new Intent(getActivity(),HotelReservationActivity.class));
+//                break;
             case R.id.li_scenic_spot:
                 startActivity(new Intent(getActivity(),ScenicSpotOrdersActivity.class));
                 break;
@@ -193,6 +202,12 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.li_recent_visit:
                 startActivity(new Intent(getActivity(),RecentVisitActivity.class));
+                break;
+            case R.id.iv_member:
+                startActivity(new Intent(getActivity(),MemberActivity.class));
+                break;
+            case R.id.li_integral_mall:
+                startActivity(new Intent(getActivity(),IntegralMallActivity.class));
                 break;
         }
     }
