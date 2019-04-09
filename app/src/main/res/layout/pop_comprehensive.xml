@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="172dp"
+        android:orientation="vertical"
+        android:background="@drawable/shape_bottom_gray_10">
+
+        <RelativeLayout
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/rl_comprehensive_ranking"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_comprehensive_ranking"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="综合排序"
+                android:textColor="#ff3db2a3"
+                android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/iv_comprehensive_ranking"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/duigou1"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/rl_top_priority"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_top_priority"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门优先"
+                android:textColor="#ffb3b3b3"
+                android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/iv_top_priority"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/duigou1"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/rl_top_to_bottom"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_top_to_bottom"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="价格从高到低"
+                android:textColor="#ffb3b3b3"
+                android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/iv_top_to_bottom"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/duigou1"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/rl_bottom_to_top"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/tv_bottom_to_top"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="价格从低到高"
+                android:textColor="#ffb3b3b3"
+                android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/iv_bottom_to_top"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/duigou1"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_transparent"
+        android:background="#B3000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

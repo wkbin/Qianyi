@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.UpdatePhoneVerificationActivity">
+    <include layout="@layout/action_view_2"/>
     <include layout="@layout/action_bar_2"/>
     <TextView
         android:layout_marginTop="25dp"

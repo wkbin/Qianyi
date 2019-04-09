@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_margin="15dp"
+    android:gravity="center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.example.qy.ui.RoundImageView
+        android:scaleType="centerCrop"
+        android:layout_width="124dp"
+        android:layout_height="93dp"
+        android:src="@mipmap/beijing"/>
+    <LinearLayout
+        android:layout_marginLeft="13dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="庐山三叠泉"
+                android:textColor="#ff1a1a1a"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_marginLeft="9dp"
+                android:background="@drawable/shape_green_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="自然风光"
+                android:textColor="#ff5dbf39"
+                android:textSize="11sp"/>
+            <TextView
+                android:layout_marginLeft="9dp"
+                android:background="@drawable/shape_blue_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="温泉"
+                android:textColor="#ff5698f5"
+                android:textSize="11sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pingfen01"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pingfen01"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pingfen01"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pingfen01"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/pingfen01"/>
+
+            <TextView
+                android:layout_marginLeft="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.0分"
+                android:textColor="#ffff7f66"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12.6km"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+            <View
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_width="1px"
+                android:layout_height="9dp"
+                android:background="#DBDBDB"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="庐山市"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:gravity=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¥ "
+                android:textColor="#fff53131"
+                android:textSize="12sp" />
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="102"
+                android:textColor="#fff53131"
+                android:textSize="20sp" />
+            <TextView
+                android:layout_marginLeft="5dp"
+
+                android:background="@drawable/bg_solid_green_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="随买随用"
+                android:padding="1dp"
+                android:textColor="#ff3db2a3"
+                android:textSize="10sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

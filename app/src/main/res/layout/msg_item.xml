@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginLeft="15dp"
+        android:id="@+id/left_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@id/left_msg"
+            android:id="@+id/civ_icon_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/touxiang"/>
+        <TextView
+            android:layout_toRightOf="@id/civ_icon_left"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/left_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/whitedialogue"
+            android:text=""
+            android:textColor="#1a1a1a"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginRight="15dp"
+        android:id="@+id/right_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/right_msg"
+            android:layout_toLeftOf="@id/civ_icon_right"
+            android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/greendialogue"
+            android:text=""
+            android:textColor="#1a1a1a"
+            android:textSize="16sp" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/right_msg"
+            android:id="@+id/civ_icon_right"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/touxiang"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

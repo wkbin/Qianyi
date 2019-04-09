@@ -1,5 +1,6 @@
 package com.example.qy.whs;
 
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.example.qy.R;
 import com.example.qy.activity.LoginActivity;
 import com.example.qy.bean.UserInfo;
+import com.example.qy.ui.LoadingDialog;
 import com.jaeger.library.StatusBarUtil;
 
 import java.util.Timer;
@@ -24,6 +26,7 @@ public class BaseActivity extends AppCompatActivity {
     private UserInfo userInfo;
     private TextView action_bar_text;
     private ImageView action_bar_iv_left;
+    private LoadingDialog dialog;
 
     public TextView getAction_bar_text() {
         return action_bar_text;
@@ -48,6 +51,12 @@ public class BaseActivity extends AppCompatActivity {
         userInfo = application.getUserInfo();
 
     }
+
+    public LoadingDialog getDialog() {
+        dialog = new LoadingDialog(this);
+        return dialog;
+    }
+
     public void init(String str){
         action_bar_text = findViewById(R.id.action_bar_text);
         action_bar_iv_left = findViewById(R.id.action_bar_iv_left);
@@ -71,6 +80,20 @@ public class BaseActivity extends AppCompatActivity {
     }
     protected void setStatusBar(){
 //        StatusBarUtil.setColor(this,getResources().getColor(R.color.qy_white));
+    }
+
+    public void startLoading(){
+        if (dialog != null)
+            dialog.show();
+    }
+    public void startLoading(Context context){
+        dialog = new LoadingDialog(context);
+        if (dialog != null)
+            dialog.show();
+    }
+    public void stopLoading(){
+        if (dialog != null)
+            dialog.cancel();
     }
 
 }

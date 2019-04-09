@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MyAssetsActivity">
+    <include layout="@layout/action_view"/>
+    <include layout="@layout/action_bar_2"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@mipmap/touxiang"/>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/civ_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="丿战争之王丶"
+                android:textColor="#ff1a1a1a"
+                android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="积分：999999"
+                android:textColor="#ff1a1a1a"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选购商品"
+                android:layout_marginRight="7dp"
+                android:textColor="#ff3db2a3"
+                android:textSize="13sp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/greenjump"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="45dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#f2f2f2"/>
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/magic_indicator"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#f2f2f2"/>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_assets"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

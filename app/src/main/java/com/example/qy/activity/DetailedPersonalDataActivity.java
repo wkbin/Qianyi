@@ -33,6 +33,7 @@ import com.example.qy.R;
 import com.example.qy.bean.CityBean;
 import com.example.qy.bean.UserInfo;
 import com.example.qy.ui.IconChooseDialog;
+import com.example.qy.ui.LoadingDialog;
 import com.example.qy.ui.SexChooseDialog;
 import com.example.qy.utils.HttpQYUtils;
 import com.example.qy.utils.HttpUtils;
@@ -99,11 +100,15 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
     private Uri imageUri;
     // 要申请的权限
     private List<String> permissionList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_detailed_personal_data);
+
+
 
         rl_choose_icon = findViewById(R.id.rl_choose_icon);
 
@@ -264,6 +269,7 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                 startActivityForResult(intent,2);
                 break;
             case R.id.action_bar_iv_right:
+                getDialog().show();
                 // 保存
                  name = tv_name.getText().toString().trim();
                  sex = tv_sex.getText().toString().trim();
@@ -328,7 +334,13 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                                 userInfo.signature = signature;
                                 application.setUserInfo(userInfo);
                                 setResult(RESULT_OK);
-                                finish();
+
+                                if (imageUri == null){
+//                                    stopLoading();
+                                    getDialog().dismiss();
+                                    finish();
+                                }
+
                             }else{
                                 runOnUiThread(()-> {
                                     ToastUtils.showShort(DetailedPersonalDataActivity.this, msg);
@@ -446,11 +458,13 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                             ToastUtils.showShort(DetailedPersonalDataActivity.this, "上传成功");
                             Log.i("qiniu", "Upload Success");
 
-                            String url = (HttpQYUtils.getUpdateIcon(id, "http://pnb0vwgfl.bkt.clouddn.com/" + key));
+                            String url = (HttpQYUtils.getUpdateIcon(id, "http://ppbq68g1s.bkt.clouddn.com/" + key));
                             HttpUtils.sendOkHttpRequest(url, new Callback() {
                                 @Override
                                 public void onFailure(Call call, IOException e) {
                                     runOnUiThread(()-> {
+//                                            stopLoading();
+                                            getDialog().dismiss();
                                             ToastUtils.showShort(DetailedPersonalDataActivity.this, "插入服务器失败");
                                     });
                                 }
@@ -462,15 +476,18 @@ public class DetailedPersonalDataActivity extends BaseActivity implements View.O
                                         JSONObject jsonObject = new JSONObject(responseText);
                                         final String msg = jsonObject.getString("msg");
                                         boolean isSuc = jsonObject.getBoolean("isSuc");
-                                        runOnUiThread(()-> {
-                                                ToastUtils.showShort(DetailedPersonalDataActivity.this, msg);
-                                        });
+
                                         if (isSuc){
                                             //TODO 存储头像
                                             UserInfo userInfo = application.getUserInfo();
-                                            userInfo.icon = "http://pnb0vwgfl.bkt.clouddn.com/"+key;
+                                            userInfo.icon = "http://ppbq68g1s.bkt.clouddn.com/"+key;
                                             application.setUserInfo(userInfo);
                                         }
+                                        runOnUiThread(()-> {
+                                            getDialog().dismiss();
+                                            ToastUtils.showShort(DetailedPersonalDataActivity.this, msg);
+                                            finish();
+                                        });
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();

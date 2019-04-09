@@ -30,6 +30,9 @@
     <!-- 读取联系人所需权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
+    <!-- IM 所需权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <!-- hardwareAccelerated 开启硬件加速 -->
     <application
         android:name=".whs.MyApplication"
@@ -115,7 +118,27 @@
         <activity android:name=".activity.MemberActivity" />
         <activity android:name=".activity.ClassRulesActivity" />
         <activity android:name=".activity.IntegralMallActivity" />
-        <activity android:name=".activity.LandmarkAttractionsVideoDetailsActivity"></activity>
+        <activity android:name=".activity.LandmarkAttractionsVideoDetailsActivity" />
+        <activity android:name=".activity.IntegralTradingActivity" />
+        <activity android:name=".activity.MyAssetsActivity" />
+        <activity android:name=".activity.VideoReportActivity" />
+        <activity android:name=".activity.VideoReportActivity2" />
+        <activity android:name=".activity.SpecialtyOrderDetailsActivity" />
+        <activity
+            android:name=".activity.ShoppingCartActivity"
+            android:label="@string/title_activity_shopping_cart"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.SearchFriendsActivity"
+            android:label="@string/title_activity_search_friends"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.FriendsList" />
+        <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.ChatDetailsActivity" />
+        <activity android:name=".activity.SpecialtyListActivity" />
+        <activity android:name=".activity.AttractionsHomeActivity" />
+        <activity android:name=".activity.FriendOrFocusDetailsActivity" />
+        <activity android:name=".activity.SpecialtyDetailsActivity"></activity>
     </application>
 
 </manifest>

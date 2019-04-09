@@ -25,6 +25,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.BezierPagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
 import java.util.ArrayList;
@@ -59,14 +60,14 @@ public class ScenicSpotOrdersActivity extends BaseActivity {
         fragments.add(new RefundFragment());
 
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(),fragments,titles);
-//        SttractionsPagerAdapter adapter = new SttractionsPagerAdapter(getSupportFragmentManager(),fragments);
         view_pager.setAdapter(adapter);
 
         CommonNavigator commonNavigator = new CommonNavigator(this);
+        commonNavigator.setAdjustMode(true);
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
-                return titles == null ? 0 : titles.length;
+                return titles.length;
             }
 
             @Override
@@ -94,18 +95,10 @@ public class ScenicSpotOrdersActivity extends BaseActivity {
 
             @Override
             public IPagerIndicator getIndicator(Context context) {
-                //设置标题指示器，也有多种,可不选，即没有标题指示器。
-                BezierPagerIndicator indicator = new BezierPagerIndicator(context);
-                indicator.setColors(Color.parseColor("#ff4a42"),
-                        Color.parseColor("#fcde64"),
-                        Color.parseColor("#73e8f4"),
-                        Color.parseColor("#76b0ff"),
-                        Color.parseColor("#c683fe"),
-                        Color.parseColor("#76b0ff"),
-                        Color.parseColor("#c683fe"),
-                        Color.parseColor("#76b0ff"),
-                        Color.parseColor("#c683fe"));
-
+                LinePagerIndicator indicator = new LinePagerIndicator(context);
+//                indicator.setLineColor(Color.parseColor("#3DB2A3"));
+                indicator.setMode(LinePagerIndicator.MODE_WRAP_CONTENT);
+                indicator.setColors(Color.parseColor("#3DB2A3"));
                 return indicator;
             }
         });

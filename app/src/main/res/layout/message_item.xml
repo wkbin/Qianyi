@@ -34,6 +34,7 @@
         </RelativeLayout>
     </LinearLayout>
 
+
     <RelativeLayout
         android:id="@+id/rowFG"
         android:layout_width="match_parent"

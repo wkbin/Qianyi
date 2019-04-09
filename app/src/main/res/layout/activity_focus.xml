@@ -10,24 +10,24 @@
         android:layout_width="match_parent"
         android:background="#fff"
         android:layout_height="@dimen/statusbar_view_height" />
-    <LinearLayout
+    <RelativeLayout
         android:background="#fff"
         android:orientation="horizontal"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
         <ImageView
             android:id="@+id/action_bar_iv_left"
             android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/fanhui2"/>
         <TextView
+            android:layout_centerInParent="true"
             android:id="@+id/action_bar_text"
             android:textStyle="bold"
             android:gravity="center"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:textSize="18sp"
             android:textColor="#1a1a1a"
             android:text="-"
@@ -35,11 +35,13 @@
         <ImageView
             android:id="@+id/action_bar_iv_right"
             android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:src="@mipmap/friendsicon"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </LinearLayout>
+    </RelativeLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="15dp"
         android:id="@+id/rl_focus"

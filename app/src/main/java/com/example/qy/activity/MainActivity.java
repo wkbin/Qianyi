@@ -240,7 +240,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 showOther("shopping");
                 break;
             case R.id.li_my:
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
                 MyApplication application = (MyApplication) getApplication();
                 if (application.getUserInfo() != null){
                     initFragment("my");

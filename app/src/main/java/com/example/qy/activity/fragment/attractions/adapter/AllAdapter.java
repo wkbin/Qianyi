@@ -3,6 +3,7 @@ package com.example.qy.activity.fragment.attractions.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.qy.R;
+import com.example.qy.activity.fragment.special.adapter.ContentAdapter;
 
 /**
  * Author: 王克斌
@@ -41,6 +43,7 @@ public class AllAdapter extends RecyclerView.Adapter<AllAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView tv_title;
         TextView tv_name;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_title = itemView.findViewById(R.id.tv_title);

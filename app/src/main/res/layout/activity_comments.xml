@@ -8,4 +8,8 @@
     tools:context=".activity.CommentsActivity">
     <include layout="@layout/action_view_2"/>
     <include layout="@layout/action_bar_2"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_comments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

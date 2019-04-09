@@ -44,5 +44,13 @@
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
+    <!-- 顶部弹出动画 -->
+    <style name="PopTopAnim">
+        <!-- PopupWindow左右弹出的效果 -->
+        <item name="android:windowEnterAnimation">@anim/pop_top_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_top_out</item>
+    </style>
+
+
 
 </resources>

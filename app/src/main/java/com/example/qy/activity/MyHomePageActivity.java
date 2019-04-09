@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ import com.example.qy.fragment.CollectFragment;
 import com.example.qy.fragment.LikeFragment;
 import com.example.qy.fragment.ProductionFragment;
 import com.example.qy.imp.AppBarStateChangeListener;
+import com.example.qy.ui.LoadingDialog;
 import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
 import com.jaeger.library.StatusBarUtil;
@@ -54,6 +56,7 @@ public class MyHomePageActivity extends BaseActivity implements View.OnClickList
     CollapsingToolbarLayout collapsingToolbarLayout;
     AppBarLayout app_bar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,7 @@ public class MyHomePageActivity extends BaseActivity implements View.OnClickList
     }
 
     private void initView(){
+
         cv_my_icon = findViewById(R.id.cv_my_icon);
         tv_my_nickname = findViewById(R.id.tv_my_nickname);
         tv_my_id = findViewById(R.id.tv_my_id);
@@ -135,14 +139,24 @@ public class MyHomePageActivity extends BaseActivity implements View.OnClickList
 
     }
     private void initData(){
-        MyApplication application = (MyApplication) getApplication();
-        UserInfo userInfo = application.getUserInfo();
 
-        Glide.with(MyHomePageActivity.this).load(userInfo.icon).into(cv_my_icon);
-        tv_my_nickname.setText(userInfo.nickname);
-        tv_name2.setText(userInfo.nickname);
-        tv_my_id.setText("千艺号："+userInfo.qianyiID);
-        tv_my_signature.setText(userInfo.signature);
+        UserInfo userInfo = getUserInfo();
+        if (userInfo != null) {
+            if (!TextUtils.isEmpty(userInfo.nickname)) {
+                tv_my_nickname.setText(userInfo.nickname);
+                tv_name2.setText(userInfo.nickname);
+            }
+            if (!TextUtils.isEmpty(userInfo.qianyiID)) {
+                tv_my_id.setText("千艺号："+userInfo.qianyiID);
+            }
+            if (!TextUtils.isEmpty(userInfo.signature)) {
+                tv_my_signature.setText(userInfo.signature);
+            }
+            if (!TextUtils.isEmpty(userInfo.icon)) {
+                Glide.with(MyHomePageActivity.this).load(userInfo.icon).into(cv_my_icon);
+            }
+        }
+
 
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(),fragmentList);
         vp_home_page.setAdapter(adapter);

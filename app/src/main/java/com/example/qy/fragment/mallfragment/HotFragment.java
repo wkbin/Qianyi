@@ -55,7 +55,7 @@ public class HotFragment extends Fragment {
         rc_mall_hot.setLayoutManager(manager);
         rc_mall_hot.setAdapter(adapter);
 
-
+        rc_mall_hot.setNestedScrollingEnabled(false);
 
 
 

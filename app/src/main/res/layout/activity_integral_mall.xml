@@ -1,138 +1,396 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    android:orientation="vertical"
-    tools:context=".activity.IntegralMallActivity">
-    <include layout="@layout/action_view"/>
-    <include layout="@layout/action_bar_2"/>
-    
-    <com.example.qy.ui.RoundImageView
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:scaleType="center"
-        android:src="@mipmap/beijing"
-        android:layout_width="match_parent"
-        android:layout_height="151dp" />
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="151dp">
-        <RelativeLayout
-            android:layout_width="135dp"
-            android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical"
+        tools:context=".activity.IntegralMallActivity">
+
+        <include layout="@layout/action_view" />
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
             <ImageView
+                android:id="@+id/action_bar_iv_left"
+
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@mipmap/fanhui2"/>
+            <TextView
+                android:layout_centerInParent="true"
+                android:id="@+id/action_bar_text"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#1a1a1a"
+                android:text="-"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/action_bar_tv_right"
+                android:textColor="#1A1A1A"
+                android:text="我的礼品"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <com.example.qy.ui.RoundImageView
+            android:layout_width="match_parent"
+            android:layout_height="151dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:scaleType="center"
+            android:src="@mipmap/beijing" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="151dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="10dp">
+
+            <RelativeLayout
+                android:id="@+id/rl_my_integral"
+                android:layout_width="135dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/shape_integral_all" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@mipmap/touxiang" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="丿战争之王丶"
+                        android:textColor="#ffffffff"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="积分：999999"
+                        android:textColor="#ffffffff"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/shape_integral_all"/>
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/li_get_integral"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/earnpoints"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="赚积分"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="连续签到轻松得积分"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_lucky_draw"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/luckydraw" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="热门兑换"
+                    android:textColor="#ff1a1a1a"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/li_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="更多"
+                        android:textColor="#ff3db2a3"
+                        android:textSize="13sp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6dp"
+                        android:src="@mipmap/greenjump" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_hot_for"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="精品兑换"
+                android:textColor="#ff1a1a1a"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/green">
+
+                <LinearLayout
+                    android:id="@+id/li_green_left"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apple ipad pro"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="兑换积分：99999"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="剩余数量：2"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/shape_integral_green_15"
+                        android:layout_width="84dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="兑换"
+                        android:textColor="#ffffffff"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/li_green_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ipad"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/huang">
+                <ImageView
+                    android:id="@+id/iv_yellow_left"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/iphonex"/>
+
+                <LinearLayout
+                    android:layout_toRightOf="@id/iv_yellow_left"
+
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Iphone Xr"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="兑换积分：99999"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="剩余数量：2"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/shape_integral_yellow_15"
+                        android:layout_width="84dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="兑换"
+                        android:textColor="#ffffffff"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/orange">
+                <LinearLayout
+                    android:id="@+id/li_orange_left"
+                    android:layout_marginLeft="40dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="京东卡-100元"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="兑换积分：99999"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="剩余数量：2"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/shape_integral_orange_15"
+                        android:layout_width="84dp"
+                        android:layout_height="30dp"
+                        android:gravity="center"
+                        android:text="兑换"
+                        android:textColor="#ffffffff"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toRightOf="@id/li_orange_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/jdcard"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
             <LinearLayout
                 android:layout_centerInParent="true"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:src="@mipmap/touxiang"/>
+                <View
+                    android:background="#f2f2f2"
+                    android:layout_width="18dp"
+                    android:layout_height="1px"/>
                 <TextView
-                    android:layout_marginTop="5dp"
+                    android:layout_margin="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="丿战争之王丶"
-                    android:textColor="#ffffffff"
-                    android:textSize="14sp" />
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="积分：999999"
-                    android:textColor="#ffffffff"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:paddingLeft="15dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:background="@mipmap/earnpoints">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="赚积分"
-                    android:textColor="#ffffff"
-                    android:textSize="16sp" />
-                <TextView
-                    android:layout_marginTop="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="连续签到轻松得积分"
-                    android:textColor="#ffffff"
-                    android:textSize="12sp" />
-            </LinearLayout>
-            <ImageView
-                android:id="@+id/iv_lucky_draw"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@mipmap/luckydraw"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="热门兑换"
-                android:textColor="#ff1a1a1a"
-                android:textSize="18sp" />
-            <LinearLayout
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="更多"
+                    android:text="查看更多好礼"
                     android:textColor="#ff3db2a3"
-                    android:textSize="13sp" />
-                <ImageView
-                    android:layout_marginLeft="6dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/greenjump"/>
+                    android:textSize="11sp" />
+                <View
+                    android:background="#f2f2f2"
+                    android:layout_width="18dp"
+                    android:layout_height="1px"/>
             </LinearLayout>
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

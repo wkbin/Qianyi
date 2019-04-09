@@ -30,6 +30,10 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+
+//        TUIKit.init(context,sdkAppId, BaseUIKitConfigs.getDefaultConfigs());
+
         // 配置LitePal
 //        LitePal.initialize(this);
     }

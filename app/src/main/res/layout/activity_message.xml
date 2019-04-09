@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="110dp">
         <LinearLayout
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/li_comments"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -32,6 +33,7 @@
                 android:text="评论"/>
         </LinearLayout>
         <LinearLayout
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/li_like"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -50,6 +52,7 @@
                 android:text="赞"/>
         </LinearLayout>
         <LinearLayout
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/li_direct_messages"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -68,6 +71,7 @@
                 android:text="私信"/>
         </LinearLayout>
         <LinearLayout
+            android:background="?android:attr/selectableItemBackground"
             android:id="@+id/li_friends"
             android:layout_width="0dp"
             android:layout_height="match_parent"

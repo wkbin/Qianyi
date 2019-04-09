@@ -17,8 +17,7 @@ import com.example.qy.R;
 import com.example.qy.whs.BaseActivity;
 
 public class UpdatePhoneVerificationActivity extends BaseActivity implements View.OnClickListener {
-    private TextView action_bar_text;
-    private ImageView action_bar_iv_left;
+
     private EditText et_verification;
     private TextView tv_code1,tv_code2,tv_code3,tv_code4;
     private Button btn_next;
@@ -27,10 +26,7 @@ public class UpdatePhoneVerificationActivity extends BaseActivity implements Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_phone_verification);
 
-        action_bar_text = findViewById(R.id.action_bar_text);
-        action_bar_iv_left = findViewById(R.id.action_bar_iv_left);
-        action_bar_iv_left.setOnClickListener(this);
-        action_bar_text.setText("绑定手机");
+        init("绑定手机");
 
         et_verification = findViewById(R.id.et_verification);
         tv_code1 = findViewById(R.id.tv_code1);

@@ -3,6 +3,7 @@ package com.example.qy.adapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.qy.R;
+import com.example.qy.activity.FriendOrFocusDetailsActivity;
 
 /**
  * Author: 王克斌
@@ -34,6 +36,9 @@ public class FocusOnAdapter extends RecyclerView.Adapter<FocusOnAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
+        viewHolder.iv_friend_or_focus.setOnClickListener(v -> {
+            context.startActivity(new Intent(context,FriendOrFocusDetailsActivity.class));
+        });
         viewHolder.rc_comments.setAdapter(new AttentionCommentAdapter(context));
 
         viewHolder.iv_more_2.setOnClickListener(v -> {
@@ -57,11 +62,14 @@ public class FocusOnAdapter extends RecyclerView.Adapter<FocusOnAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder{
         RecyclerView rc_comments;
         ImageView iv_more_2;
+        ImageView iv_friend_or_focus;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             rc_comments = itemView.findViewById(R.id.rc_comments);
             iv_more_2 = itemView.findViewById(R.id.iv_more_2);
             rc_comments.setLayoutManager(new LinearLayoutManager(context));
+            iv_friend_or_focus = itemView.findViewById(R.id.iv_friend_or_focus);
+
         }
     }
 }

@@ -7,13 +7,17 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.qy.R;
 import com.example.qy.whs.BaseActivity;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MemberActivity extends BaseActivity {
     private ProgressBar pb_exp;
     private TextView tv_class;
     private ImageView action_bar_iv_left;
+    private CircleImageView civ_icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,5 +36,8 @@ public class MemberActivity extends BaseActivity {
         action_bar_iv_left.setOnClickListener(v -> {
             finish();
         });
+
+        civ_icon = findViewById(R.id.civ_icon);
+        Glide.with(this).load(getUserInfo().icon).into(civ_icon);
     }
 }

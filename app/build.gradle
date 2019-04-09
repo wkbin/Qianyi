@@ -9,6 +9,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // 指定app使用架构
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
     buildTypes {
         release {
@@ -88,6 +93,17 @@ dependencies {
     implementation 'com.github.baoyachi:StepView:1.9'
     // 仿探探堆叠效果
     implementation 'com.github.fashare2015:StackLayout:1.0.0'
+    // 腾讯云IM
+    implementation 'com.tencent.imsdk:imsdk:4.2.10'
+//    implementation fileTree(includes: ['*.jar'],dir: 'libs')
+    implementation fileTree(includes: ['*.jar'], dir: 'tuikit/libs')
+
+//    implementation 'com.tencent.imsdk:tuikit:4.2.10'
+
+    // 悬浮按钮
+    implementation 'com.github.wangjiegulu:rfab:2.0.0'
     // 带索引的RecycleView
+
+
 
 }

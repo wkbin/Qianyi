@@ -1,5 +1,6 @@
 package com.example.qy.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,7 +46,6 @@ public class FocusActivity extends BaseActivity implements View.OnClickListener 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_focus);
-
 
         UserInfo userInfo = ((MyApplication)getApplication()).getUserInfo();
         final int id = userInfo.loginId;
@@ -109,7 +109,7 @@ public class FocusActivity extends BaseActivity implements View.OnClickListener 
             }
         });
 
-
+        findViewById(R.id.action_bar_iv_right).setOnClickListener(this);
 
     }
 
@@ -192,7 +192,9 @@ public class FocusActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
+            case R.id.action_bar_iv_right:
+                startActivity(new Intent(this,SearchFriendsActivity.class));
+                break;
         }
     }
 }

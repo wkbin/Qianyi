@@ -3,7 +3,7 @@ package com.example.qy.utils;
 import android.util.Log;
 
 public class HttpQYUtils {
-    private static final String ipUrl = "http://192.168.10.24:8080/QianYi/";
+    private static final String ipUrl = "http://192.168.0.112:8080/QianYi/";
 
 //    private static final String ipUrl = "http://ruianshen.oicp.io/QianYi/";
 

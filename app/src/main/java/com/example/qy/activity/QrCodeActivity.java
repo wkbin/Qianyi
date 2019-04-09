@@ -53,8 +53,9 @@ public class QrCodeActivity extends BaseActivity {
            finish();
         });
 
-        MyApplication application = (MyApplication) getApplication();
-        UserInfo userInfo = application.getUserInfo();
+//        MyApplication application = (MyApplication) getApplication();
+//        UserInfo userInfo = application.getUserInfo();
+        UserInfo userInfo = getUserInfo();
         Glide.with(QrCodeActivity.this).load(userInfo.icon).into(civ_icon);
         tv_qy_code.setText(userInfo.qianyiID);
         tv_name.setText(userInfo.nickname);
@@ -65,7 +66,7 @@ public class QrCodeActivity extends BaseActivity {
          * logo：不需要logo的话直接传null
          * */
 
-        Bitmap bitmap = CodeCreator.createQRCode(userInfo.phone, 255, 255, null);
+        Bitmap bitmap = CodeCreator.createQRCode(String.valueOf(userInfo.loginId), 255, 255, null);
         iv_qr_code.setImageBitmap(bitmap);
 
         li_scan.setOnClickListener(v -> {
@@ -98,6 +99,11 @@ public class QrCodeActivity extends BaseActivity {
             if (data != null) {
                 String content = data.getStringExtra(Constant.CODED_CONTENT);
                 ToastUtils.showShort(QrCodeActivity.this,content);
+                if (!content.equals(String.valueOf(getUserInfo().loginId))){
+                    startActivity(new Intent(QrCodeActivity.this,OtherHomePageActivity.class));
+                }else{
+
+                }
                 Log.d("QrCodeActivity","扫描结果为：" + content);
             }
         }

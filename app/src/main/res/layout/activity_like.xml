@@ -8,4 +8,8 @@
     tools:context=".activity.LikeActivity">
     <include layout="@layout/action_view_2"/>
     <include layout="@layout/action_bar_2"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

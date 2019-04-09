@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <LinearLayout
+        android:id="@+id/li_jd"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#fff"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/thestoreicon" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:text="特产"
+            android:textColor="#1a1a1a"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/blackjump" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="交易成功"
+            android:textColor="#F53131"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/rl_body"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="94dp"-->
+        <!--android:layout_below="@id/li_jd"-->
+        <!--android:background="#33F2F2F2"-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:paddingRight="20dp"-->
+        <!--android:paddingBottom="10dp">-->
+
+        <!--<com.example.qy.ui.RoundImageView-->
+    <!--android:id="@+id/cv_icon"-->
+    <!--android:layout_width="74dp"-->
+    <!--android:layout_height="74dp"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="@mipmap/beijing" />-->
+
+    <!--<TextView-->
+        <!--android:layout_toLeftOf="@id/tv_pay"-->
+        <!--android:layout_marginRight="28dp"-->
+        <!--android:id="@+id/tv_name"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:maxLines="2"-->
+        <!--android:layout_marginLeft="12dp"-->
+        <!--android:layout_toRightOf="@id/cv_icon"-->
+        <!--android:text="友臣肉松棒1KG肉松饼礼盒特产早友臣肉松棒1KG肉松饼礼盒特产早"-->
+        <!--android:textColor="#ff1a1a1a"-->
+        <!--android:textSize="12sp" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/tv_pay"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:text="￥399.00"-->
+        <!--android:textColor="#fff53131"-->
+        <!--android:textSize="12sp" />-->
+
+    <!--<TextView-->
+        <!--android:layout_below="@id/tv_name"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_toLeftOf="@id/tv_pay"-->
+        <!--android:layout_marginRight="28dp"-->
+        <!--android:maxLines="2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="12dp"-->
+        <!--android:layout_toRightOf="@id/cv_icon"-->
+        <!--android:text="使用时间(当地时间)：2019.3.16使用时间(当地时间)：2019.3.16"-->
+        <!--android:textColor="#999999"-->
+        <!--android:textSize="11sp" />-->
+
+    <!--<TextView-->
+        <!--android:layout_below="@id/tv_pay"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:text="×1"-->
+        <!--android:textColor="#666666"-->
+        <!--android:textSize="12sp" />-->
+<!--</RelativeLayout>-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_content"
+        android:layout_below="@id/li_jd"
+        android:background="#33f2f2f2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rc_content"
+        android:background="#fff"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/li_pay"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_rmb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="合计：￥399.00"
+                android:textColor="#1a1a1a"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_additional_evaluation"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/li_pay"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_tv_15_r_666666"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingTop="3dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="3dp"
+            android:text="追加评价"
+            android:textColor="#1a1a1a"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/li_pay"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/tv_additional_evaluation"
+            android:background="@drawable/shape_tv_15_r_f53131"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingTop="3dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="3dp"
+            android:text="再次购买"
+            android:textColor="#F53131"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</RelativeLayout>

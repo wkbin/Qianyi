@@ -100,7 +100,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
                 startActivity(new Intent(MessageActivity.this,DirectMessagesActivity.class));
                 break;
             case R.id.li_friends:
-                startActivity(new Intent(MessageActivity.this,FriendsActivity.class));
+                startActivity(new Intent(MessageActivity.this,FriendsList.class));
                 break;
         }
     }
