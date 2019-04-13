@@ -24,7 +24,9 @@ allprojects {
         jcenter()
         // 心形按钮
         maven { url "https://jitpack.io" }
-
+        flatDir {
+            dirs 'libs'
+        }
     }
 }
 

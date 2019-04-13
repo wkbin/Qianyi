@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.example.qy.R;
 import com.example.qy.adapter.RecommendedAttractionsAdapter;
+import com.example.qy.ui.ChooseDestinationDialog;
 import com.example.qy.whs.BaseActivity;
 
 public class AttractionsHomeActivity extends BaseActivity implements View.OnClickListener {
@@ -21,6 +22,7 @@ public class AttractionsHomeActivity extends BaseActivity implements View.OnClic
 
         findViewById(R.id.iv_back).setOnClickListener(this);
         findViewById(R.id.civ_top).setOnClickListener(this);
+        findViewById(R.id.li_choose_destination).setOnClickListener(this);
 
         rc_recommended_attractions = findViewById(R.id.rc_recommended_attractions);
         rc_recommended_attractions.setLayoutManager(new LinearLayoutManager(this));
@@ -38,6 +40,10 @@ public class AttractionsHomeActivity extends BaseActivity implements View.OnClic
                 break;
             case R.id.civ_top:
                 nsv_recommended_attractions.smoothScrollTo(0,0);
+                break;
+            case R.id.li_choose_destination:
+                ChooseDestinationDialog dialog = new ChooseDestinationDialog(this);
+                dialog.show();
                 break;
         }
     }

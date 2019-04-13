@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#CC000000"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="拖动选择暂停位置"
+        android:textColor="#ffffffff"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0s"
+            android:textColor="#66ffffff"
+            android:textSize="11sp" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60s"
+            android:textColor="#66ffffff"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <SeekBar
+        android:id="@+id/sb_countdown_progress"
+        style="@style/CustomSeekbarStyle"
+        android:progressDrawable="@drawable/seekbar_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="60"
+        android:background="@null" />
+
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="倒计时拍摄"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_green_5"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+</LinearLayout>

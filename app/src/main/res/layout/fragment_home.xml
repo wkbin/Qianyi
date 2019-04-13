@@ -32,24 +32,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:gravity="center|center_vertical"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_tourism"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#fefefe"
-                android:textSize="20sp"
-                android:layout_marginRight="38dp"
-                android:text="旅游"/>
-            <TextView
-                android:id="@+id/tv_food"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="美食"
-                android:textColor="#B3fefefe"
-                android:textSize="16sp"/>
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
+
         <ImageView
             android:id="@+id/iv_search"
             android:src="@mipmap/ss"

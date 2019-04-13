@@ -28,7 +28,28 @@
             android:src="@mipmap/guanbi"/>
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/li_wpl"
+        android:layout_below="@id/rl_top"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/wupinglun"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="没有相应的评论~"
+            android:textColor="#ffb3b3b3"
+            android:textSize="14sp" />
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
         android:layout_below="@id/rl_top"
         android:id="@+id/rc_first_comments"
         android:layout_width="match_parent"

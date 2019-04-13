@@ -34,7 +34,6 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
 
     private void init() {
         mPagerSnapHelper = new PagerSnapHelper();
-
     }
 
 

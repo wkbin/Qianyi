@@ -64,6 +64,7 @@ public class HttpQYUtils {
     // 插入评论
     private static final String insertReply = "insertReply?";
 
+
     public static String getLoginPassWord(String loginPhone,String loginPwd,String loginId){
         return ipUrl+loginPassWord+"loginPhone="+loginPhone+"&loginPwd="+loginPwd+"&MEID="+loginId;
     }
@@ -240,6 +241,11 @@ public class HttpQYUtils {
         String url = ipUrl+insertReply+"comentsid="+comentsid+"&touid="+touid+"&content="+content+"&fromuid="+fromuid+"&likecounts="+likecounts+"&type="+type;
         Log.d("9998","url = "+url);
         return url;
+    }
+
+
+    public static String getSelectAllMusic(){
+        return "https://rest.apizza.net/mock/08d894e967658932d07da0c18c170d9f/selectAllMusic";
     }
 
 

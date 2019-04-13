@@ -17,7 +17,7 @@ import com.example.qy.utils.ToastUtils;
 /**
  * Author: 王克斌
  * Date: 2019 年 03 月 18 日 下午 4:40
- * Description:
+ * Description: 选择地址标签
  */
 public class AddressLabelsDialog extends Dialog implements View.OnClickListener {
     public interface onClickListener{

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_music_image"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:scaleType="centerCrop" />
+            <ImageView
+                android:id="@+id/iv_music_play"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_music_name"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff1a1a1a"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/tv_creator_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ff999999"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/layout_use"
+            android:layout_width="90dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical">
+
+            <com.example.qy.xiaoshipin.videoeditor.common.widget.progress.SampleProgressButton
+                android:id="@+id/btn_use"
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                app:sampleProgressButtonBackgroundColor="#6C7B8B"
+                app:sampleProgressButtonForegroundColor="#91E573"
+                app:sampleProgressButtonText="@string/use"
+                app:sampleProgressButtonTextSize="12dp"/>
+
+        </FrameLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+                <!--android:background="@drawable/shape_green_5"-->
+                <!--android:layout_width="64dp"-->
+                <!--android:layout_height="30dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="使用"-->
+                <!--android:textColor="#ffffffff"-->
+                <!--android:textSize="14sp" />-->
+        <!--</LinearLayout>-->
+    </LinearLayout>
+
+
+</RelativeLayout>

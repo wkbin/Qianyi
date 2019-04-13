@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.qy.R;
@@ -31,13 +34,16 @@ import com.example.qy.bean.UserInfo;
 import com.example.qy.whs.MyApplication;
 
 public class MyFragment extends Fragment implements View.OnClickListener {
-    private de.hdodenhof.circleimageview.CircleImageView cv_my_icon;
-    private TextView tv_my_nickname;
+    private de.hdodenhof.circleimageview.CircleImageView cv_my_icon,cv_my_icon2;
+    private TextView tv_my_nickname,tv_my_nickname2;
     private TextView tv_my_id;
     private TextView tv_my_attention;
     private TextView tv_my_fans;
     public String phone;
 
+    private NestedScrollView nsc_my;
+    private LinearLayout li_my;
+    private float py;
 
     @Nullable
     @Override
@@ -46,15 +52,38 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         cv_my_icon = getActivity().findViewById(R.id.cv_my_icon);
+        cv_my_icon2 = getActivity().findViewById(R.id.cv_my_icon2);
         tv_my_nickname = getActivity().findViewById(R.id.tv_my_nickname);
+        tv_my_nickname2 = getActivity().findViewById(R.id.tv_my_nickname2);
         tv_my_id = getActivity().findViewById(R.id.tv_my_id);
         tv_my_attention = getActivity().findViewById(R.id.tv_my_attention);
         tv_my_fans = getActivity().findViewById(R.id.tv_my_fans);
+
+        li_my = getActivity().findViewById(R.id.li_my);
+        li_my.setAlpha(0);
+
+        nsc_my = getActivity().findViewById(R.id.nsc_my);
+        nsc_my.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Log.e("====","scrollY == "+scrollY);
+                if (scrollY > 500) {
+                    li_my.setAlpha(1);
+                } else if (scrollY > 200) {
+                    py = (scrollY - 200) / 1000f * 4;
+                    li_my.setAlpha(py);
+                } else {
+                    li_my.setAlpha(0);
+                }
+            }
+        });
 
         getActivity().findViewById(R.id.li_my_attention).setOnClickListener(this);
         getActivity().findViewById(R.id.li_my_fans).setOnClickListener(this);
@@ -62,6 +91,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         getActivity().findViewById(R.id.li_works).setOnClickListener(this);
         getActivity().findViewById(R.id.li_home_page).setOnClickListener(this);
         getActivity().findViewById(R.id.iv_my_settings).setOnClickListener(this);
+        getActivity().findViewById(R.id.iv_my_settings2).setOnClickListener(this);
         getActivity().findViewById(R.id.li_order).setOnClickListener(this);
         getActivity().findViewById(R.id.li_my_specialty).setOnClickListener(this);
         getActivity().findViewById(R.id.li_scenic_spot).setOnClickListener(this);
@@ -83,11 +113,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         Log.d("MyFragment","userInfo = "+userInfo.toString());
         phone = userInfo.phone;
         tv_my_nickname.setText(userInfo.nickname);
+        tv_my_nickname2.setText(userInfo.nickname);
         tv_my_id.setText("千艺号："+userInfo.qianyiID);
         tv_my_attention.setText(userInfo.follow);
         tv_my_fans.setText(userInfo.fans);
 
         Glide.with(getActivity()).load(userInfo.icon).into(cv_my_icon);
+        Glide.with(getActivity()).load(userInfo.icon).into(cv_my_icon2);
 
 
     }
@@ -99,6 +131,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         if (userInfo != null){
             if (!TextUtils.isEmpty(userInfo.nickname)){
                 tv_my_nickname.setText(userInfo.nickname);
+                tv_my_nickname2.setText(userInfo.nickname);
             }
             if (!TextUtils.isEmpty(userInfo.follow)){
                 tv_my_attention.setText(userInfo.follow);
@@ -108,6 +141,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             }
             if (!TextUtils.isEmpty(userInfo.icon)){
                 Glide.with(getActivity()).load(userInfo.icon).into(cv_my_icon);
+                Glide.with(getActivity()).load(userInfo.icon).into(cv_my_icon2);
             }
 
 
@@ -125,6 +159,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 Intent i = new Intent(getActivity(),MyHomePageActivity.class);
                 startActivityForResult(i,1);
                 break;
+            case R.id.iv_my_settings2:
             case R.id.iv_my_settings:
                 startActivity(new Intent(getActivity(),SettingsActivity.class));
                 break;

@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_alignParentBottom="true"
+    android:background="#80000000"
+    android:clickable="false"
+    android:focusable="false"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_bgm_confirm"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/drawable_ugc_next"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_mic_volume"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left|center_vertical"
+        android:text="@string/mic_volume"
+        android:textColor="@color/white" />
+
+    <SeekBar
+        android:id="@+id/seekbar_mic_volume"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:maxHeight="4dp"
+        android:minHeight="4dp"
+        android:progress="50"
+        android:progressDrawable="@drawable/seekbar_progress_drawable"
+        android:thumb="@drawable/play_seekbar_icon" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left|center_vertical"
+        android:text="@string/sound_effect_pannel_record_reverb"
+        android:textColor="@color/white" />
+
+    <HorizontalScrollView
+        android:id="@+id/layout_reverb_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="none"
+        android:weightSum="7">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/btn_reverb_default"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_original_sound"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_reverb_1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_ktv"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_reverb_2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_room"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_reverb_3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_hall"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_reverb_4"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_deep"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_reverb_5"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_loud"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_reverb_6"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_magnetic"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left|center_vertical"
+        android:text="@string/sound_effect_pannel_change_voice"
+        android:textColor="@color/white" />
+
+    <HorizontalScrollView
+        android:id="@+id/layout_voicechanger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:id="@+id/btn_voicechanger_default"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_original_sound2"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_voicechanger_1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_wild_kid"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+
+            <TextView
+                android:id="@+id/btn_voicechanger_2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_lolita"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_voicechanger_3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_uncle"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_voicechanger_4"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_heavy_metal"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+
+            <TextView
+                android:id="@+id/btn_voicechanger_6"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_foreigner"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+
+            <TextView
+                android:id="@+id/btn_voicechanger_7"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_beast"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_voicechanger_8"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_fat_boy"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_voicechanger_9"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_heavy_current"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_voicechanger_10"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_heavy_machine"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/btn_voicechanger_11"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#00000000"
+                android:focusable="false"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/layout_sound_effect_vacant"
+                android:textAllCaps="false"
+                android:textColor="@drawable/text_color1"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>
+

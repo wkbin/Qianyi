@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_margin="7dp"
+    android:background="#3DB2A3"
+    android:layout_width="100dp"
+    android:layout_height="35dp">
+    <ImageView
+        android:id="@+id/iv_dingwei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/dingwei"/>
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="九江"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+</LinearLayout>

@@ -24,6 +24,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -73,11 +74,33 @@ public class MallFragment extends Fragment implements View.OnClickListener {
     private NestedScrollView nsv_mall;
 
     private float py = 0;
+    private RelativeLayout rl_recommend_like;
+    private RelativeLayout rl_recommend_like2;
 
     @Nullable
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mall, container, false);
         return view;
+    }
+    // View宽，高
+    public int[] getLocation(View v) {
+        int[] loc = new int[4];
+        int[] location = new int[2];
+        v.getLocationInWindow(location);
+        loc[0] = location[0];
+        loc[1] = location[1];
+        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        v.measure(w, h);
+
+        loc[2] = v.getMeasuredWidth();
+        loc[3] = v.getMeasuredHeight();
+
+        for (int i:loc){
+            Log.d("====","i == "+i);
+        }
+        //base = computeWH();
+        return loc;
     }
 
     @Override
@@ -86,21 +109,38 @@ public class MallFragment extends Fragment implements View.OnClickListener {
 
         getActivity().findViewById(R.id.li_specialty).setOnClickListener(this);
         getActivity().findViewById(R.id.li_attractions).setOnClickListener(this);
+        rl_recommend_like = getActivity().findViewById(R.id.rl_recommend_like);
+        rl_recommend_like2 = getActivity().findViewById(R.id.rl_recommend_like2);
+
+
+
 
         li_title_bar = getActivity().findViewById(R.id.li_title_bar);
         li_title_bar.setAlpha(0);
         nsv_mall = getActivity().findViewById(R.id.nsv_mall);
 
+        getLocation(rl_recommend_like2);
+
+
+//        int[] p1 = new int[2];
+//        rl_recommend_like2.getLocationOnScreen(p1);
+//        Log.d("====","h1 == "+p1[1]);
+//        int [] p2 = new int[2];
+//        nsv_mall.getLocationOnScreen(p2);
+//        Log.d("====","h2 == "+p2[1]);
+//
+//        Log.d("====","h3 == "+rl_recommend_like2.getHeight());
+//        Log.d("====","h4 == "+nsv_mall.getHeight());
 
         nsv_mall.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-
+                Log.e("====","scrollY == "+scrollY);
                 if (scrollY > 540) {
                     li_title_bar.setAlpha(1);
                     banner_guide_content.stopAutoPlay();
-                } else if (scrollY > 240) {
-                    py = (scrollY - 240) / 1000f * 3;
+                } else if (scrollY > 100) {
+                    py = (scrollY - 100) / 1000f * 3;
                     li_title_bar.setAlpha(py);
                     banner_guide_content.startAutoPlay();
                 } else {

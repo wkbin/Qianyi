@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,6 +20,8 @@ import com.example.qy.fragment.MyFragment;
 import com.example.qy.ui.VideoClassificationPopupWindow;
 import com.example.qy.whs.BaseActivity;
 import com.example.qy.whs.MyApplication;
+import com.example.qy.xiaoshipin.videorecord.TCVideoRecordActivity;
+import com.tencent.rtmp.TXLiveBase;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private HomeFragment mHomeFragment;
@@ -35,7 +38,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        String sdkver = TXLiveBase.getSDKVersionStr();
+        Log.d("liteavsdk", "liteav sdk version is : " + sdkver);
         setContentView(R.layout.activity_main);
 
         initView();
@@ -229,10 +233,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
                 break;
             case R.id.li_camera:
-                VideoClassificationPopupWindow popupWindow = new VideoClassificationPopupWindow(MainActivity.this, view ->  {
+//                VideoClassificationPopupWindow popupWindow = new VideoClassificationPopupWindow(MainActivity.this, view ->  {
+//                });
+//                popupWindow.show();
+                startActivity(new Intent(MainActivity.this,TCVideoRecordActivity.class));
 
-                });
-                popupWindow.show();
                 break;
             case R.id.li_shopping:
                 getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);

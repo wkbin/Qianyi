@@ -18,6 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.qy.R;
 import com.example.qy.activity.LoginActivity;
@@ -56,6 +57,7 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
     public int total;
     private UserInfo userInfo;
     private CommentAdapter adapter;
+    private LinearLayout li_wpl;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,6 +106,7 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
         iv_close = view.findViewById(R.id.iv_close);
         tv_input_comments = view.findViewById(R.id.tv_input_comments);
         tv_title = view.findViewById(R.id.tv_title);
+        li_wpl = view.findViewById(R.id.li_wpl);
         tv_input_comments.setOnClickListener(v-> {
                 if (userInfo == null){
                     startActivity(new Intent(getActivity(),LoginActivity.class));
@@ -167,6 +170,8 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
                                         }
                                         list.add(0,comment);
                                         if (adapter == null){
+                                            li_wpl.setVisibility(View.GONE);
+                                            rc_first_comments.setVisibility(View.VISIBLE);
                                             adapter = new CommentAdapter(getActivity(),list);
                                             LinearLayoutManager manager = new LinearLayoutManager(getActivity());
                                             rc_first_comments.setLayoutManager(manager);
@@ -254,10 +259,18 @@ public class CommentsSheetBottomDialog extends BottomSheetDialogFragment {
 
                         getActivity().runOnUiThread(()->{
                             tv_title.setText(total+" 条评论");
-                            adapter = new CommentAdapter(getActivity(),list);
-                            LinearLayoutManager manager = new LinearLayoutManager(getActivity());
-                            rc_first_comments.setLayoutManager(manager);
-                            rc_first_comments.setAdapter(adapter);
+                            if (list.size() == 0||total == 0){
+                                li_wpl.setVisibility(View.VISIBLE);
+                                rc_first_comments.setVisibility(View.GONE);
+                            }else{
+                                li_wpl.setVisibility(View.GONE);
+                                rc_first_comments.setVisibility(View.VISIBLE);
+
+                                adapter = new CommentAdapter(getActivity(),list);
+                                LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+                                rc_first_comments.setLayoutManager(manager);
+                                rc_first_comments.setAdapter(adapter);
+                            }
                         });
                     }
                 } catch (JSONException e) {

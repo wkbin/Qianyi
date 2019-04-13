@@ -67,8 +67,9 @@ public class HomeFragment extends Fragment {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 0x333){
-
-                viewPagerLayoutManager = new ViewPagerLayoutManager(getActivity(),OrientationHelper.VERTICAL);
+                if (viewPagerLayoutManager == null){
+                    viewPagerLayoutManager = new ViewPagerLayoutManager(getActivity(),OrientationHelper.VERTICAL);
+                }
                 rv_home.setLayoutManager(viewPagerLayoutManager);
 //                Collections.shuffle(list);
                 adapter = new HomeAdapter(getActivity(),list,user_id,getFragmentManager());
@@ -110,8 +111,6 @@ public class HomeFragment extends Fragment {
         }
     };
 
-    private TextView tv_tourism;
-    private TextView tv_food;
 
     @Nullable
     @Override
@@ -198,7 +197,7 @@ public class HomeFragment extends Fragment {
                             v.coverPath = video.getString("coverPath");
                             v.countLike = video.getJSONObject("likes").getInt("countLike");
                             v.liked = video.getJSONObject("likes").getBoolean("liked");
-                            v.createdate = video.getString("createdate");
+                            v.createdate = video.getString("createDate");
                             v.videoDesc = video.getString("videoDesc");
                             v.musicId = video.getString("musicId");
                             v.type = video.getString("type");
@@ -227,21 +226,6 @@ public class HomeFragment extends Fragment {
             startActivity(new Intent(getActivity(),SelectAreaActivity.class));
         });
 
-        tv_tourism = getActivity().findViewById(R.id.tv_tourism);
-        tv_food = getActivity().findViewById(R.id.tv_food);
-
-        tv_tourism.setOnClickListener(v -> {
-            tv_tourism.setTextColor(Color.parseColor("#fefefe"));
-            tv_food.setTextColor(Color.parseColor("#b3fefefe"));
-            tv_tourism.setTextSize(20);
-            tv_food.setTextSize(16);
-        });
-        tv_food.setOnClickListener(v -> {
-            tv_food.setTextColor(Color.parseColor("#fefefe"));
-            tv_tourism.setTextColor(Color.parseColor("#b3fefefe"));
-            tv_food.setTextSize(20);
-            tv_tourism.setTextSize(16);
-        });
 
     }
 

@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_play_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="onClick"
+    android:background="#000000"
+    tools:ignore="contentDescription">
+
+
+
+
+    <com.tencent.rtmp.ui.TXCloudVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:id="@+id/follow_shot_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <com.tencent.rtmp.ui.TXCloudVideoView
+            android:id="@+id/video_view_follow_shot_record"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:layout_centerInParent="true" />
+
+        <FrameLayout
+            android:id="@+id/video_view_follow_shot_play"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:layout_centerInParent="true"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tx_timer_number"
+        android:gravity="center"
+        android:layout_width="260dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:text="3"
+        android:textSize="220dp"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/record_mask_buttom" />
+
+    </FrameLayout>
+
+
+
+
+    <TextView
+        android:id="@+id/record_tv_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="无"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <!--录制-->
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/record_layout"
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+
+
+        <RelativeLayout
+            android:id="@+id/layout_record_btns"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/compose_record_btn">
+                <ImageView
+                    android:id="@+id/iv_upload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="onClick"
+                    android:src="@mipmap/uploadicon" />
+                <TextView
+                    android:layout_below="@id/iv_upload"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上传"
+                    android:textColor="#ffffffff"
+                    android:textSize="12sp"
+                    android:shadowColor="#4d000000" />
+            </RelativeLayout>
+
+            <com.example.qy.xiaoshipin.videorecord.ComposeRecordBtn
+                android:id="@+id/compose_record_btn"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true" />
+
+
+            <RelativeLayout
+                android:id="@+id/record_right_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_toRightOf="@id/compose_record_btn">
+                <ImageView
+                    android:id="@+id/btn_delete_last_part"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onClick"
+                    android:src="@mipmap/zu1" />
+
+                <ImageView
+                    android:id="@+id/iv_next_step"
+                    android:onClick="onClick"
+                    android:visibility="gone"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/btn_delete_last_part"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/determine"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:visibility="visible"
+                android:id="@+id/layout_beauty_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/compose_record_btn">
+                <ImageView
+                    android:id="@+id/btn_beauty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:onClick="onClick"
+                    android:src="@mipmap/afilter" />
+                <TextView
+                    android:layout_below="@id/btn_beauty"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="滤镜"
+                    android:textColor="#ffffffff"
+                    android:textSize="12sp"
+                    android:shadowColor="#4d000000" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/autoLocateView"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_above="@id/layout_record_btns"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="27dp"
+            android:visibility="gone" />
+
+        <RadioGroup
+            android:id="@+id/rg_record_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_above="@id/layout_record_btns"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/drawable_gray_rect_bg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_slowest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="极慢"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_slow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="慢"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="标准"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_fast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="快"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_fastest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:paddingBottom="10dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:text="极快"
+                android:textColor="@drawable/record_speed_selector"
+                android:textSize="14sp" />
+        </RadioGroup>
+    </RelativeLayout>
+
+
+    <com.example.qy.xiaoshipin.common.widget.BeautySettingPannel
+        android:id="@+id/beauty_pannel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content">
+
+        <com.example.qy.xiaoshipin.videorecord.RecordProgressView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="@dimen/gaudio_spacing_320"
+            android:id="@+id/record_progress_view"
+            android:layout_width="match_parent"
+            android:layout_height="4dp" />
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/back_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/guan" />
+        </LinearLayout>
+
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_right_utils_for_follow_shot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/record_layout"
+        android:layout_below="@id/layout_top"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/layout_music_for_follow_shot2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/btn_music_pannel_for_follow_shot2"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:onClick="onClick"
+                android:src="@mipmap/flip" />
+
+            <TextView
+                android:id="@+id/tv_music_for_follow_shot2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_music_pannel_for_follow_shot2"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="翻转"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_music_for_follow_shot"
+            android:layout_width="60dp"
+            android:layout_below="@id/layout_music_for_follow_shot2"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/btn_music_pannel_for_follow_shot"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:onClick="onClick"
+                android:src="@mipmap/choosemusic" />
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/iv_music_mask_for_follow_shot"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/record_round_bg"
+                android:onClick="onClick"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tv_music_for_follow_shot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_music_pannel_for_follow_shot"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="选音乐"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:id="@+id/layout_beauty_container_for_follow_shot"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/layout_music_for_follow_shot"
+            android:layout_marginRight="10dp">
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/btn_beauty_for_follow_shot"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:onClick="onClick"
+                android:src="@drawable/ugc_record_beautiful_girl" />
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btn_beauty_for_follow_shot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="美颜"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:id="@+id/layout_timer_for_follow_shot"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/layout_beauty_container_for_follow_shot"
+            android:layout_marginRight="10dp">
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/btn_timer_for_follow_shot"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:onClick="onClick"
+                android:src="@drawable/btn_timer" />
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/btn_timer_for_follow_shot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="倒计时"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_right_utils"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/record_layout"
+        android:layout_below="@id/layout_top"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/rl_switch_camera"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:onClick="onClick"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/btn_switch_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/flip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_switch_camera"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="翻转"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_count_down"
+            android:layout_below="@id/rl_switch_camera"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:onClick="onClick"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/btn_count_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:src="@mipmap/countdown" />
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_count_down"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="倒计时"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_fast_speed"
+            android:layout_below="@id/layout_count_down"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:onClick="onClick"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/btn_fast_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/speed" />
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_fast_speed"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="快慢速"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_music"
+            android:layout_below="@id/layout_fast_speed"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/btn_music_pannel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:src="@mipmap/choosemusic" />
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/iv_music_mask"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/record_round_bg"
+                android:onClick="onClick"
+                android:visibility="gone"/>
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_music"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_music_pannel"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="选音乐"
+                android:textColor="#fff"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+    <com.example.qy.xiaoshipin.videoeditor.bgm.view.TCBGMPannel2
+        android:id="@+id/tc_record_bgm_pannel"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
+
+    <com.example.qy.xiaoshipin.videoeditor.bgm.view.SoundEffectsSettingPannel
+        android:id="@+id/sound_effects_setting_pannel"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
+
+
+
+</RelativeLayout>

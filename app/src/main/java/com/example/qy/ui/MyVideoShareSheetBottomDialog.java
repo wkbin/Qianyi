@@ -13,7 +13,7 @@ import com.example.qy.R;
 /**
  * Author: 王克斌
  * Date: 2019 年 03 月 13 日 下午 3:59
- * Description:
+ * Description: 视频分享
  */
 public class MyVideoShareSheetBottomDialog extends BottomSheetDialog{
 

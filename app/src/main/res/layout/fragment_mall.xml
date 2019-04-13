@@ -316,6 +316,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_recommend_like2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -430,5 +431,51 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_recommend_like"
+            android:visibility="gone"
+            android:layout_marginTop="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <View
+                android:id="@+id/v_hot_recommend2"
+                android:layout_width="72dp"
+                android:layout_height="8dp"
+                android:layout_alignBottom="@id/tv_hot_recommend2"
+                android:background="@drawable/shape_indicator" />
+
+            <TextView
+                android:id="@+id/tv_hot_recommend2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="热门推荐"
+                android:textColor="#1a1a1a"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <View
+                android:id="@+id/v_guess_like2"
+                android:layout_width="72dp"
+                android:layout_height="8dp"
+                android:background="@drawable/shape_indicator"
+                android:visibility="invisible" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/tv_hot_recommend2"
+                android:text="猜你喜欢"
+                android:textColor="#333333"
+                android:textSize="14sp" />
+        </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

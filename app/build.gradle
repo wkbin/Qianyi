@@ -9,16 +9,26 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        // 删除无用语言
+        resConfigs "zh"
         // 指定app使用架构
         ndk {
-            abiFilters "armeabi-v7a"
+            abiFilters "armeabi"
+            // 如果您使用的是商业版，只能使用 armeabi 架构，即：
+            // abiFilters "armeabi",
         }
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
-            minifyEnabled false
+            // 开启代码混淆
+            minifyEnabled true
+            // 删除无用资源文件
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+
         }
     }
     buildToolsVersion '28.0.3'
@@ -104,6 +114,13 @@ dependencies {
     implementation 'com.github.wangjiegulu:rfab:2.0.0'
     // 带索引的RecycleView
 
+//    // 腾讯云短视频SDK
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    // 导入短视频SDK aar，LiteAVSDK_UGC_x.x.xxxx 请自行修改为最新版本号
+    implementation(name: 'LiteAVSDK_Professional_6.3.7090', ext: 'aar')
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.3.1'
 
 
 }
